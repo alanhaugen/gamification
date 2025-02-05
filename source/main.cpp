@@ -244,12 +244,6 @@ Tetris::Tetris()
 
 void Tetris::Init()
 {
-    struct timeval tp;
-    gettimeofday(&tp, NULL);
-    long int ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
-
-    random = Random(ms); // Seed random number generator with current time
-
     score = 0;
     speed = 1;
     paused = false;
