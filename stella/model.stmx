@@ -98,17 +98,17 @@
 				<dimensions>
 					<dim name="Word"/>
 				</dimensions>
-				<eqn>Player_language_skill</eqn>
+				<eqn>Pick_a_word_for_the_quiz</eqn>
 				<non_negative/>
 				<units>Word/Months</units>
 			</flow>
 			<flow name="Add word to dictionary">
-				<eqn>0</eqn>
+				<eqn>Success</eqn>
 				<non_negative/>
 				<units>Words/Months</units>
 			</flow>
 			<flow name="Success">
-				<eqn>0</eqn>
+				<eqn>Player_language_skill</eqn>
 				<non_negative/>
 				<units>Fails/Months</units>
 			</flow>
@@ -121,14 +121,17 @@
 				<dimensions>
 					<dim name="Word"/>
 				</dimensions>
+				<eqn>Success</eqn>
 				<non_negative/>
 				<units>Word/Months</units>
 			</flow>
 			<flow name="Make game harder">
+				<eqn>Success</eqn>
 				<non_negative/>
 				<units>Level/Months</units>
 			</flow>
 			<flow name="Make game easier">
+				<eqn>Failure</eqn>
 				<non_negative/>
 				<units>Level/Months</units>
 			</flow>
@@ -136,6 +139,7 @@
 				<dimensions>
 					<dim name="Word"/>
 				</dimensions>
+				<eqn>0</eqn>
 				<non_negative/>
 				<units>Word/Months</units>
 			</flow>
@@ -147,18 +151,24 @@
 				<units>Seconds</units>
 			</stock>
 			<flow name="Give the player more time">
+				<eqn>Make_game_harder</eqn>
 				<non_negative/>
 				<units>Seconds/Months</units>
 			</flow>
 			<flow name="Give the player less time">
+				<eqn>Make_game_easier</eqn>
 				<non_negative/>
 				<units>Seconds/Months</units>
 			</flow>
 			<flow name="Play tetris">
-				<eqn>0</eqn>
+				<eqn>SUM(Play_quiz)</eqn>
 				<non_negative/>
 				<units>Skill/Months</units>
 			</flow>
+			<aux name="Initial time for first level">
+				<eqn>0</eqn>
+				<units>Seconds</units>
+			</aux>
 		</variables>
 		<views>
 			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
@@ -354,6 +364,7 @@
 					<from>Play_quiz</from>
 					<to>Play_tetris</to>
 				</connector>
+				<aux x="434" y="41" name="Initial time for first level"/>
 			</view>
 		</views>
 	</model>
