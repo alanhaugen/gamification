@@ -7,9 +7,9 @@
 		<vendor>isee systems, inc.</vendor>
 		<product version="2.1.5" isee:build_number="2629" isee:saved_by_v1="true" lang="en">Stella Architect</product>
 	</header>
-	<sim_specs isee:sim_duration="1.5" isee:simulation_delay="0.125" isee:restore_on_start="false" method="Euler" time_units="Months" isee:instantaneous_flows="false" isee:loop_scores="true" isee:loop_exhaustive_allowed="1000">
+	<sim_specs isee:sim_duration="1.5" isee:simulation_delay="0.06" isee:restore_on_start="false" method="Euler" time_units="Months" isee:instantaneous_flows="false" isee:loop_scores="true" isee:loop_exhaustive_allowed="1000">
 		<start>1</start>
-		<stop>13</stop>
+		<stop>26</stop>
 		<dt reciprocal="true">4</dt>
 	</sim_specs>
 	<dimensions>
@@ -60,7 +60,7 @@
 				<dimensions>
 					<dim name="Word"/>
 				</dimensions>
-				<eqn>0</eqn>
+				<eqn>1</eqn>
 				<inflow>Remove_word_from_unknown_words_and_add_to_known_words</inflow>
 				<outflow>Pick_a_word_for_the_quiz</outflow>
 				<non_negative/>
@@ -70,7 +70,7 @@
 				<dimensions>
 					<dim name="Word"/>
 				</dimensions>
-				<eqn>0</eqn>
+				<eqn>10</eqn>
 				<outflow>Remove_word_from_unknown_words_and_add_to_known_words</outflow>
 				<non_negative/>
 				<units>Word</units>
@@ -103,17 +103,21 @@
 				<units>Word/Months</units>
 			</flow>
 			<flow name="Add word to dictionary">
-				<eqn>Success</eqn>
+				<eqn>SUM(Remove_word_from_unknown_words_and_add_to_known_words)</eqn>
 				<non_negative/>
 				<units>Words/Months</units>
 			</flow>
 			<flow name="Success">
-				<eqn>Player_language_skill</eqn>
+				<eqn>IF (Player_language_skill&gt;0) THEN RANDOM(0, 1)
+ELSE
+0</eqn>
 				<non_negative/>
 				<units>Fails/Months</units>
 			</flow>
 			<flow name="Failure">
-				<eqn>0</eqn>
+				<eqn>IF (Player_language_skill&gt;0) THEN RANDOM(0, 1)
+ELSE
+0</eqn>
 				<non_negative/>
 				<units>Wins/Months</units>
 			</flow>
@@ -139,7 +143,7 @@
 				<dimensions>
 					<dim name="Word"/>
 				</dimensions>
-				<eqn>0</eqn>
+				<eqn>RANDOM(0, SUM(Words_that_have_been_introduced_to_the_player))</eqn>
 				<non_negative/>
 				<units>Word/Months</units>
 			</flow>
@@ -165,10 +169,6 @@
 				<non_negative/>
 				<units>Skill/Months</units>
 			</flow>
-			<aux name="Initial time for first level">
-				<eqn>0</eqn>
-				<units>Seconds</units>
-			</aux>
 		</variables>
 		<views>
 			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
@@ -216,7 +216,7 @@
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="766" page_height="586" isee:page_cols="2" isee:page_rows="2" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="766" page_height="586" isee:page_cols="3" isee:page_rows="2" isee:scroll_x="1" isee:scroll_y="339" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="18pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -254,29 +254,29 @@
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
 				<stock x="384" y="405" name="Player language skill"/>
-				<stock x="619" y="257" name="Words in dictionary"/>
+				<stock x="813" y="369" name="Words in dictionary"/>
 				<stock x="150" y="414" name="Mastery of a given word"/>
 				<stock x="378" y="524" name="Words that have been introduced to the player"/>
-				<stock x="688" y="522" name="New words that have yet to\nbe given to the player"/>
+				<stock x="813" y="522" name="New words that have yet to\nbe given to the player"/>
 				<stock x="283" y="104" name="Failures"/>
-				<stock x="632" y="357" name="Successes"/>
-				<stock x="278" y="207.5" name="Level"/>
+				<stock x="614" y="294" name="Successes"/>
+				<stock x="339" y="170.5" name="Level"/>
 				<flow x="150" y="294.75" name="Play quiz">
 					<pts>
 						<pt x="150" y="193"/>
 						<pt x="150" y="396.5"/>
 					</pts>
 				</flow>
-				<flow x="502.75" y="254" name="Add word to dictionary">
+				<flow x="696.75" y="366" name="Add word to dictionary">
 					<pts>
-						<pt x="409" y="254"/>
-						<pt x="596.5" y="254"/>
+						<pt x="603" y="366"/>
+						<pt x="790.5" y="366"/>
 					</pts>
 				</flow>
-				<flow x="546.25" y="351" name="Success">
+				<flow x="528.25" y="288" name="Success">
 					<pts>
-						<pt x="483" y="351"/>
-						<pt x="609.5" y="351"/>
+						<pt x="465" y="288"/>
+						<pt x="591.5" y="288"/>
 					</pts>
 				</flow>
 				<flow x="207.75" y="101" name="Failure">
@@ -285,9 +285,9 @@
 						<pt x="260.5" y="101"/>
 					</pts>
 				</flow>
-				<flow x="539" y="522" name="Remove word from unknown words and add to known words">
+				<flow x="601.5" y="522" name="Remove word from unknown words and add to known words">
 					<pts>
-						<pt x="665.5" y="522"/>
+						<pt x="790.5" y="522"/>
 						<pt x="400.5" y="522"/>
 					</pts>
 				</flow>
@@ -295,28 +295,21 @@
 					<from>Success</from>
 					<to>Remove_word_from_unknown_words_and_add_to_known_words</to>
 				</connector>
-				<connector uid="3" angle="80.4011">
-					<from>Success</from>
-					<to>Add_word_to_dictionary</to>
-				</connector>
-				<connector uid="4" angle="18.4085">
-					<from>Player_language_skill</from>
-					<to>Success</to>
-				</connector>
-				<flow x="291" y="276" name="Make game harder">
+				<flow x="340" y="261" name="Make game harder">
 					<pts>
-						<pt x="291" y="327"/>
-						<pt x="291" y="225"/>
+						<pt x="340" y="334"/>
+						<pt x="340" y="188"/>
 					</pts>
 				</flow>
-				<connector uid="5" angle="152.632">
+				<connector uid="5" angle="171.838">
 					<from>Success</from>
 					<to>Make_game_harder</to>
 				</connector>
-				<flow x="389.25" y="192.25" name="Make game easier">
+				<flow x="439.5" y="163.5" name="Make game easier">
 					<pts>
-						<pt x="300.5" y="192.25"/>
-						<pt x="502" y="192.25"/>
+						<pt x="339" y="153"/>
+						<pt x="339" y="163.5"/>
+						<pt x="564" y="163.5"/>
 					</pts>
 				</flow>
 				<connector uid="6" angle="3.13636">
@@ -334,23 +327,23 @@
 					<to>Play_quiz</to>
 				</connector>
 				<stock x="650" y="117" name="Time remaining per level"/>
-				<flow x="518.75" y="119" name="Give the player more time">
+				<flow x="649" y="181.25" name="Give the player more time">
 					<pts>
-						<pt x="410" y="119"/>
-						<pt x="627.5" y="119"/>
+						<pt x="649" y="228"/>
+						<pt x="649" y="134.5"/>
 					</pts>
 				</flow>
-				<flow x="800.25" y="119" name="Give the player less time">
+				<flow x="571.75" y="114" name="Give the player less time">
 					<pts>
-						<pt x="672.5" y="119"/>
-						<pt x="952" y="119"/>
+						<pt x="627.5" y="114"/>
+						<pt x="492" y="114"/>
 					</pts>
 				</flow>
-				<connector uid="8" angle="24.444">
+				<connector uid="8" angle="20.5204">
 					<from>Make_game_easier</from>
 					<to>Give_the_player_less_time</to>
 				</connector>
-				<connector uid="9" angle="49.0856">
+				<connector uid="9" angle="14.4717">
 					<from>Make_game_harder</from>
 					<to>Give_the_player_more_time</to>
 				</connector>
@@ -364,7 +357,68 @@
 					<from>Play_quiz</from>
 					<to>Play_tetris</to>
 				</connector>
-				<aux x="434" y="41" name="Initial time for first level"/>
+				<stacked_container uid="11" x="301" y="1034">
+					<graph width="350" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Mastery_of_a_given_word[*]"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="12" x="711.25" y="1040">
+					<graph width="350" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Successes"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Failures"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="13" x="1553.25" y="189.5">
+					<graph width="350" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true"/>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="14" x="1553.25" y="478.5">
+					<graph width="350" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true"/>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="15" x="711.25" y="757">
+					<graph width="350" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Words_in_dictionary"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="16" x="301" y="757">
+					<graph width="350" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Player_language_skill"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<connector uid="17" angle="26.5651">
+					<from>Remove_word_from_unknown_words_and_add_to_known_words</from>
+					<to>Add_word_to_dictionary</to>
+				</connector>
+				<connector uid="18" angle="39.0452">
+					<from>Player_language_skill</from>
+					<to>Success</to>
+				</connector>
+				<connector uid="22" angle="256.43">
+					<from>Words_that_have_been_introduced_to_the_player</from>
+					<to>Pick_a_word_for_the_quiz</to>
+				</connector>
+				<connector uid="23" angle="6.07246">
+					<from>
+						<alias uid="19"/>
+					</from>
+					<to>Failure</to>
+				</connector>
+				<alias font_style="italic" uid="19" x="85.5" y="51.5" width="45" height="35">
+					<of>Player_language_skill</of>
+				</alias>
 			</view>
 		</views>
 	</model>
