@@ -10,6 +10,7 @@
 #include "playtetrismenu.h"
 #include "startmenu.h"
 #include "settingsmenu.h"
+#include "levelselectmenu.h"
 
 int highscore = 0;
 
@@ -422,6 +423,7 @@ int main(int argc, char **argv)
     application.AddScene(new StartMenu());
     application.AddScene(new PlayTetrisMenu());
     application.AddScene(new DictionaryMenu());
+    application.AddScene(new LevelSelectMenu());
     application.AddScene(new GameMenu());
     application.AddScene(new SettingsMenu());
     application.AddScene(new Tetris());

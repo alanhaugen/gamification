@@ -6,6 +6,7 @@ enum Scenes
     StartMenu,
     PlayTetrisMenu,
     DictionaryMenu,
+    LevelSelectMenu,
     GameMenu,
     SettingsMenu,
     Tetris,
