@@ -4,7 +4,12 @@
 #include <core/components/text.h>
 #include <core/components/cube.h>
 #include <glm/gtc/constants.hpp>
-#include <sys/time.h>
+
+#include "dictionarymenu.h"
+#include "gamemenu.h"
+#include "playtetrismenu.h"
+#include "startmenu.h"
+#include "settingsmenu.h"
 
 int highscore = 0;
 
@@ -414,7 +419,11 @@ void Tetris::CheckScore()
 int main(int argc, char **argv)
 {
     Application application(argc, argv);
-    application.AddScene(new MainMenu());
+    application.AddScene(new StartMenu());
+    application.AddScene(new PlayTetrisMenu());
+    application.AddScene(new DictionaryMenu());
+    application.AddScene(new GameMenu());
+    application.AddScene(new SettingsMenu());
     application.AddScene(new Tetris());
     application.AddScene(new GameOver());
 

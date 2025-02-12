@@ -51,8 +51,18 @@ solid {
             "data/solid.ico",
             "data/vertexanimation.frag",
             "data/vertexanimation.vert",
+            "source/dictionarymenu.cpp",
+            "source/dictionarymenu.h",
+            "source/gamemenu.cpp",
+            "source/gamemenu.h",
             "source/main.cpp",
             "source/main.h",
+            "source/playtetrismenu.cpp",
+            "source/playtetrismenu.h",
+            "source/settingsmenu.cpp",
+            "source/settingsmenu.h",
+            "source/startmenu.cpp",
+            "source/startmenu.h",
         ]
 
         Depends { name: "core"  }
