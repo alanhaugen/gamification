@@ -22,15 +22,11 @@
 	<model>
 		<variables>
 			<aux name="Failure">
-				<eqn>NAN(Game_Speed)</eqn>
-				<isee:delay_aux/>
-			</aux>
-			<aux name="Words are added to a personal dictionary">
-				<eqn>NAN</eqn>
+				<eqn>NAN(Game_Speed,Play_tetris)</eqn>
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Success">
-				<eqn>NAN(Game_Speed)</eqn>
+				<eqn>NAN(Game_Speed,Game_experience,Play_tetris)</eqn>
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Level">
@@ -46,11 +42,11 @@
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Words not yet introduced to the player">
-				<eqn>NAN(Words_introduced_to_the_player,Failure)</eqn>
+				<eqn>NAN(Words_introduced_to_the_player)</eqn>
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Game difficulty">
-				<eqn>NAN(Success,Failure)</eqn>
+				<eqn>NAN(Success,Game_experience,Failure)</eqn>
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Game Speed">
@@ -62,6 +58,13 @@
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Play quiz">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Game experience">
+				<eqn>NAN(Failure,Success)</eqn>
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Play tetris">
 				<isee:delay_aux/>
 			</aux>
 		</variables>
@@ -111,7 +114,7 @@
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" isee:converter_size="name_only" page_width="766" page_height="586" isee:page_cols="2" isee:scroll_x="74" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" isee:converter_size="name_only" page_width="766" page_height="586" isee:page_cols="2" isee:scroll_x="77" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="18pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -152,16 +155,12 @@
 				<aux x="323.25" y="194" width="63.5" height="24" name="Failure">
 					<shape type="name_only"/>
 				</aux>
-				<aux x="558.25" y="67" width="181.5" height="46" name="Words are added to a personal dictionary">
-					<shape type="name_only"/>
-				</aux>
-				<aux x="486.75" y="127" width="76.5" height="24" name="Success">
+				<aux x="495.75" y="130" width="76.5" height="24" name="Success">
 					<shape type="name_only"/>
 				</aux>
 				<aux x="775.25" y="137" width="51.5" height="24" name="Level">
 					<shape type="name_only"/>
 				</aux>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="4" x="268" y="233" width="30" height="30"/>
 				<aux x="458.25" y="282" width="161.5" height="24" name="Words in dictionary">
 					<shape type="name_only"/>
 				</aux>
@@ -177,12 +176,8 @@
 					<from>Game_difficulty</from>
 					<to>Game_Speed</to>
 				</connector>
-				<connector uid="6" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="152.403">
+				<connector uid="6" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="118.301">
 					<from>Success</from>
-					<to>Game_difficulty</to>
-				</connector>
-				<connector uid="7" color="#0038ED" font_color="#0038ED" font_size="30pt" polarity="-" isee:polarity_placement="outside" angle="189.13">
-					<from>Failure</from>
 					<to>Game_difficulty</to>
 				</connector>
 				<connector uid="8" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="27.8973">
@@ -193,7 +188,7 @@
 					<from>Level</from>
 					<to>Words_introduced_to_the_player</to>
 				</connector>
-				<connector uid="10" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="275.161">
+				<connector uid="10" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="271.884">
 					<from>Success</from>
 					<to>Words_in_dictionary</to>
 				</connector>
@@ -213,10 +208,6 @@
 					<from>Game_Speed</from>
 					<to>Success</to>
 				</connector>
-				<connector uid="15" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="273.013">
-					<from>Failure</from>
-					<to>Words_not_yet_introduced_to_the_player</to>
-				</connector>
 				<aux x="524.25" y="372" width="255.5" height="24" name="Player mastery of a given word">
 					<shape type="name_only"/>
 				</aux>
@@ -230,6 +221,38 @@
 					<to>Words_introduced_to_the_player</to>
 				</connector>
 				<isee:loop_indicator text="R" orientation="clockwise" uid="18" x="637" y="311" width="30" height="30"/>
+				<aux x="307.75" y="137" width="150.5" height="24" name="Game experience"/>
+				<connector uid="19" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="90">
+					<from>Failure</from>
+					<to>Game_experience</to>
+				</connector>
+				<connector uid="20" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="356.947">
+					<from>Game_experience</from>
+					<to>Success</to>
+				</connector>
+				<connector uid="21" color="#004AED" font_color="#004AED" font_size="30pt" polarity="-" isee:polarity_placement="outside" angle="186.361">
+					<from>Game_experience</from>
+					<to>Game_difficulty</to>
+				</connector>
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="4" x="268" y="233" width="30" height="30"/>
+				<aux x="394.25" y="175" width="87.5" height="24" name="Play tetris"/>
+				<connector uid="22" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="14.7436">
+					<from>Play_tetris</from>
+					<to>Success</to>
+				</connector>
+				<connector uid="23" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="202.504">
+					<from>Play_tetris</from>
+					<to>Failure</to>
+				</connector>
+				<connector uid="24" color="#002FED" font_color="#002FED" font_size="30pt" polarity="-" isee:polarity_placement="outside" angle="173.991">
+					<from>Failure</from>
+					<to>Game_difficulty</to>
+				</connector>
+				<connector uid="25" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="138.814">
+					<from>Success</from>
+					<to>Game_experience</to>
+				</connector>
+				<isee:loop_indicator text="R" orientation="clockwise" uid="26" x="446" y="116" width="30" height="30"/>
 			</view>
 		</views>
 	</model>

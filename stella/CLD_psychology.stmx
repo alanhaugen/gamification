@@ -52,7 +52,7 @@
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Extrinsic motivation">
-				<eqn>NAN(Words_of_advice_and_trivia_for_the_player_to_enjoy,Words_in_dictionary)</eqn>
+				<eqn>NAN(Words_of_advice_and_trivia_for_the_player_to_enjoy,Words_in_dictionary,Level_completion)</eqn>
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Flow">
@@ -64,6 +64,10 @@
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Words of advice and trivia for the player to enjoy">
+				<eqn>NAN(Successes)</eqn>
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Level completion">
 				<eqn>NAN(Successes)</eqn>
 				<isee:delay_aux/>
 			</aux>
@@ -114,7 +118,7 @@
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" isee:converter_size="name_only" page_width="766" page_height="586" isee:page_cols="2" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" isee:converter_size="name_only" page_width="766" page_height="586" isee:page_cols="2" isee:scroll_x="22" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="18pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -164,7 +168,7 @@
 				<aux x="297.75" y="259" width="95.5" height="24" name="Successes">
 					<shape type="name_only"/>
 				</aux>
-				<aux x="445.75" y="337" width="121.5" height="24" name="Level difficulty">
+				<aux x="426.75" y="346" width="121.5" height="24" name="Level difficulty">
 					<shape type="name_only"/>
 				</aux>
 				<aux x="664.25" y="265" width="72.5" height="24" name="Failures">
@@ -183,11 +187,11 @@
 					<from>Failures</from>
 					<to>Flow</to>
 				</connector>
-				<connector uid="29" color="#0036ED" font_color="#0036ED" font_size="30pt" polarity="-" isee:polarity_placement="inside" angle="200.362">
+				<connector uid="29" color="#0036ED" font_color="#0036ED" font_size="30pt" polarity="-" isee:polarity_placement="inside" angle="200.821">
 					<from>Failures</from>
 					<to>Level_difficulty</to>
 				</connector>
-				<connector uid="30" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="334.151">
+				<connector uid="30" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="328.505">
 					<from>Successes</from>
 					<to>Level_difficulty</to>
 				</connector>
@@ -209,7 +213,7 @@
 					<from>Words_of_encouragement_to_the_player</from>
 					<to>Intrinsic_motivation</to>
 				</connector>
-				<connector uid="35" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="0.548268">
+				<connector uid="35" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="0.548268">
 					<from>Words_of_advice_and_trivia_for_the_player_to_enjoy</from>
 					<to>Extrinsic_motivation</to>
 				</connector>
@@ -229,7 +233,7 @@
 					<from>Words_of_encouragement_to_the_player</from>
 					<to>Reflection_time</to>
 				</connector>
-				<connector uid="40" color="#001EED" font_color="#001EED" font_size="30pt" polarity="-" isee:polarity_placement="inside" angle="316.202">
+				<connector uid="40" color="#001EED" font_color="#001EED" font_size="30pt" polarity="-" isee:polarity_placement="inside" delay_mark="true" angle="316.202">
 					<from>Player_language_skill</from>
 					<to>Intrinsic_motivation</to>
 				</connector>
@@ -244,6 +248,15 @@
 				<connector uid="43" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="67.8097">
 					<from>Successes</from>
 					<to>Player_language_skill</to>
+				</connector>
+				<aux x="535.25" y="393" width="143.5" height="24" name="Level completion"/>
+				<connector uid="44" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="355.17">
+					<from>Successes</from>
+					<to>Level_completion</to>
+				</connector>
+				<connector uid="45" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="180.585">
+					<from>Level_completion</from>
+					<to>Extrinsic_motivation</to>
 				</connector>
 			</view>
 		</views>

@@ -22,7 +22,7 @@
 	<model>
 		<variables>
 			<aux name="Learn the meaning of words">
-				<eqn>NAN(Combine_letters_to_make_words,Play_word_reinforcement_quiz)</eqn>
+				<eqn>NAN(Combine_letters_to_make_words,Play_word_reinforcement_quiz,Look_at_dictionary)</eqn>
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Combine letters to make words">
@@ -34,11 +34,23 @@
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Play word reinforcement quiz">
-				<eqn>NAN(Words_are_added_to_a_personal_dictionary)</eqn>
+				<eqn>NAN(Words_are_added_to_a_personal_dictionary,Look_at_dictionary)</eqn>
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Play tetris">
 				<eqn>NAN(Combine_letters_to_make_words)</eqn>
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Learn example sentences">
+				<eqn>NAN(Look_at_dictionary)</eqn>
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Look at dictionary">
+				<eqn>NAN(Play_word_reinforcement_quiz,Words_are_added_to_a_personal_dictionary)</eqn>
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Learn and listen to pronunciation with\ndifferent accents of words">
+				<eqn>NAN(Look_at_dictionary)</eqn>
 				<isee:delay_aux/>
 			</aux>
 		</variables>
@@ -88,7 +100,7 @@
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" isee:converter_size="name_only" page_width="766" page_height="586" isee:page_cols="2" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" isee:converter_size="name_only" page_width="766" page_height="586" isee:page_cols="2" isee:page_rows="2" isee:scroll_x="57" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="18pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -125,20 +137,20 @@
 					</graph>
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
-				<text_box uid="1" x="66" y="58" width="284" height="30">Learning by doing, by applying experience</text_box>
-				<aux x="489.25" y="273" width="231.5" height="24" name="Learn the meaning of words"/>
-				<aux x="373.75" y="431" width="256.5" height="24" name="Combine letters to make words"/>
+				<text_box uid="1" x="26" y="43" width="284" height="30">Learning by doing, by applying experience</text_box>
+				<aux x="523.25" y="409" width="231.5" height="24" name="Learn the meaning of words"/>
+				<aux x="407.75" y="567" width="256.5" height="24" name="Combine letters to make words"/>
 				<connector uid="13" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="56.8997">
 					<from>Combine_letters_to_make_words</from>
 					<to>Learn_the_meaning_of_words</to>
 				</connector>
-				<aux x="744.25" y="280" width="181.5" height="46" name="Words are added to a personal dictionary"/>
+				<aux x="778.25" y="416" width="181.5" height="46" name="Words are added to a personal dictionary"/>
 				<connector uid="14" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="0">
 					<from>Combine_letters_to_make_words</from>
 					<to>Words_are_added_to_a_personal_dictionary</to>
 				</connector>
-				<aux x="581.75" y="128" width="240.5" height="24" name="Play word reinforcement quiz"/>
-				<connector uid="16" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="236.219">
+				<aux x="623.75" y="265" width="240.5" height="24" name="Play word reinforcement quiz"/>
+				<connector uid="16" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="233.902">
 					<from>Play_word_reinforcement_quiz</from>
 					<to>Learn_the_meaning_of_words</to>
 				</connector>
@@ -146,7 +158,7 @@
 					<from>Play_word_reinforcement_quiz</from>
 					<to>Combine_letters_to_make_words</to>
 				</connector>
-				<aux x="437.25" y="539" width="87.5" height="24" name="Play tetris"/>
+				<aux x="471.25" y="675" width="87.5" height="24" name="Play tetris"/>
 				<connector uid="18" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="38.6598">
 					<from>Play_tetris</from>
 					<to>Combine_letters_to_make_words</to>
@@ -155,14 +167,14 @@
 					<from>Combine_letters_to_make_words</from>
 					<to>Play_tetris</to>
 				</connector>
-				<isee:loop_indicator text="R" orientation="clockwise" uid="25" x="548" y="235" width="30" height="30">
+				<isee:loop_indicator text="R" orientation="clockwise" uid="25" x="699" y="371" width="30" height="30">
 					<isee:entities>
 						<entity name="Play_word_reinforcement_quiz"/>
 						<entity name="Words_are_added_to_a_personal_dictionary"/>
 						<entity name="Combine_letters_to_make_words"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="R" orientation="clockwise" uid="26" x="459.25" y="479" width="30" height="30">
+				<isee:loop_indicator text="R" orientation="clockwise" uid="26" x="493.25" y="615" width="30" height="30">
 					<isee:entities>
 						<entity name="Play_tetris"/>
 						<entity name="Combine_letters_to_make_words"/>
@@ -171,6 +183,41 @@
 				<connector uid="15" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="94.8645">
 					<from>Words_are_added_to_a_personal_dictionary</from>
 					<to>Play_word_reinforcement_quiz</to>
+				</connector>
+				<aux x="825.75" y="43" width="214.5" height="24" name="Learn example sentences"/>
+				<aux x="669.25" y="112" width="149.5" height="24" name="Look at dictionary"/>
+				<connector uid="27" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="2.09525">
+					<from>Look_at_dictionary</from>
+					<to>Play_word_reinforcement_quiz</to>
+				</connector>
+				<connector uid="28" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="166.551">
+					<from>Play_word_reinforcement_quiz</from>
+					<to>Look_at_dictionary</to>
+				</connector>
+				<isee:loop_indicator text="R" orientation="clockwise" uid="29" x="754.75" y="194" width="30" height="30">
+					<isee:entities>
+						<entity name="Play_word_reinforcement_quiz"/>
+						<entity name="Look_at_dictionary"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<aux x="336.75" y="58" width="306.5" height="46" name="Learn and listen to pronunciation with\ndifferent accents of words">
+					<shape type="name_only"/>
+				</aux>
+				<connector uid="30" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="29.1343">
+					<from>Words_are_added_to_a_personal_dictionary</from>
+					<to>Look_at_dictionary</to>
+				</connector>
+				<connector uid="31" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="184.214">
+					<from>Look_at_dictionary</from>
+					<to>Learn_the_meaning_of_words</to>
+				</connector>
+				<connector uid="32" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="168.69">
+					<from>Look_at_dictionary</from>
+					<to>Learn_and_listen_to_pronunciation_with_different_accents_of_words</to>
+				</connector>
+				<connector uid="33" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="79.1145">
+					<from>Look_at_dictionary</from>
+					<to>Learn_example_sentences</to>
 				</connector>
 			</view>
 		</views>
