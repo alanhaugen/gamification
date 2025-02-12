@@ -55,6 +55,8 @@ solid {
             "source/dictionarymenu.h",
             "source/gamemenu.cpp",
             "source/gamemenu.h",
+            "source/gameover.cpp",
+            "source/gameover.h",
             "source/levelselectmenu.cpp",
             "source/levelselectmenu.h",
             "source/main.cpp",
@@ -65,6 +67,8 @@ solid {
             "source/settingsmenu.h",
             "source/startmenu.cpp",
             "source/startmenu.h",
+            "source/tetris.cpp",
+            "source/tetris.h",
         ]
 
         Depends { name: "core"  }

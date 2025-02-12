@@ -4,6 +4,7 @@
 #include <core/x-platform/scene.h>
 #include <core/components/text.h>
 #include <core/components/camera.h>
+#include "tetris.h"
 
 class StartMenu : public IScene
 {
@@ -18,6 +19,8 @@ private:
 
     Sprite* background;
     Sprite* iphone;
+
+    Tetris* tetris;
 
 public:
 
