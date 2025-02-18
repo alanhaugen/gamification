@@ -54,4 +54,3 @@ void StartMenu::Update()
 void StartMenu::UpdateAfterPhysics()
 {
 }
-

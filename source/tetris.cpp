@@ -2,6 +2,7 @@
 #include <core/application.h>
 #include <core/components/cube.h>
 #include <core/components/camera.h>
+#include "main.h"
 
 extern int highscore;
 
@@ -156,6 +157,11 @@ void Tetris::Update()
     }
 
     activePiece->matrix.Translate(activePiece->direction);
+
+    if (input.Released(input.Key.ESCAPE))
+    {
+        Application::LoadScene(Scenes::StartMenu);
+    }
 }
 
 void Tetris::UpdateAfterPhysics()

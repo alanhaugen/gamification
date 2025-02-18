@@ -2,10 +2,12 @@ import "../solid/solid.qbs" as solid
 
 solid {
     Application {
-        name: "Tetris"
+        name: "LexiBlocks"
 
         files: [
             "data/bg.frag",
+            "data/bg.frag",
+            "data/bg.vert",
             "data/bg.vert",
             "data/cubemap.frag",
             "data/cubemap.vert",
@@ -57,6 +59,8 @@ solid {
             "source/gamemenu.h",
             "source/gameover.cpp",
             "source/gameover.h",
+            "source/intro.cpp",
+            "source/intro.h",
             "source/levelselectmenu.cpp",
             "source/levelselectmenu.h",
             "source/main.cpp",

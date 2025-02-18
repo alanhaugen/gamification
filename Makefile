@@ -22,7 +22,7 @@ SOURCES = \
 # Setup Asset Conditioning Pipeline
 #############################################################################
 
-PROJECT_FILES = $(SOURCES) data/project.json 
+PROJECT_FILES = $(SOURCES) data/project.json
 
 #############################################################################
 # Setup build platform rules 
