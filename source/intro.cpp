@@ -11,7 +11,10 @@ Intro::Intro()
 
 void Intro::Init()
 {
-    croco = new Sprite("data/art/croco.png", 1000, 250);
+    bubble = new Sprite("data/art/speechbubble.png", 0, 0, 0.75);
+    bubbleScaled = new Sprite("data/art/speechbubblescaling.png", 0, 0, 0.75f, 0.0f);
+    bubble->FlipHorizontal();
+    croco = new Sprite("data/art/croco.png", 10000, 250);
     Camera* cam = new Camera();
     components.Add(cam);
     components.Add(new Text("AB", 0.0f, 240.0f, 10.0f, 10.0f, glm::vec2(0.0f, 0.0f),
@@ -20,19 +23,37 @@ void Intro::Init()
     components.Add(new Text("I am Professor Croco.", 100, 200, 2, 2));
     //components.Add(new Background(glm::vec3(0.972549019607843f, 0.929411764705882f, 0.92156862745098f), cam));
     components.Add(croco);
+    components.Add(bubble);
+    components.Add(bubbleScaled);
     components.Add(new Background(glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
+
+    cube = new Cube(0,0,-5);
+
+    components.Add(cube);
 
     startTime = Application::GetTime();
 
+    bubble->Hide();
+
     t = 0.0;
+    i = 0;
 }
 
 void Intro::Update()
 {
+    if (bubbleScaled->scaleY < 1.0f)
+    {
+        bubbleScaled->scaleY += 0.05;
+    }
+    else
+    {
+        bubbleScaled->Hide();
+        bubble->Show();
+    }
     if (*croco->matrix.x > 700)
     {
         *croco->matrix.x = 1000 - (700 * t);
-        t += startTime->TimeSinceStarted() / 100000;
+        t += startTime->TimeSinceStarted() / 200000;
     }
     else
     {
@@ -41,8 +62,15 @@ void Intro::Update()
 
     if (input.Released(input.Key.R))
     {
-        *croco->matrix.x = 1000;
+        *croco->matrix.x = 10000;
+        startTime->Reset();
+        t = 0.0f;
     }
+
+    *cube->matrix.x = cos(i);
+    *cube->matrix.y = sin(i);
+
+    i += 0.1;
 }
 
 void Intro::UpdateAfterPhysics()

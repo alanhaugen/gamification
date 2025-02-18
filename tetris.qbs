@@ -69,6 +69,8 @@ solid {
             "source/playtetrismenu.h",
             "source/settingsmenu.cpp",
             "source/settingsmenu.h",
+            "source/speechbubble.cpp",
+            "source/speechbubble.h",
             "source/startmenu.cpp",
             "source/startmenu.h",
             "source/tetris.cpp",
