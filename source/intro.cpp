@@ -22,14 +22,14 @@ void Intro::Init()
     components.Add(new Text("Welcome to LexiBlocks!", 100, 150, 2, 2));
     components.Add(new Text("I am Professor Croco.", 100, 200, 2, 2));
     //components.Add(new Background(glm::vec3(0.972549019607843f, 0.929411764705882f, 0.92156862745098f), cam));
-    components.Add(croco);
-    components.Add(bubble);
-    components.Add(bubbleScaled);
+    //components.Add(croco);
+    //components.Add(bubble);
+    //components.Add(bubbleScaled);
     components.Add(new Background(glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
 
     cube = new Cube(0,0,-5);
 
-    components.Add(cube);
+    //components.Add(cube);
 
     startTime = Application::GetTime();
 
