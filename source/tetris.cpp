@@ -22,10 +22,10 @@ Block::Block(int type)
     {
         Uniform("colour", glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(0,2*2,0));
-        Add(new Cube(0,3*2,0));
+        Add(new Sprite("data/block.png",0,0));//Cube(0,0,0));
+        Add(new Sprite("data/block.png",0,1 * 64));//new Cube(0,1*2,0));
+        Add(new Sprite("data/block.png",0,2 * 64));//new Cube(0,2*2,0));
+        Add(new Sprite("data/block.png",0,3 * 64));//new Cube(0,3*2,0));
     }
     else if (type == O)
     {
