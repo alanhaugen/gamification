@@ -3,6 +3,7 @@
 
 #include <core/x-platform/scene.h>
 #include <core/components/actor.h>
+#include "japanesekanji.h"
 
 class Block : public Actor
 {
@@ -24,6 +25,7 @@ public:
     Block(int type = RANDOM);
     bool canRotate;
     glm::vec3 direction;
+    char kana;
 };
 
 
