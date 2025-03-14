@@ -98,10 +98,11 @@ void Tetris::Init()
     speed = 1;
     paused = false;
     timer = Application::GetTime();
-    gameTickTime = 500.0f;
-    isPaused = false;
+    gameTickTime = 2000.0f;
 
     activePiece = new Block();
+
+    Pause = new PauseMenu();
 
     components.Add(new Camera());
     components.Add(activePiece);
@@ -130,13 +131,17 @@ void Tetris::Init()
 
 void Tetris::Update()
 {
-
-    //temporary pause before adding a proper pause menu
     if(input.Pressed(input.Key.P))
-        isPaused = !isPaused;
+    {
+        Pause->Pause();
+        timer->Pause();
+    }
 
-    if(isPaused)
+    if(Pause->isPaused)
+    {
+        Pause->Update();
         return;
+    }
 
     activePiece->direction = glm::vec3();
     isRotated = false;
