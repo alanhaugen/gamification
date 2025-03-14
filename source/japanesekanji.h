@@ -80,7 +80,7 @@ namespace Hirigana
 
     const int NumberOfKana = 48 + 24;
 
-    /*char kanas[NumberOfKana] = {
+    const char kanas[NumberOfKana] = {
         a,
         i,
         u,
@@ -153,7 +153,7 @@ namespace Hirigana
         pu,
         pe,
         po
-    };*/
+    };
 }
 
 #endif // JAPANESEKANJI_H
