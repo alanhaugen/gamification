@@ -2,6 +2,7 @@ import "../solid/solid.qbs" as solid
 
 solid {
     Application {
+//        cpp.cxxLanguageVersion: "c++23"
         name: "LexiBlocks.exe"
 
         files: [
@@ -97,7 +98,7 @@ solid {
             cpp.frameworks: macosFrameworks
 
             cpp.dynamicLibraries: macosSharedLibs
-            cpp.staticLibraries: staticLibs.concat("SDL2")
+            cpp.staticLibraries: staticLibs.concat("SDL2", "MoltenVK")
 
             cpp.libraryPaths: [project.buildDirectory, "../solid/lib/debug/darwin/x86_64"]
             cpp.includePaths: includePaths.concat("../solid/include/darwin")

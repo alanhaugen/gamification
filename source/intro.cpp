@@ -29,7 +29,7 @@ void Intro::Init()
 
     cube = new Cube(0,0,-5);
 
-    //components.Add(cube);
+    components.Add(cube);
 
     startTime = Application::GetTime();
 
@@ -68,7 +68,6 @@ void Intro::Update()
     }
 
     *cube->matrix.x = cos(i);
-    *cube->matrix.y = sin(i);
 
     i += 0.1;
 }

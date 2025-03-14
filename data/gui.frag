@@ -23,6 +23,7 @@ in float o_totalheight;
 in float o_flip;
 in float o_flipVertical;
 in float o_time;
+in vec4 o_colourTint;
 //in vec2 o_rotation;
 
 void main ()
@@ -61,6 +62,8 @@ void main ()
 
     if (final.r == 1.0f && final.g == 0.0f && final.b == 1.0f)
         discard;
+
+    final += o_colourTint;
 
     vFragColor = final;
 }

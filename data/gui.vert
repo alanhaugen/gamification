@@ -29,6 +29,7 @@ uniform int screenHeight;
 uniform int flip;
 uniform int flipVertical;
 uniform float time;
+uniform vec4 colourTint;
 //uniform vec2 rotation;
 
 out float o_index;
@@ -39,6 +40,7 @@ out float o_totalheight;
 out float o_flip;
 out float o_flipVertical;
 out float o_time;
+out vec4 o_colourTint;
 //out vec2 o_rotation;
 
 void main()
@@ -78,5 +80,6 @@ void main()
     o_flip = float(flip);
     o_flipVertical = float(flipVertical);
     o_time = float(time);
+    o_colourTint = colourTint;
     //o_rotation = rotation;
 }
