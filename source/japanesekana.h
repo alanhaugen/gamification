@@ -1,5 +1,5 @@
-#ifndef JAPANESEKANJI_H
-#define JAPANESEKANJI_H
+#ifndef JAPANESEKANA_H
+#define JAPANESEKANA_H
 
 
 namespace Hirigana

@@ -3,7 +3,7 @@
 
 #include <core/x-platform/scene.h>
 #include <core/components/actor.h>
-#include "japanesekanji.h"
+#include "japanesekana.h"
 #include "pausemenu.h"
 
 class Block : public Actor

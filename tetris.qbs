@@ -62,6 +62,7 @@ solid {
             "source/gameover.h",
             "source/intro.cpp",
             "source/intro.h",
+            "source/japanesekana.h",
             "source/japanesekanji.h",
             "source/levelselectmenu.cpp",
             "source/levelselectmenu.h",
