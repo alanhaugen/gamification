@@ -4,6 +4,7 @@
 #include <core/x-platform/scene.h>
 #include <core/components/actor.h>
 #include "japanesekanji.h"
+#include "pausemenu.h"
 
 class Block : public Actor
 {
@@ -39,7 +40,7 @@ private:
     ITime *timer;
     Block *activePiece;
     float gameTickTime;
-    bool isPaused;
+    PauseMenu* Pause;
 
     void CheckScore();
 
