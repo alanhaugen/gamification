@@ -27,5 +27,6 @@ void main()
         final = vSmoothColor;
     }
     vFragColor = final;
+    vFragColor.rgb -= vSmoothColor.rgb;
 }
 
