@@ -37,6 +37,7 @@ private:
     ITime *timer;
     Block *activePiece;
     float gameTickTime;
+    bool isPaused;
 
     void CheckScore();
 

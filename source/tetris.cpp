@@ -99,6 +99,7 @@ void Tetris::Init()
     paused = false;
     timer = Application::GetTime();
     gameTickTime = 500.0f;
+    isPaused = false;
 
     activePiece = new Block();
 
@@ -129,6 +130,14 @@ void Tetris::Init()
 
 void Tetris::Update()
 {
+
+    //temporary pause before adding a proper pause menu
+    if(input.Pressed(input.Key.P))
+        isPaused = !isPaused;
+
+    if(isPaused)
+        return;
+
     activePiece->direction = glm::vec3();
     isRotated = false;
 

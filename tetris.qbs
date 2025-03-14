@@ -2,8 +2,8 @@ import "../solid/solid.qbs" as solid
 
 solid {
     Application {
-        name: "LexiBlocks"
 //        cpp.cxxLanguageVersion: "c++23"
+        name: "LexiBlocks.exe"
 
         files: [
             "data/bg.frag",
