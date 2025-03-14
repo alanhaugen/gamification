@@ -2,7 +2,7 @@ import "../solid/solid.qbs" as solid
 
 solid {
     Application {
-        name: "LexiBlocks"
+        name: "LexiBlocks.exe"
 
         files: [
             "data/bg.frag",
