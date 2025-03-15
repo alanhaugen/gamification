@@ -189,6 +189,21 @@ void Tetris::Update()
     if (input.Pressed(input.Key.SPACE))
     {
         // Go to bottom
+        while(true)
+        {
+            activePiece->direction.x = 0.0f;
+            activePiece->direction.y = -2.0f;
+            activePiece->matrix.Translate(activePiece->direction);
+            activePiece->Update();
+            physics->Update();
+
+            if(physics->Collide())
+            {
+                activePiece->matrix.Translate(-activePiece->direction);
+                activePiece->Update();
+                break;
+            }
+        }
     }
     else if (timer->TimeSinceStarted() > gameTickTime / speed || input.Pressed(input.Key.DOWN))
     {
