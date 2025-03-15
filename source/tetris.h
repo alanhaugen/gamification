@@ -35,8 +35,8 @@ public:
     bool canRotate;
     glm::vec3 direction;
 
-    void Rotate(bool lettersOnly);
-    void RotateBack(bool lettersOnly);
+    void Rotate();
+    void RotateBack();
 };
 
 class Tetris : public IScene
