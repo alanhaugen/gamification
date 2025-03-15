@@ -50,10 +50,10 @@ Block::Block(int type)
     {
         Uniform("colour", glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
 
-        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(0,-1*2,0));
+        Add(new LetterCube(0,0*2,0));
         Add(new LetterCube(0,1*2,0));
         Add(new LetterCube(0,2*2,0));
-        Add(new LetterCube(0,3*2,0));
     }
     else if (type == O)
     {
@@ -97,19 +97,19 @@ Block::Block(int type)
     {
         Uniform("colour", glm::vec4(0.0f, 1.0f, 1.0f, 1.0f));
 
-        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(0,-1*2,0));
+        Add(new LetterCube(0,0*2,0));
         Add(new LetterCube(0,1*2,0));
-        Add(new LetterCube(0,2*2,0));
-        Add(new LetterCube(-1*2,2*2,0));
+        Add(new LetterCube(-1*2,1*2,0));
     }
     else if (type == L)
     {
         Uniform("colour", glm::vec4(1.0f, 1.0f, 0.0f, 1.0f));
 
-        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(0,-1*2,0));
+        Add(new LetterCube(0,0*2,0));
         Add(new LetterCube(0,1*2,0));
-        Add(new LetterCube(0,2*2,0));
-        Add(new LetterCube(1*2,2*2,0));
+        Add(new LetterCube(1*2,1*2,0));
     }
 
     matrix.Translate(glm::vec3(0, 15, -45));
