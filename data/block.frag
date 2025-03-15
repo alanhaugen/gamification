@@ -1,0 +1,46 @@
+#version 330 core
+//es
+
+// ES requires setting precision qualifier
+// Can be mediump or highp
+precision highp float; // affects all floats (vec3, vec4 etc)
+
+layout(location=0) out vec4 vFragColor;	//fragment shader output
+
+//input form the vertex shader
+smooth in vec4 vSmoothColor;		//interpolated colour to fragment shader
+smooth in vec2 vSmoothTexcoord;
+in float o_kana;
+uniform sampler2D textureSampler;
+uniform bool uEnableTexture;
+
+void main()
+{
+    vec4 final = vec4(1.0, 0.0, 0.0, 1.0);
+    if (uEnableTexture)
+    {
+        vec2 coords = vSmoothTexcoord;
+
+        float x, y;
+
+        float o_totalwidth = 64;
+        float o_totalheight = 3072;
+        float o_width = 64;
+        float o_height = 64;
+        float o_index = o_kana;
+
+        x = coords.x * (o_width  / o_totalwidth);
+        y = coords.y * (o_height / o_totalheight) + o_index * (o_height  / o_totalheight);
+
+        coords.x = x;
+        coords.y = y;
+
+        final = texture(textureSampler, coords);
+    } else {
+        //set the interpolated colour as the shader output
+        final = vSmoothColor;
+    }
+    vFragColor = final;
+    vFragColor.rgb -= vSmoothColor.rgb;
+}
+

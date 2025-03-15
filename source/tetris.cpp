@@ -7,9 +7,10 @@
 extern int highscore;
 
 LetterCube::LetterCube(float x, float y, float z)
-    : Cube(x, y, z, 1, 0, 1, "data/block.png")
+    : Cube(x, y, z, 1, 0, 1, "data/image.png", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), "data/block.vert", "data/block.frag")
 {
-    kana = Hirigana::a;
+    kana = Hirigana::i;
+    Uniform("kana", glm::f32(kana));
 }
 
 void Block::Rotate()

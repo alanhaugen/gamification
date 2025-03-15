@@ -10,6 +10,8 @@ solid {
             "data/bg.frag",
             "data/bg.vert",
             "data/bg.vert",
+            "data/block.frag",
+            "data/block.vert",
             "data/cubemap.frag",
             "data/cubemap.vert",
             "data/gouraud.frag",

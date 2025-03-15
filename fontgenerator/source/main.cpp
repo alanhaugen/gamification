@@ -28,7 +28,8 @@ int main(int numberOfArguments, char* argumentArray[])
 	for (int i = 0; i < 48; i++)
 	{
 		std::wstring letter = text.substr(i, i+1);
-		SDL_Surface* surf = TTF_RenderUNICODE(font, (const Uint16*) letter.c_str(), color, bg);
+		//SDL_Surface* surf = TTF_RenderUNICODE(font, (const Uint16*) letter.c_str(), color, bg);
+		SDL_Surface* surf = TTF_RenderUNICODE_Blended(font, (const Uint16*) letter.c_str(), color);
 
 		if (surf == nullptr){
 			TTF_CloseFont(font);
@@ -37,7 +38,14 @@ int main(int numberOfArguments, char* argumentArray[])
 		}
 
 		char dest[256];
-		snprintf(dest, 256, "output_%d.bmp", i);
+		if (i < 10)
+		{
+			snprintf(dest, 256, "output_0%d.bmp", i);
+		}
+		else
+		{
+			snprintf(dest, 256, "output_%d.bmp", i);
+		}
 
 		SDL_SaveBMP(surf, dest);
 

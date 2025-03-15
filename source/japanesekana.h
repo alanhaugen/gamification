@@ -3,8 +3,8 @@
 
 namespace Hirigana
 {
-    const char a = '!';
-    const char i = '"';
+    const float a = 0.0f;
+    const float i = 1.0f;
     const char u = '#';
     const char e = '$';
     const char o = '%';
