@@ -66,6 +66,8 @@ solid {
             "source/intro.h",
             "source/japanesekana.h",
             "source/japanesekanji.h",
+            "source/level.cpp",
+            "source/level.h",
             "source/levelselectmenu.cpp",
             "source/levelselectmenu.h",
             "source/main.cpp",
