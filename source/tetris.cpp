@@ -58,7 +58,7 @@ Block::Block(int type)
     }
     else if (type == Z)
     {
-        Uniform("colour", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+        Uniform("colour", glm::vec4(0.8f, 0.2f, 0.1f, 1.0f));
 
         Add(new Cube(0,0,0));
         Add(new Cube(-1*2,0,0));
@@ -98,7 +98,7 @@ void Tetris::Init()
     speed = 1;
     paused = false;
     timer = Application::GetTime();
-    gameTickTime = 2000.0f;
+    gameTickTime = 500.0f;
 
     activePiece = new Block();
 
