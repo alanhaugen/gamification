@@ -1,7 +1,6 @@
 #ifndef JAPANESEKANA_H
 #define JAPANESEKANA_H
 
-
 namespace Hirigana
 {
     const char a = '!';
