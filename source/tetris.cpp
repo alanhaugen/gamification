@@ -6,6 +6,12 @@
 
 extern int highscore;
 
+LetterCube::LetterCube(float x, float y, float z)
+    : Cube(x, y, z, 1, 0, 1, "data/block.png")
+{
+    kana = Hirigana::a;
+}
+
 Block::Block(int type)
 {
     const int NUMBER_OF_TETROMINOS = 7;
@@ -22,19 +28,19 @@ Block::Block(int type)
     {
         Uniform("colour", glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(0,2*2,0));
-        Add(new Cube(0,3*2,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(0,1*2,0));
+        Add(new LetterCube(0,2*2,0));
+        Add(new LetterCube(0,3*2,0));
     }
     else if (type == O)
     {
         Uniform("colour", glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(1*2,1*2,0));
-        Add(new Cube(1*2,0,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(0,1*2,0));
+        Add(new LetterCube(1*2,1*2,0));
+        Add(new LetterCube(1*2,0,0));
 
         canRotate = false;
     }
@@ -42,51 +48,50 @@ Block::Block(int type)
     {
         Uniform("colour", glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(1*2,0,0));
-        Add(new Cube(-1*2,0,0));
-        Add(new Cube(0,1*2,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(1*2,0,0));
+        Add(new LetterCube(-1*2,0,0));
+        Add(new LetterCube(0,1*2,0));
     }
     else if (type == S)
     {
         Uniform("colour", glm::vec4(1.0f, 0.5f, 0.5f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(1*2,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(-1*2,1*2,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(1*2,0,0));
+        Add(new LetterCube(0,1*2,0));
+        Add(new LetterCube(-1*2,1*2,0));
     }
     else if (type == Z)
     {
         Uniform("colour", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(-1*2,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(1*2,1*2,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(-1*2,0,0));
+        Add(new LetterCube(0,1*2,0));
+        Add(new LetterCube(1*2,1*2,0));
     }
     else if (type == J)
     {
         Uniform("colour", glm::vec4(0.0f, 1.0f, 1.0f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(0,2*2,0));
-        Add(new Cube(-1*2,2*2,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(0,1*2,0));
+        Add(new LetterCube(0,2*2,0));
+        Add(new LetterCube(-1*2,2*2,0));
     }
     else if (type == L)
     {
         Uniform("colour", glm::vec4(1.0f, 1.0f, 0.0f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(0,2*2,0));
-        Add(new Cube(1*2,2*2,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(0,1*2,0));
+        Add(new LetterCube(0,2*2,0));
+        Add(new LetterCube(1*2,2*2,0));
     }
 
     matrix.Translate(glm::vec3(0, 15, -45));
 }
-
 
 Tetris::Tetris()
 {
