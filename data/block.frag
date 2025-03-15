@@ -43,6 +43,10 @@ void main()
         final = vSmoothColor;
     }
     vFragColor = final;
+
+    if (final.r == 1.0f && final.g == 0.0f && final.b == 1.0f)
+        discard;
+
     vFragColor.rgb -= vSmoothColor.rgb;
 }
 

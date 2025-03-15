@@ -7,7 +7,7 @@
 extern int highscore;
 
 LetterCube::LetterCube(float x, float y, float z)
-    : Cube(x, y, z, 1, 0, 1, "data/image.png", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), "data/block.vert", "data/block.frag")
+    : Cube(x, y, z, 1, 0, 1, "data/image.png", true, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), "data/block.vert", "data/block.frag")
 {
     kana = random.RandomRange(0, 45);
     Uniform("index", static_cast<int>(kana));
@@ -19,8 +19,8 @@ void Block::Rotate()
 
     for (unsigned int i = 0; i < components.Size(); i++)
     {
-        LetterCube* letterCube = dynamic_cast<LetterCube*>(*components[i]);
-        letterCube->matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, -1.0f));
+        Cube* cube = dynamic_cast<Cube*>(*components[i]);
+        cube->matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, -1.0f));
     }
 }
 
@@ -30,8 +30,8 @@ void Block::RotateBack()
 
     for (unsigned int i = 0; i < components.Size(); i++)
     {
-        LetterCube* letterCube = dynamic_cast<LetterCube*>(*components[i]);
-        letterCube->matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, 1.0f));
+        Cube* cube = dynamic_cast<Cube*>(*components[i]);
+        cube->matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, 1.0f));
     }
 }
 
@@ -52,65 +52,93 @@ Block::Block(int type)
         colour = glm::vec4(1.0f, 0.0f, 1.0f, 1.0f);
 
         Add(new LetterCube(0,-1*2,0));
+        Add(new Cube(0,-1*2,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(0,0*2,0));
+        Add(new Cube(0,0*2,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(0,1*2,0));
+        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(0,2*2,0));
+        Add(new Cube(0,2*2,-0.01, 1, 0, 1, "data/block.png", false));
     }
     else if (type == O)
     {
         colour = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
 
         Add(new LetterCube(0,0,0));
+        Add(new Cube(0,0,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(0,1*2,0));
+        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(1*2,1*2,0));
+        Add(new Cube(1*2,1*2,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(1*2,0,0));
+        Add(new Cube(1*2,0,-0.01, 1, 0, 1, "data/block.png", false));
 
-        canRotate = false;
+        //canRotate = false;
     }
     else if (type == T)
     {
         colour = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
 
         Add(new LetterCube(0,0,0));
+        Add(new Cube(0,0,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(1*2,0,0));
+        Add(new Cube(1*2,0,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(-1*2,0,0));
+        Add(new Cube(-1*2,0,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(0,1*2,0));
+        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
     }
     else if (type == S)
     {
         colour = glm::vec4(1.0f, 0.5f, 0.5f, 1.0f);
 
         Add(new LetterCube(0,0,0));
+        Add(new Cube(0,0,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(1*2,0,0));
+        Add(new Cube(1*2,0,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(0,1*2,0));
+        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(-1*2,1*2,0));
+        Add(new Cube(-1*2,1*2,-0.01, 1, 0, 1, "data/block.png", false));
     }
     else if (type == Z)
     {
         colour = glm::vec4(0.8f, 0.2f, 0.1f, 1.0f);
 
         Add(new LetterCube(0,0,0));
+        Add(new Cube(0,0,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(-1*2,0,0));
+        Add(new Cube(-1*2,0,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(0,1*2,0));
+        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(1*2,1*2,0));
+        Add(new Cube(1*2,1*2,-0.01, 1, 0, 1, "data/block.png", false));
     }
     else if (type == J)
     {
         colour = glm::vec4(0.0f, 1.0f, 1.0f, 1.0f);
 
         Add(new LetterCube(0,-1*2,0));
+        Add(new Cube(0,-1*2,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(0,0*2,0));
+        Add(new Cube(0,0,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(0,1*2,0));
+        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(-1*2,1*2,0));
+        Add(new Cube(-1*2,1*2,-0.01, 1, 0, 1, "data/block.png", false));
     }
     else if (type == L)
     {
         colour = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
 
         Add(new LetterCube(0,-1*2,0));
+        Add(new Cube(0,-1*2,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(0,0*2,0));
+        Add(new Cube(0,0,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(0,1*2,0));
+        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
         Add(new LetterCube(1*2,1*2,0));
+        Add(new Cube(1*2,1*2,-0.01, 1, 0, 1, "data/block.png", false));
     }
 
     matrix.Translate(glm::vec3(0, 15, -45));
