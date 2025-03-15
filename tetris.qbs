@@ -68,6 +68,8 @@ solid {
             "source/levelselectmenu.h",
             "source/main.cpp",
             "source/main.h",
+            "source/mousecursor.cpp",
+            "source/mousecursor.h",
             "source/pausemenu.cpp",
             "source/pausemenu.h",
             "source/playtetrismenu.cpp",
