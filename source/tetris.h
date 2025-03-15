@@ -34,6 +34,9 @@ public:
     Block(int type = RANDOM);
     bool canRotate;
     glm::vec3 direction;
+
+    void Rotate();
+    void RotateBack();
 };
 
 class Tetris : public IScene

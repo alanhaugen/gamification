@@ -12,6 +12,28 @@ LetterCube::LetterCube(float x, float y, float z)
     kana = Hirigana::a;
 }
 
+void Block::Rotate()
+{
+    matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, 1.0f));
+
+    for (unsigned int i = 0; i < components.Size(); i++)
+    {
+        LetterCube* letterCube = dynamic_cast<LetterCube*>(*components[i]);
+        letterCube->matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, -1.0f));
+    }
+}
+
+void Block::RotateBack()
+{
+    matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, -1.0f));
+
+    for (unsigned int i = 0; i < components.Size(); i++)
+    {
+        LetterCube* letterCube = dynamic_cast<LetterCube*>(*components[i]);
+        letterCube->matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, 1.0f));
+    }
+}
+
 Block::Block(int type)
 {
     const int NUMBER_OF_TETROMINOS = 7;
@@ -103,7 +125,7 @@ void Tetris::Init()
     speed = 1;
     paused = false;
     timer = Application::GetTime();
-    gameTickTime = 2000.0f;
+    gameTickTime = 500.0f;
 
     activePiece = new Block();
 
@@ -161,7 +183,7 @@ void Tetris::Update()
     }
     else if (input.Pressed(input.Key.UP) && activePiece->canRotate)
     {
-        activePiece->matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, 1.0f));
+        activePiece->Rotate();
         isRotated = true;
     }
     if (input.Pressed(input.Key.SPACE))
@@ -197,7 +219,7 @@ void Tetris::UpdateAfterPhysics()
         // Rotate back
         if (isRotated)
         {
-            activePiece->matrix.Rotate(-3.14159/2, glm::vec3(0.0f, 0.0f, 1.0f));
+            activePiece->RotateBack();
             activePiece->Update();
         }
         // Make new brick

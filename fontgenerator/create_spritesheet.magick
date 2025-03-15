@@ -1,1 +1,1 @@
-convert output_0.bmp -resize 64x64 -background white -gravity center -extent 64x64 new.png
+convert output_0.bmp -resize 64x64 -background white -gravity center -extent 64x64 output_new_0.png
