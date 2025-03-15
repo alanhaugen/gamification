@@ -3,8 +3,16 @@
 
 #include <core/x-platform/scene.h>
 #include <core/components/actor.h>
+#include "core/components/cube.h"
 #include "japanesekana.h"
 #include "pausemenu.h"
+
+class LetterCube : public Cube
+{
+public:
+    LetterCube(float x, float y, float z);
+    char kana;
+};
 
 class Block : public Actor
 {
@@ -26,9 +34,10 @@ public:
     Block(int type = RANDOM);
     bool canRotate;
     glm::vec3 direction;
-    char kana;
-};
 
+    void Rotate();
+    void RotateBack();
+};
 
 class Tetris : public IScene
 {

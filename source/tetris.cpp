@@ -6,6 +6,34 @@
 
 extern int highscore;
 
+LetterCube::LetterCube(float x, float y, float z)
+    : Cube(x, y, z, 1, 0, 1, "data/block.png")
+{
+    kana = Hirigana::a;
+}
+
+void Block::Rotate()
+{
+    matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, 1.0f));
+
+    for (unsigned int i = 0; i < components.Size(); i++)
+    {
+        LetterCube* letterCube = dynamic_cast<LetterCube*>(*components[i]);
+        letterCube->matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, -1.0f));
+    }
+}
+
+void Block::RotateBack()
+{
+    matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, -1.0f));
+
+    for (unsigned int i = 0; i < components.Size(); i++)
+    {
+        LetterCube* letterCube = dynamic_cast<LetterCube*>(*components[i]);
+        letterCube->matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, 1.0f));
+    }
+}
+
 Block::Block(int type)
 {
     const int NUMBER_OF_TETROMINOS = 7;
@@ -22,19 +50,19 @@ Block::Block(int type)
     {
         Uniform("colour", glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(0,2*2,0));
-        Add(new Cube(0,3*2,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(0,1*2,0));
+        Add(new LetterCube(0,2*2,0));
+        Add(new LetterCube(0,3*2,0));
     }
     else if (type == O)
     {
         Uniform("colour", glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(1*2,1*2,0));
-        Add(new Cube(1*2,0,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(0,1*2,0));
+        Add(new LetterCube(1*2,1*2,0));
+        Add(new LetterCube(1*2,0,0));
 
         canRotate = false;
     }
@@ -42,51 +70,50 @@ Block::Block(int type)
     {
         Uniform("colour", glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(1*2,0,0));
-        Add(new Cube(-1*2,0,0));
-        Add(new Cube(0,1*2,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(1*2,0,0));
+        Add(new LetterCube(-1*2,0,0));
+        Add(new LetterCube(0,1*2,0));
     }
     else if (type == S)
     {
         Uniform("colour", glm::vec4(1.0f, 0.5f, 0.5f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(1*2,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(-1*2,1*2,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(1*2,0,0));
+        Add(new LetterCube(0,1*2,0));
+        Add(new LetterCube(-1*2,1*2,0));
     }
     else if (type == Z)
     {
         Uniform("colour", glm::vec4(0.8f, 0.2f, 0.1f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(-1*2,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(1*2,1*2,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(-1*2,0,0));
+        Add(new LetterCube(0,1*2,0));
+        Add(new LetterCube(1*2,1*2,0));
     }
     else if (type == J)
     {
         Uniform("colour", glm::vec4(0.0f, 1.0f, 1.0f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(0,2*2,0));
-        Add(new Cube(-1*2,2*2,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(0,1*2,0));
+        Add(new LetterCube(0,2*2,0));
+        Add(new LetterCube(-1*2,2*2,0));
     }
     else if (type == L)
     {
         Uniform("colour", glm::vec4(1.0f, 1.0f, 0.0f, 1.0f));
 
-        Add(new Cube(0,0,0));
-        Add(new Cube(0,1*2,0));
-        Add(new Cube(0,2*2,0));
-        Add(new Cube(1*2,2*2,0));
+        Add(new LetterCube(0,0,0));
+        Add(new LetterCube(0,1*2,0));
+        Add(new LetterCube(0,2*2,0));
+        Add(new LetterCube(1*2,2*2,0));
     }
 
     matrix.Translate(glm::vec3(0, 15, -45));
 }
-
 
 Tetris::Tetris()
 {
@@ -156,7 +183,7 @@ void Tetris::Update()
     }
     else if (input.Pressed(input.Key.UP) && activePiece->canRotate)
     {
-        activePiece->matrix.Rotate(glm::half_pi<float>(), glm::vec3(0.0f, 0.0f, 1.0f));
+        activePiece->Rotate();
         isRotated = true;
     }
     if (input.Pressed(input.Key.SPACE))
@@ -192,7 +219,7 @@ void Tetris::UpdateAfterPhysics()
         // Rotate back
         if (isRotated)
         {
-            activePiece->matrix.Rotate(-3.14159/2, glm::vec3(0.0f, 0.0f, 1.0f));
+            activePiece->RotateBack();
             activePiece->Update();
         }
         // Make new brick
