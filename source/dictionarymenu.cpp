@@ -10,10 +10,12 @@ DictionaryMenu::DictionaryMenu()
 void DictionaryMenu::Init()
 {
     components.Add(new Sprite("data/quiz.png", 0.0f, 120.0f, 0.45f, 0.45f));
+    cursor = new MouseCursor();
 }
 
 void DictionaryMenu::Update()
 {
+    cursor->Update();
     if (input.Released(input.Key.ESCAPE))
     {
         Application::LoadScene(Scenes::StartMenu);

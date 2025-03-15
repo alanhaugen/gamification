@@ -5,13 +5,14 @@
 #include <core/components/text.h>
 #include <core/components/camera.h>
 #include "tetris.h"
+#include "mousecursor.h"
 
 class StartMenu : public IScene
 {
 private:
     Camera* cam;
     Sprite* logo;
-    Sprite* cursor;
+    MouseCursor* cursor;
 
     Sprite* playTetrisButton;
     Sprite* dictionaryButton;

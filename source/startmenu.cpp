@@ -19,7 +19,8 @@ void StartMenu::Init()
     settingsButton = new Sprite("data/art/settingsButton.png", 20, 480);
 
     iphone = new Sprite("data/iphone.png", 0, 0, 0.75, 0.75);
-    cursor = new Sprite("data/art/BlackCursor.png", 0, 0);
+
+    cursor = new MouseCursor();
 
     components.Add(playTetrisButton);
     components.Add(dictionaryButton);
@@ -32,9 +33,7 @@ void StartMenu::Init()
 
 void StartMenu::Update()
 {
-    *cursor->matrix.x = input.Mouse.x;
-    *cursor->matrix.y = input.Mouse.y;
-
+    cursor->Update();
     if (playTetrisButton->IsPressed())
     {
         Application::LoadScene(Scenes::PlayTetrisMenu);
