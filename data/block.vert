@@ -13,12 +13,12 @@ layout(location = 3) in vec2 vTexcoord;	//per-vertex texcoord
 //output from the vertex shader
 smooth out vec4 vSmoothColor;		//smooth colour to fragment shader
 smooth out vec2 vSmoothTexcoord;
-out float o_kana;
+out float o_index;
 
 //uniform
 uniform mat4 MVP;	//combined modelview projection matrix
 uniform vec4 colour;
-uniform float kana;
+uniform int index;
 
 void main()
 {
@@ -30,6 +30,5 @@ void main()
     //get the clip space position by multiplying the combined MVP matrix with the object space
     //vertex position
     gl_Position = MVP * vec4(vVertex, 1.0);
-    o_kana = kana;
+    o_index = float(index);
 }
-

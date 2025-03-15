@@ -10,7 +10,8 @@ layout(location=0) out vec4 vFragColor;	//fragment shader output
 //input form the vertex shader
 smooth in vec4 vSmoothColor;		//interpolated colour to fragment shader
 smooth in vec2 vSmoothTexcoord;
-in float o_kana;
+
+in float o_index;
 uniform sampler2D textureSampler;
 uniform bool uEnableTexture;
 
@@ -27,7 +28,8 @@ void main()
         float o_totalheight = 3072;
         float o_width = 64;
         float o_height = 64;
-        float o_index = o_kana;
+
+        //float o_index = 0;
 
         x = coords.x * (o_width  / o_totalwidth);
         y = coords.y * (o_height / o_totalheight) + o_index * (o_height  / o_totalheight);

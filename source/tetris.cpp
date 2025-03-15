@@ -9,8 +9,8 @@ extern int highscore;
 LetterCube::LetterCube(float x, float y, float z)
     : Cube(x, y, z, 1, 0, 1, "data/image.png", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), "data/block.vert", "data/block.frag")
 {
-    kana = Hirigana::i;
-    Uniform("kana", glm::f32(kana));
+    kana = random.RandomRange(0, 45);
+    Uniform("index", static_cast<int>(kana));
 }
 
 void Block::Rotate()
@@ -49,7 +49,7 @@ Block::Block(int type)
 
     if (type == I)
     {
-        Uniform("colour", glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
+        colour = glm::vec4(1.0f, 0.0f, 1.0f, 1.0f);
 
         Add(new LetterCube(0,-1*2,0));
         Add(new LetterCube(0,0*2,0));
@@ -58,7 +58,7 @@ Block::Block(int type)
     }
     else if (type == O)
     {
-        Uniform("colour", glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+        colour = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
 
         Add(new LetterCube(0,0,0));
         Add(new LetterCube(0,1*2,0));
@@ -69,7 +69,7 @@ Block::Block(int type)
     }
     else if (type == T)
     {
-        Uniform("colour", glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
+        colour = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
 
         Add(new LetterCube(0,0,0));
         Add(new LetterCube(1*2,0,0));
@@ -78,7 +78,7 @@ Block::Block(int type)
     }
     else if (type == S)
     {
-        Uniform("colour", glm::vec4(1.0f, 0.5f, 0.5f, 1.0f));
+        colour = glm::vec4(1.0f, 0.5f, 0.5f, 1.0f);
 
         Add(new LetterCube(0,0,0));
         Add(new LetterCube(1*2,0,0));
@@ -87,7 +87,7 @@ Block::Block(int type)
     }
     else if (type == Z)
     {
-        Uniform("colour", glm::vec4(0.8f, 0.2f, 0.1f, 1.0f));
+        colour = glm::vec4(0.8f, 0.2f, 0.1f, 1.0f);
 
         Add(new LetterCube(0,0,0));
         Add(new LetterCube(-1*2,0,0));
@@ -96,7 +96,7 @@ Block::Block(int type)
     }
     else if (type == J)
     {
-        Uniform("colour", glm::vec4(0.0f, 1.0f, 1.0f, 1.0f));
+        colour = glm::vec4(0.0f, 1.0f, 1.0f, 1.0f);
 
         Add(new LetterCube(0,-1*2,0));
         Add(new LetterCube(0,0*2,0));
@@ -105,7 +105,7 @@ Block::Block(int type)
     }
     else if (type == L)
     {
-        Uniform("colour", glm::vec4(1.0f, 1.0f, 0.0f, 1.0f));
+        colour = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
 
         Add(new LetterCube(0,-1*2,0));
         Add(new LetterCube(0,0*2,0));
