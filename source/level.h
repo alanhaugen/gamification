@@ -12,16 +12,14 @@ private:
 
     String lvlHiragana;
 
-    Sprite* lvlCompleteImg;
-    Sprite* lvlLockedImg;
-    Sprite* lvlIncompleteImg;
+    Sprite* lvlImg;
 
     int lvlSeed;
     int lvlStatus;
 public:
     void Update();
     void UpdateAfterPhysics();
-    Level(int lvlNumber);
+    Level(int lvlNumber, float posX, float posY);
 };
 
 #endif // LEVEL_H
