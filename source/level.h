@@ -8,16 +8,16 @@
 class Level : public Component
 {
 private:
-    std::vector<String> wordList;
-
     std::vector<String> lvlKana;
 
     Sprite* lvlImg;
 
     int lvlSeed;
     int lvlStatus;
-    String findKana(std::string token);
+    char findKana(std::string token);
 public:
+    std::vector<String> wordList;
+
     void Update();
     void UpdateAfterPhysics();
     Level(int lvlNumber, float posX, float posY);

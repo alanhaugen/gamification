@@ -2,6 +2,8 @@
 #include "levelselectmenu.h"
 #include "main.h"
 
+extern Level* currentLevel;
+
 LevelSelectMenu::LevelSelectMenu()
 {
 }

@@ -6,18 +6,21 @@
 #include "main.h"
 #include "japanesekana.h"
 
+extern Level* currentLevel;
+
 void Level::Update()
 {
     lvlImg->Update();
     if(lvlImg->IsPressed() && lvlStatus != 0)
     {
+        currentLevel = this;
         Application::LoadScene(Scenes::Tetris);
     }
 }
 
-String Level::findKana(std::string token)
+char Level::findKana(std::string token)
 {
-    String currentKana;
+    char currentKana;
 
     if(token == "a")
         currentKana = Kana::a;
@@ -182,17 +185,17 @@ Level::Level(int lvlNumber, float posX, float posY)
         std::string token;
         std::istringstream stream(line);
 
-        String currentKana;
+        std::string currentKana;
         String currentWord;
         while(std::getline(stream, token, ' '))
         {
-            currentKana = findKana(token);
+            currentKana = std::string(1, findKana(token));
 
             bool notAdded = true;
 
             for(unsigned int i = 0; i < lvlKana.size(); i++)
             {
-                if(lvlKana[i] == currentKana)
+                if(lvlKana[i] == currentKana.c_str())
                 {
                     notAdded = false;
                     break;
@@ -201,10 +204,10 @@ Level::Level(int lvlNumber, float posX, float posY)
 
             if(notAdded)
             {
-                lvlKana.push_back(currentKana);
+                lvlKana.push_back(currentKana.c_str());
             }
 
-            currentWord.Append(currentKana);
+            currentWord.Append(currentKana.c_str());
         }
 
         wordList.push_back(currentWord);

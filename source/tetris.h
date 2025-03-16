@@ -42,6 +42,11 @@ public:
 class Tetris : public IScene
 {
 private:
+    const int LINE_LENGTH = 10;
+    const unsigned int GRID_HEIGHT = 22;
+    const float START_Y = -23.0f;
+    const float CUBE_HEIGHT = 2.0f;
+
     int score;
     int speed;
     bool paused;
@@ -51,7 +56,12 @@ private:
     float gameTickTime;
     PauseMenu* Pause;
 
-    void CheckScore();
+    std::vector<String> wordList;
+
+    void CheckForWords();
+    void MoveAllCubesDown();
+    void ProcessLetter(LetterCube* letter);
+    void RemoveLine(int numberOfLines = 1);
 
 public:
     Tetris();

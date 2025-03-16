@@ -5,6 +5,7 @@
 #include "main.h"
 
 extern int highscore;
+extern Level* currentLevel;
 
 LetterCube::LetterCube(float x, float y, float z)
     : Cube(x, y, z, 1, 0, 1, "data/image.png", true, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), "data/block.vert", "data/block.frag")
@@ -163,25 +164,40 @@ void Tetris::Init()
     components.Add(new Camera());
     components.Add(activePiece);
 
+    if (currentLevel != nullptr)
+    {
+        wordList = currentLevel->wordList;
+    }
+
+    for (unsigned int i = 0; i < wordList.size(); i++)
+    {
+        components.Add(new Text(wordList[i], 50, 50 + 50 * i, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png"));
+    }
+
     // Grid around board code follows
-    int i;
 
     // bottom (10 block)
-    for (i = 0; i < 10; i++)
+    for (int i = 0; i < LINE_LENGTH; i++)
     {
-        components.Add(new Cube(i*2  - 10,-35 + 10,-45));
+        Cube* cube = new Cube(i*2  - 10,-35 + 10,-45);
+        cube->tag = "wall";
+        components.Add(cube);
     }
 
     // side left (22 blocks)
-    for (i = 0; i < 22; i++)
+    for (int i = 0; i < 22; i++)
     {
-        components.Add(new Cube( -12,-35 + 10 + i*2,-45));
+        Cube* cube = new Cube( -12,-35 + 10 + i*2,-45);
+        cube->tag = "wall";
+        components.Add(cube);
     }
 
     // side right (22 blocks)
-    for (i = 0; i < 22; i++)
+    for (int i = 0; i < 22; i++)
     {
-        components.Add(new Cube(10,-35 + 10 + i*2,-45));
+        Cube* cube = new Cube(10,-35 + 10 + i*2,-45);
+        cube->tag = "wall";
+        components.Add(cube);
     }
 }
 
@@ -272,7 +288,7 @@ void Tetris::UpdateAfterPhysics()
             activePiece->matrix.Translate(-activePiece->direction);
             activePiece->Update();
 
-            CheckScore();
+            CheckForWords();
 
             activePiece = new Block();
             components.Add(activePiece);
@@ -286,67 +302,109 @@ void Tetris::UpdateAfterPhysics()
     }
 }
 
-void Tetris::CheckScore()
+void Tetris::CheckForWords()
 {
-    const int LINE_LENGTH = 10;
-    const int GRID_HEIGHT = 22;
-    const float START_Y = -23.0f;
-    const float CUBE_HEIGHT = 2.0f;
+    //int multiplier = 1;
 
-    int multiplier = 1;
-
-    // Check if cubes are making a solid line in the grid
-    for (unsigned int k = 0; k < GRID_HEIGHT; k++)
+    // In the scene we have the blocks, the blocks has have our letter cubes
+    for (unsigned int i = 0; i < components.Size(); i++)
     {
-        bool deleteRow = false;
-        int line = 0;
+        // The block will have our letters
+        Block* block = dynamic_cast<Block*>(*components[i]);
 
+        if (block == nullptr)
+        {
+            continue;
+        }
+
+        for (unsigned int i = 0; i < block->components.Size(); i++)
+        {
+            // Here's a letter cube
+            LetterCube* letter = dynamic_cast<LetterCube*>(*block->components[i]);
+
+            if (letter == nullptr)
+            {
+                continue;
+            }
+
+            ProcessLetter(letter);
+        }
+    }
+
+    RemoveLine();
+}
+
+void Tetris::MoveAllCubesDown()
+{
+    // The Scene has Blocks in components. The blocks components also, with the actual cubes
+    for (unsigned int i = 0; i < components.Size(); i++)
+    {
+        // We will move the blocks, the cubes will follow
+        Block* block = dynamic_cast<Block*>(*components[i]);
+
+        if (block == nullptr)
+        {
+            continue;
+        }
+
+        *block->matrix.y -= CUBE_HEIGHT;
+    }
+}
+
+void Tetris::ProcessLetter(LetterCube *letter)
+{
+    bool success = true;
+
+    if (success)
+    {
+        //RemoveLine();
+    }
+}
+
+void Tetris::RemoveLine(int numberOfLines)
+{
+    // Delete a number of lines
+    for (int i = 0; i < numberOfLines; i++)
+    {
+        bool isLineDeleted = false;
+
+        // The Scene has Blocks in components. The blocks components also, with the actual cubes
         for (unsigned int i = 0; i < components.Size(); i++)
         {
-            Component *component = (*components[i]);
+            // First get the blocks
+            Block* block = dynamic_cast<Block*>(*components[i]);
 
-            if (component->tag == "block")
+            if (block == nullptr)
             {
-                Block *block = static_cast<Block*>(component);
+                continue;
+            }
 
-                for (unsigned int j = 0; j < block->components.Size(); j++)
+            // Then process the cubes which the tetrominos consist of
+            for (unsigned int i = 0; i < block->components.Size(); i++)
+            {
+                // First get the blocks
+                Cube* cube = dynamic_cast<Cube*>(*block->components[i]);
+
+                if (cube != nullptr)
                 {
-                    Component *cube = *block->components[j];
-
-                    if (cube->matrix.position.y == START_Y + (k * CUBE_HEIGHT))
+                    if (cube->pos.y <= -23.0f)
                     {
-                        if (deleteRow)
+                        cube->Hide();
+
+                        if (cube->collisionBox != nullptr)
                         {
-                            block->components.RemoveAt(j);
-                            j = -1; // Revert search back to start...
-                            score = score + (1 * multiplier); // Update score
-
-                            if (score > highscore)
-                            {
-                                highscore = score;
-                            }
+                            cube->collisionBox->active = false;
                         }
-                        else
-                        {
-                            line++;
-                        }
-                    }
 
-                    if (line == LINE_LENGTH)
-                    {
-                        Log("DELETE ROW: " + String(line * multiplier));
-
-                        deleteRow = true;
-                        line = 0; // To prevent an infinite loop...
-                        i = -1; // Rewind and start deleting the row
+                        isLineDeleted = true;
                     }
                 }
             }
         }
 
-        if (deleteRow == true)
+        if (isLineDeleted)
         {
-            multiplier++;
+            MoveAllCubesDown();
         }
     }
 }

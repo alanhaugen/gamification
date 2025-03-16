@@ -15,6 +15,7 @@
 #include "intro.h"
 
 int highscore = 0;
+Level* currentLevel = nullptr;
 
 class MainMenu : public IScene
 {
