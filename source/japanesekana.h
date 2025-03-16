@@ -1,7 +1,7 @@
 #ifndef JAPANESEKANA_H
 #define JAPANESEKANA_H
 
-namespace Hirigana
+namespace Kana
 {
     const int a = '!';
     const int i = '"';

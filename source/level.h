@@ -10,12 +10,13 @@ class Level : public Component
 private:
     std::vector<String> wordList;
 
-    String lvlHiragana;
+    std::vector<String> lvlKana;
 
     Sprite* lvlImg;
 
     int lvlSeed;
     int lvlStatus;
+    String findKana(std::string token);
 public:
     void Update();
     void UpdateAfterPhysics();
