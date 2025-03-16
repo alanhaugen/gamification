@@ -8,10 +8,21 @@ extern int highscore;
 extern Level* currentLevel;
 
 LetterCube::LetterCube(float x, float y, float z)
-    : Cube(x, y, z, 1, 0, 1, "data/image.png", true, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), "data/block.vert", "data/block.frag")
+    : Cube(x, y, z, 1, 0, 1, "data/hiragana.png", true, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), "data/block.vert", "data/block.frag")
 {
-    kana = random.RandomRange(0, 45);
-    Uniform("index", static_cast<int>(kana));
+    if(currentLevel != nullptr)
+    {
+        int rnd;
+        rnd = random.RandomRange(0, currentLevel->lvlKana.size());
+        kana = currentLevel->lvlKana[rnd][0];
+
+    }
+    else
+    {
+        kana = random.RandomRange(0, Kana::NumberOfKana);
+
+    }
+    Uniform("index", static_cast<int>(kana) - 32);
 }
 
 void Block::Rotate()

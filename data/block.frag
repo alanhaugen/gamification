@@ -25,7 +25,7 @@ void main()
         float x, y;
 
         float o_totalwidth = 64;
-        float o_totalheight = 3072;
+        float o_totalheight = 4608;
         float o_width = 64;
         float o_height = 64;
 
