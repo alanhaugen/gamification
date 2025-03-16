@@ -10,8 +10,10 @@
 class LetterCube : public Cube
 {
 public:
-    LetterCube(float x, float y, float z);
+    LetterCube(float x, float y, float z, Actor *parent);
     char kana;
+    Cube* background;
+    void Remove();
 };
 
 class Block : public Actor
@@ -55,6 +57,7 @@ private:
     Block *activePiece;
     float gameTickTime;
     PauseMenu* Pause;
+    int currentWordIndex = 0;
 
     std::vector<String> wordList;
 

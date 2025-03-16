@@ -7,9 +7,12 @@
 extern int highscore;
 extern Level* currentLevel;
 
-LetterCube::LetterCube(float x, float y, float z)
+LetterCube::LetterCube(float x, float y, float z, Actor* parent)
     : Cube(x, y, z, 1, 0, 1, "data/hiragana.png", true, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), "data/block.vert", "data/block.frag")
 {
+    background = new Cube(x,y,-0.01, 1, 0, 1, "data/block.png", false);
+    parent->Add(background);
+
     if(currentLevel != nullptr)
     {
         int rnd;
@@ -22,7 +25,15 @@ LetterCube::LetterCube(float x, float y, float z)
         kana = random.RandomRange(0, Kana::NumberOfKana);
 
     }
+
     Uniform("index", static_cast<int>(kana) - 32);
+}
+
+void LetterCube::Remove()
+{
+    background->Hide();
+    Hide();
+    collisionBox->active = false;
 }
 
 void Block::Rotate()
@@ -63,27 +74,19 @@ Block::Block(int type)
     {
         colour = glm::vec4(1.0f, 0.0f, 1.0f, 1.0f);
 
-        Add(new LetterCube(0,-1*2,0));
-        Add(new Cube(0,-1*2,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(0,0*2,0));
-        Add(new Cube(0,0*2,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(0,1*2,0));
-        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(0,2*2,0));
-        Add(new Cube(0,2*2,-0.01, 1, 0, 1, "data/block.png", false));
+        Add(new LetterCube(0,-1*2,0, this));
+        Add(new LetterCube(0,0*2,0, this));
+        Add(new LetterCube(0,1*2,0, this));
+        Add(new LetterCube(0,2*2,0, this));
     }
     else if (type == O)
     {
         colour = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
 
-        Add(new LetterCube(0,0,0));
-        Add(new Cube(0,0,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(0,1*2,0));
-        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(1*2,1*2,0));
-        Add(new Cube(1*2,1*2,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(1*2,0,0));
-        Add(new Cube(1*2,0,-0.01, 1, 0, 1, "data/block.png", false));
+        Add(new LetterCube(0,0,0, this));
+        Add(new LetterCube(0,1*2,0, this));
+        Add(new LetterCube(1*2,1*2,0, this));
+        Add(new LetterCube(1*2,0,0, this));
 
         //canRotate = false;
     }
@@ -91,66 +94,46 @@ Block::Block(int type)
     {
         colour = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
 
-        Add(new LetterCube(0,0,0));
-        Add(new Cube(0,0,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(1*2,0,0));
-        Add(new Cube(1*2,0,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(-1*2,0,0));
-        Add(new Cube(-1*2,0,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(0,1*2,0));
-        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
+        Add(new LetterCube(0,0,0, this));
+        Add(new LetterCube(1*2,0,0, this));
+        Add(new LetterCube(-1*2,0,0, this));
+        Add(new LetterCube(0,1*2,0, this));
     }
     else if (type == S)
     {
         colour = glm::vec4(1.0f, 0.5f, 0.5f, 1.0f);
 
-        Add(new LetterCube(0,0,0));
-        Add(new Cube(0,0,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(1*2,0,0));
-        Add(new Cube(1*2,0,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(0,1*2,0));
-        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(-1*2,1*2,0));
-        Add(new Cube(-1*2,1*2,-0.01, 1, 0, 1, "data/block.png", false));
+        Add(new LetterCube(0,0,0, this));
+        Add(new LetterCube(1*2,0,0, this));
+        Add(new LetterCube(0,1*2,0, this));
+        Add(new LetterCube(-1*2,1*2,0, this));
     }
     else if (type == Z)
     {
         colour = glm::vec4(0.8f, 0.2f, 0.1f, 1.0f);
 
-        Add(new LetterCube(0,0,0));
-        Add(new Cube(0,0,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(-1*2,0,0));
-        Add(new Cube(-1*2,0,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(0,1*2,0));
-        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(1*2,1*2,0));
-        Add(new Cube(1*2,1*2,-0.01, 1, 0, 1, "data/block.png", false));
+        Add(new LetterCube(0,0,0, this));
+        Add(new LetterCube(-1*2,0,0, this));
+        Add(new LetterCube(0,1*2,0, this));
+        Add(new LetterCube(1*2,1*2,0, this));
     }
     else if (type == J)
     {
         colour = glm::vec4(0.0f, 1.0f, 1.0f, 1.0f);
 
-        Add(new LetterCube(0,-1*2,0));
-        Add(new Cube(0,-1*2,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(0,0*2,0));
-        Add(new Cube(0,0,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(0,1*2,0));
-        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(-1*2,1*2,0));
-        Add(new Cube(-1*2,1*2,-0.01, 1, 0, 1, "data/block.png", false));
+        Add(new LetterCube(0,-1*2,0, this));
+        Add(new LetterCube(0,0*2,0, this));
+        Add(new LetterCube(0,1*2,0, this));
+        Add(new LetterCube(-1*2,1*2,0, this));
     }
     else if (type == L)
     {
         colour = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
 
-        Add(new LetterCube(0,-1*2,0));
-        Add(new Cube(0,-1*2,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(0,0*2,0));
-        Add(new Cube(0,0,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(0,1*2,0));
-        Add(new Cube(0,1*2,-0.01, 1, 0, 1, "data/block.png", false));
-        Add(new LetterCube(1*2,1*2,0));
-        Add(new Cube(1*2,1*2,-0.01, 1, 0, 1, "data/block.png", false));
+        Add(new LetterCube(0,-1*2,0, this));
+        Add(new LetterCube(0,0*2,0, this));
+        Add(new LetterCube(0,1*2,0, this));
+        Add(new LetterCube(1*2,1*2,0, this));
     }
 
     matrix.Translate(glm::vec3(0, 15, -45));
@@ -362,10 +345,17 @@ void Tetris::MoveAllCubesDown()
 
 void Tetris::ProcessLetter(LetterCube *letter)
 {
-    bool success = false;
+    Array<LetterCube*> cubes;
 
-    // Check south (words downwards)
-    for (int i = 0; i < GRID_HEIGHT; i++)
+    cubes.Add(letter);
+
+    if (letter->kana != wordList[currentWordIndex][0])
+    {
+        return;
+    }
+
+    // Check south (words going downwards)
+    /*for (int i = 1; i < GRID_HEIGHT; i++)
     {
         LetterCube* bottomLetter = GetLetter(letter->pos.x, letter->pos.y + i);
 
@@ -374,28 +364,62 @@ void Tetris::ProcessLetter(LetterCube *letter)
             break;
         }
 
-        if (letter->kana == Kana::a)
+        if (letter->kana == wordList[currentWordIndex][i])
         {
-            RemoveLine();
+            cubes.Add(letter);
+        }
+        else
+        {
             break;
         }
     }
 
-    // Check east (words to the left)
-    for (int i = 0; i < GRID_LENGTH; i++)
+    if (cubes.Size() == wordList[currentWordIndex].Length())
     {
-        LetterCube* bottomLetter = GetLetter(letter->pos.x + i, letter->pos.y);
+        for (unsigned int i = 0; i < cubes.Size(); i++)
+        {
+            cubes[i]->Remove();
+        }
 
-        if (bottomLetter == nullptr)
+        RemoveLine();
+        currentWordIndex++;
+
+        return;
+    }
+
+    cubes.Clear();*/
+
+    // Check east (words going to the right)
+    for (int i = 1; i < GRID_LENGTH; i++)
+    {
+        LetterCube* rightLetter = GetLetter(letter->pos.x + i, letter->pos.y);
+
+        if (rightLetter == nullptr)
         {
             break;
         }
 
-        if (letter->kana == Kana::a)
+        if (letter->kana == wordList[currentWordIndex][i])
         {
-            RemoveLine();
+            cubes.Add(letter);
+        }
+        else
+        {
             break;
         }
+    }
+
+    if (cubes.Size() == wordList[currentWordIndex].Length())
+    {
+        for (unsigned int i = 0; i < cubes.Size(); i++)
+        {
+            cubes[i]->Remove();
+        }
+
+        RemoveLine();
+        currentWordIndex++;
+
+        return;
     }
 }
 
@@ -420,19 +444,14 @@ void Tetris::RemoveLine(int numberOfLines)
             // Then process the cubes which the tetrominos consist of
             for (unsigned int i = 0; i < block->components.Size(); i++)
             {
-                // First get the blocks
-                Cube* cube = dynamic_cast<Cube*>(*block->components[i]);
+                // Then the letter cubes
+                LetterCube* cube = dynamic_cast<LetterCube*>(*block->components[i]);
 
                 if (cube != nullptr)
                 {
                     if (cube->pos.y < -GRID_HEIGHT)
                     {
-                        cube->Hide();
-
-                        if (cube->collisionBox != nullptr)
-                        {
-                            cube->collisionBox->active = false;
-                        }
+                        cube->Remove();
 
                         isLineDeleted = true;
                     }
@@ -468,7 +487,7 @@ LetterCube *Tetris::GetLetter(float x, float y)
 
             if (letter != nullptr)
             {
-                if (letter->pos.x == x && letter->pos.y == y)
+                if (letter->pos.x == x && letter->pos.y == y && letter->isVisible())
                 {
                     return letter;
                 }
