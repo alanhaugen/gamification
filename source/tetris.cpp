@@ -188,7 +188,7 @@ void Tetris::Init()
     // Grid around board code follows
 
     // bottom (10 block)
-    for (int i = 0; i < LINE_LENGTH; i++)
+    for (int i = 0; i < GRID_LENGTH; i++)
     {
         Cube* cube = new Cube(i*2  - 10,-35 + 10,-45);
         cube->tag = "wall";
@@ -341,8 +341,6 @@ void Tetris::CheckForWords()
             ProcessLetter(letter);
         }
     }
-
-    RemoveLine();
 }
 
 void Tetris::MoveAllCubesDown()
@@ -364,7 +362,7 @@ void Tetris::MoveAllCubesDown()
 
 void Tetris::ProcessLetter(LetterCube *letter)
 {
-    bool success = true;
+    bool success = false;
 
     // Check south (words downwards)
     for (int i = 0; i < GRID_HEIGHT; i++)
@@ -376,29 +374,28 @@ void Tetris::ProcessLetter(LetterCube *letter)
             break;
         }
 
-        /*if (letter->kana == Kana::a)
+        if (letter->kana == Kana::a)
         {
-        }*/
+            RemoveLine();
+            break;
+        }
     }
 
     // Check east (words to the left)
-    for (int i = 0; i < GRID_HEIGHT; i++)
+    for (int i = 0; i < GRID_LENGTH; i++)
     {
-        LetterCube* bottomLetter = GetLetter(letter->pos.x, letter->pos.y + i);
+        LetterCube* bottomLetter = GetLetter(letter->pos.x + i, letter->pos.y);
 
         if (bottomLetter == nullptr)
         {
             break;
         }
 
-        /*if (letter->kana == Kana::a)
+        if (letter->kana == Kana::a)
         {
-        }*/
-    }
-
-    if (success)
-    {
-        //RemoveLine();
+            RemoveLine();
+            break;
+        }
     }
 }
 
