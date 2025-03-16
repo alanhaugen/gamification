@@ -185,7 +185,7 @@ void Tetris::Init()
     }
 
     // side left (22 blocks)
-    for (int i = 0; i < 22; i++)
+    for (int i = 0; i < GRID_HEIGHT; i++)
     {
         Cube* cube = new Cube( -12,-35 + 10 + i*2,-45);
         cube->tag = "wall";
@@ -193,7 +193,7 @@ void Tetris::Init()
     }
 
     // side right (22 blocks)
-    for (int i = 0; i < 22; i++)
+    for (int i = 0; i < GRID_HEIGHT; i++)
     {
         Cube* cube = new Cube(10,-35 + 10 + i*2,-45);
         cube->tag = "wall";
@@ -355,6 +355,36 @@ void Tetris::ProcessLetter(LetterCube *letter)
 {
     bool success = true;
 
+    // Check south (words downwards)
+    for (int i = 0; i < GRID_HEIGHT; i++)
+    {
+        LetterCube* bottomLetter = GetLetter(letter->pos.x, letter->pos.y + i);
+
+        if (bottomLetter == nullptr)
+        {
+            break;
+        }
+
+        /*if (letter->kana == Kana::a)
+        {
+        }*/
+    }
+
+    // Check east (words to the left)
+    for (int i = 0; i < GRID_HEIGHT; i++)
+    {
+        LetterCube* bottomLetter = GetLetter(letter->pos.x, letter->pos.y + i);
+
+        if (bottomLetter == nullptr)
+        {
+            break;
+        }
+
+        /*if (letter->kana == Kana::a)
+        {
+        }*/
+    }
+
     if (success)
     {
         //RemoveLine();
@@ -387,7 +417,7 @@ void Tetris::RemoveLine(int numberOfLines)
 
                 if (cube != nullptr)
                 {
-                    if (cube->pos.y <= -23.0f)
+                    if (cube->pos.y < -GRID_HEIGHT)
                     {
                         cube->Hide();
 
@@ -407,4 +437,36 @@ void Tetris::RemoveLine(int numberOfLines)
             MoveAllCubesDown();
         }
     }
+}
+
+LetterCube *Tetris::GetLetter(float x, float y)
+{
+    // The Scene has Blocks in components. The blocks components also, with the actual cubes
+    for (unsigned int i = 0; i < components.Size(); i++)
+    {
+        // First get the blocks
+        Block* block = dynamic_cast<Block*>(*components[i]);
+
+        if (block == nullptr)
+        {
+            continue;
+        }
+
+        // Then process the cubes which the tetrominos consist of
+        for (unsigned int i = 0; i < block->components.Size(); i++)
+        {
+            // First get the blocks
+            LetterCube* letter = dynamic_cast<LetterCube*>(*block->components[i]);
+
+            if (letter != nullptr)
+            {
+                if (letter->pos.x == x && letter->pos.y == y)
+                {
+                    return letter;
+                }
+            }
+        }
+    }
+
+    return nullptr;
 }
