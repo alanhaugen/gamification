@@ -8,14 +8,13 @@
 class Level : public Component
 {
 private:
-    std::vector<String> lvlKana;
-
     Sprite* lvlImg;
 
     int lvlSeed;
     int lvlStatus;
     char findKana(std::string token);
 public:
+    std::vector<String> lvlKana;
     std::vector<String> wordList;
 
     void Update();
