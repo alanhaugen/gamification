@@ -1,5 +1,6 @@
 #include <core/application.h>
 #include "levelselectmenu.h"
+#include "tetris.h"
 #include "main.h"
 
 extern Level* currentLevel;
