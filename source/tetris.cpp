@@ -419,28 +419,28 @@ void Tetris::ProcessLetter(LetterCube *letter)
             {
                 LetterCube* cube;
 
-                cube = GetLetter(cubes[i]->pos.x - 1, cubes[i]->pos.y, false);
+                cube = GetLetter(cubes[i]->pos.x - CUBE_HEIGHT, cubes[i]->pos.y, false);
 
                 if (cube != nullptr)
                 {
                     cube->Remove();
                 }
 
-                cube = GetLetter(cubes[i]->pos.x + 1, cubes[i]->pos.y, false);
+                cube = GetLetter(cubes[i]->pos.x + CUBE_HEIGHT, cubes[i]->pos.y, false);
 
                 if (cube != nullptr)
                 {
                     cube->Remove();
                 }
 
-                cube = GetLetter(cubes[i]->pos.x, cubes[i]->pos.y + 1, false);
+                cube = GetLetter(cubes[i]->pos.x, cubes[i]->pos.y + CUBE_HEIGHT, false);
 
                 if (cube != nullptr)
                 {
                     cube->Remove();
                 }
 
-                cube = GetLetter(cubes[i]->pos.x, cubes[i]->pos.y + 2, false);
+                cube = GetLetter(cubes[i]->pos.x, cubes[i]->pos.y + (CUBE_HEIGHT * 2), false);
 
                 if (cube != nullptr)
                 {
