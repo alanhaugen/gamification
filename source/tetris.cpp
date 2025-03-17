@@ -298,6 +298,16 @@ void Tetris::UpdateAfterPhysics()
     }
 }
 
+bool Tetris::Approx(float a, float b)
+{
+    if (abs(a - b) < EPSILON)
+    {
+        return true;
+    }
+
+    return false;
+}
+
 void Tetris::CheckForWords()
 {
     //int multiplier = 1;
@@ -471,7 +481,7 @@ LetterCube *Tetris::GetLetter(float x, float y)
 
             if (letter != nullptr)
             {
-                if (letter->pos.x == x && letter->pos.y == y && letter->isVisible())
+                if (Approx(letter->pos.x, x) && Approx(letter->pos.y, y) && letter->isVisible())
                 {
                     return letter;
                 }

@@ -48,6 +48,7 @@ private:
     const int GRID_HEIGHT = 22;
     const float START_Y = -23.0f;
     const float CUBE_HEIGHT = 2.0f;
+    const float EPSILON = 0.00001f;
 
     int score;
     int speed;
@@ -61,6 +62,8 @@ private:
 
     std::vector<String> wordList;
     Array<Text*> words;
+
+    bool Approx(float a, float b);
 
     void CheckForWords();
     void MoveAllCubesDown();
