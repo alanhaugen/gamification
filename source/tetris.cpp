@@ -18,7 +18,6 @@ LetterCube::LetterCube(float x, float y, float z, Actor* parent)
         int rnd;
         rnd = random.RandomRange(0, currentLevel->lvlKana.size());
         kana = currentLevel->lvlKana[rnd][0];
-
     }
     else
     {
@@ -381,7 +380,7 @@ void Tetris::ProcessLetter(LetterCube *letter)
     }
 
     // Check east (j == 0: words going left to right) and south (j == 1: words going down)
-    for (int j = 0; j < 1; j++)
+    for (int j = 0; j < 2; j++)
     {
         Array<LetterCube*> cubes;
         cubes.Add(letter);
@@ -396,7 +395,7 @@ void Tetris::ProcessLetter(LetterCube *letter)
             }
             else
             {
-                nextLetter = GetLetter(letter->pos.x, letter->pos.y + (i * CUBE_HEIGHT));
+                nextLetter = GetLetter(letter->pos.x, letter->pos.y - (i * CUBE_HEIGHT));
             }
 
             if (nextLetter == nullptr)
