@@ -345,14 +345,21 @@ void Tetris::MoveAllCubesDown()
 
 void Tetris::ProcessLetter(LetterCube *letter)
 {
-    Array<LetterCube*> cubes;
+    // No words list in endless mode
+    if (currentLevel == nullptr)
+    {
+        return;
+    }
 
-    cubes.Add(letter);
-
+    // If the current word doesn't start with this letter, return early
     if (letter->kana != wordList[currentWordIndex][0])
     {
         return;
     }
+
+    Array<LetterCube*> cubes;
+
+    cubes.Add(letter);
 
     // Check south (words going downwards)
     /*for (int i = 1; i < GRID_HEIGHT; i++)
@@ -389,19 +396,19 @@ void Tetris::ProcessLetter(LetterCube *letter)
 
     cubes.Clear();*/
 
-    // Check east (words going to the right)
+    // Check east (words going to the right) and south (words going down)
     for (int i = 1; i < GRID_LENGTH; i++)
     {
-        LetterCube* rightLetter = GetLetter(letter->pos.x + i, letter->pos.y);
+        LetterCube* rightLetter = GetLetter(letter->pos.x + (i * CUBE_HEIGHT), letter->pos.y);
 
         if (rightLetter == nullptr)
         {
             break;
         }
 
-        if (letter->kana == wordList[currentWordIndex][i])
+        if (rightLetter->kana == wordList[currentWordIndex][i])
         {
-            cubes.Add(letter);
+            cubes.Add(rightLetter);
         }
         else
         {
@@ -482,7 +489,7 @@ LetterCube *Tetris::GetLetter(float x, float y)
         // Then process the cubes which the tetrominos consist of
         for (unsigned int i = 0; i < block->components.Size(); i++)
         {
-            // First get the blocks
+            // Then the letter cubes
             LetterCube* letter = dynamic_cast<LetterCube*>(*block->components[i]);
 
             if (letter != nullptr)
