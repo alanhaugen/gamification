@@ -440,7 +440,7 @@ void Tetris::ProcessLetter(LetterCube *letter)
                     cube->Remove();
                 }
 
-                cube = GetLetter(cubes[i]->pos.x, cubes[i]->pos.y + (CUBE_HEIGHT * 2), false);
+                cube = GetLetter(cubes[i]->pos.x, cubes[i]->pos.y - (CUBE_HEIGHT), false);
 
                 if (cube != nullptr)
                 {
