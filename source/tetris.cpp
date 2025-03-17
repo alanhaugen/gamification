@@ -417,6 +417,36 @@ void Tetris::ProcessLetter(LetterCube *letter)
         {
             for (unsigned int i = 0; i < cubes.Size(); i++)
             {
+                LetterCube* cube;
+
+                cube = GetLetter(cubes[i]->pos.x - 1, cubes[i]->pos.y, false);
+
+                if (cube != nullptr)
+                {
+                    cube->Remove();
+                }
+
+                cube = GetLetter(cubes[i]->pos.x + 1, cubes[i]->pos.y, false);
+
+                if (cube != nullptr)
+                {
+                    cube->Remove();
+                }
+
+                cube = GetLetter(cubes[i]->pos.x, cubes[i]->pos.y + 1, false);
+
+                if (cube != nullptr)
+                {
+                    cube->Remove();
+                }
+
+                cube = GetLetter(cubes[i]->pos.x, cubes[i]->pos.y + 2, false);
+
+                if (cube != nullptr)
+                {
+                    cube->Remove();
+                }
+
                 cubes[i]->Remove();
             }
 
@@ -470,7 +500,7 @@ void Tetris::RemoveLine(int numberOfLines)
     }
 }
 
-LetterCube *Tetris::GetLetter(float x, float y)
+LetterCube *Tetris::GetLetter(float x, float y, bool onlyReturnVisible)
 {
     // The Scene has Blocks in components. The blocks components also, with the actual cubes
     for (unsigned int i = 0; i < components.Size(); i++)
@@ -491,9 +521,16 @@ LetterCube *Tetris::GetLetter(float x, float y)
 
             if (letter != nullptr)
             {
-                if (Approx(letter->pos.x, x) && Approx(letter->pos.y, y) && letter->isVisible())
+                if (Approx(letter->pos.x, x) && Approx(letter->pos.y, y))
                 {
-                    return letter;
+                    if (onlyReturnVisible == true && letter->isVisible())
+                    {
+                        return letter;
+                    }
+                    else if (onlyReturnVisible == false)
+                    {
+                        return letter;
+                    }
                 }
             }
         }

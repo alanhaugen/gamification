@@ -69,7 +69,7 @@ private:
     void MoveAllCubesDown();
     void ProcessLetter(LetterCube* letter);
     void RemoveLine(int numberOfLines = 1);
-    LetterCube* GetLetter(float x, float y);
+    LetterCube* GetLetter(float x, float y, bool onlyReturnVisible = true);
 
 public:
     Tetris();
