@@ -153,10 +153,11 @@ void Tetris::Init()
 
     activePiece = new Block();
 
-    Pause = new PauseMenu();
-
-    components.Add(new Camera());
-    components.Add(activePiece);
+    if(currentLevel != nullptr)
+    {
+        Sprite* wordListBox = new Sprite("data/art/wordListBox.png", 40, 40, 1, 1, glm::vec2(0,0));
+        components.Add(wordListBox);
+    }
 
     if (currentLevel != nullptr)
     {
@@ -169,6 +170,16 @@ void Tetris::Init()
         components.Add(text);
         words.Add(text);
     }
+
+
+    Pause = new PauseMenu();
+
+    components.Add(new Camera());
+    components.Add(activePiece);
+
+
+
+
 
     // Grid around board code follows
 

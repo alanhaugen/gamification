@@ -13,7 +13,8 @@ private:
     MouseCursor* cursor;
     Sprite* backButton;
     Sprite* iphone;
-    Level* level;
+    Level* level1;
+    Level* level2;
 
 public:
     LevelSelectMenu();
