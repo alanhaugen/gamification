@@ -60,6 +60,7 @@ private:
     int currentWordIndex = 0;
 
     std::vector<String> wordList;
+    Array<Text*> words;
 
     void CheckForWords();
     void MoveAllCubesDown();

@@ -165,7 +165,9 @@ void Tetris::Init()
 
     for (unsigned int i = 0; i < wordList.size(); i++)
     {
-        components.Add(new Text(wordList[i], 50, 50 + 50 * i, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png"));
+        Text* text = new Text(wordList[i], 50, 50 + 50 * i, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+        components.Add(text);
+        words.Add(text);
     }
 
     // Grid around board code follows
@@ -357,7 +359,7 @@ void Tetris::ProcessLetter(LetterCube *letter)
         return;
     }
 
-    // Check east (words going to the right) and south (words going down)
+    // Check east (j == 0: words going left to right) and south (j == 1: words going down)
     for (int j = 0; j < 1; j++)
     {
         Array<LetterCube*> cubes;
@@ -365,7 +367,7 @@ void Tetris::ProcessLetter(LetterCube *letter)
 
         for (int i = 1; i < GRID_HEIGHT; i++)
         {
-            LetterCube* nextLetter = nullptr;
+            LetterCube* nextLetter;
 
             if (j == 0)
             {
@@ -399,6 +401,7 @@ void Tetris::ProcessLetter(LetterCube *letter)
             }
 
             RemoveLine();
+            *words[currentWordIndex]->matrix.x = renderer->windowWidth - 200;
             currentWordIndex++;
         }
     }
