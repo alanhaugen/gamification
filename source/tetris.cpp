@@ -357,76 +357,50 @@ void Tetris::ProcessLetter(LetterCube *letter)
         return;
     }
 
-    Array<LetterCube*> cubes;
-
-    cubes.Add(letter);
-
-    // Check south (words going downwards)
-    /*for (int i = 1; i < GRID_HEIGHT; i++)
-    {
-        LetterCube* bottomLetter = GetLetter(letter->pos.x, letter->pos.y + i);
-
-        if (bottomLetter == nullptr)
-        {
-            break;
-        }
-
-        if (letter->kana == wordList[currentWordIndex][i])
-        {
-            cubes.Add(letter);
-        }
-        else
-        {
-            break;
-        }
-    }
-
-    if (cubes.Size() == wordList[currentWordIndex].Length())
-    {
-        for (unsigned int i = 0; i < cubes.Size(); i++)
-        {
-            cubes[i]->Remove();
-        }
-
-        RemoveLine();
-        currentWordIndex++;
-
-        return;
-    }
-
-    cubes.Clear();*/
-
     // Check east (words going to the right) and south (words going down)
-    for (int i = 1; i < GRID_LENGTH; i++)
+    for (int j = 0; j < 1; j++)
     {
-        LetterCube* rightLetter = GetLetter(letter->pos.x + (i * CUBE_HEIGHT), letter->pos.y);
+        Array<LetterCube*> cubes;
+        cubes.Add(letter);
 
-        if (rightLetter == nullptr)
+        for (int i = 1; i < GRID_HEIGHT; i++)
         {
-            break;
+            LetterCube* nextLetter = nullptr;
+
+            if (j == 0)
+            {
+                nextLetter = GetLetter(letter->pos.x + (i * CUBE_HEIGHT), letter->pos.y);
+            }
+            else
+            {
+                nextLetter = GetLetter(letter->pos.x, letter->pos.y + (i * CUBE_HEIGHT));
+            }
+
+            if (nextLetter == nullptr)
+            {
+                break;
+            }
+
+            if (nextLetter->kana == wordList[currentWordIndex][i])
+            {
+                cubes.Add(nextLetter);
+            }
+            else
+            {
+                break;
+            }
         }
 
-        if (rightLetter->kana == wordList[currentWordIndex][i])
+        if (cubes.Size() == wordList[currentWordIndex].Length())
         {
-            cubes.Add(rightLetter);
-        }
-        else
-        {
-            break;
-        }
-    }
+            for (unsigned int i = 0; i < cubes.Size(); i++)
+            {
+                cubes[i]->Remove();
+            }
 
-    if (cubes.Size() == wordList[currentWordIndex].Length())
-    {
-        for (unsigned int i = 0; i < cubes.Size(); i++)
-        {
-            cubes[i]->Remove();
+            RemoveLine();
+            currentWordIndex++;
         }
-
-        RemoveLine();
-        currentWordIndex++;
-
-        return;
     }
 }
 
