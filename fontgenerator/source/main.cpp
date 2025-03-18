@@ -20,10 +20,11 @@ int main(int numberOfArguments, char* argumentArray[])
 		return -1;
 	}
 
-	SDL_Color bg = { 255, 255, 255, 255 };
+	SDL_Color bg = { 255, 0, 255, 255 }; // magenta
 	SDL_Color color = { 0, 0, 0, 0 };
 
-	std::wstring text = L"あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだづでどばびぶべぼぱぴぷぺぽ 。";
+	//std::wstring text = L"あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだづでどばびぶべぼぱぴぷぺぽ 。";
+	std::wstring text = L" !\"#$\%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvxyz{|}~ ";
 
 	for (int i = 0; i < text.length(); i++)
 	{

@@ -20,7 +20,7 @@ Level* currentLevel = nullptr;
 int main(int argc, char **argv)
 {
     Application application(argc, argv);
-    //application.AddScene(new Intro());
+    application.AddScene(new Intro());
     application.AddScene(new StartMenu());
     application.AddScene(new PlayTetrisMenu());
     application.AddScene(new DictionaryMenu());

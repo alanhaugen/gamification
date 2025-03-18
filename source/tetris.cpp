@@ -448,6 +448,8 @@ void Tetris::ProcessLetter(LetterCube *letter)
                 }
 
                 cubes[i]->Remove();
+
+                // Add all over these blocks to a list and move them down
             }
 
             RemoveLine();
