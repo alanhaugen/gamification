@@ -48,5 +48,14 @@ void main()
         discard;
 
     vFragColor.rgb -= vSmoothColor.rgb;
+
+
+
+    if (vFragColor.rgb == vec3(0,0,0))
+    {
+        vFragColor.rgb = vec3(1,1,1);
+    }
+
+    vFragColor.rgb = vec3(1,1,1);
 }
 

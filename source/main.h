@@ -5,6 +5,7 @@
 
 enum Scenes
 {
+    Intro,
     StartMenu,
     PlayTetrisMenu,
     DictionaryMenu,
