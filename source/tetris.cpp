@@ -416,7 +416,7 @@ void Tetris::ProcessLetter(LetterCube *letter)
 
     for (int wordIndex = 0; wordIndex < wordList.size(); wordIndex++)
     {
-        // If the current word doesn't start with this letter, return early
+        // If the current word doesn't start with this letter, go to the next word
         if (letter->kana != wordList[wordIndex][0])
         {
             continue;
