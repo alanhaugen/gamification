@@ -414,88 +414,90 @@ void Tetris::ProcessLetter(LetterCube *letter)
         return;
     }
 
-    // If the current word doesn't start with this letter, return early
-    if (letter->kana != wordList[currentWordIndex][0])
+    for (int wordIndex = 0; wordIndex < wordList.size(); wordIndex++)
     {
-        return;
-    }
-
-    // Check east (j == 0: words going left to right) and south (j == 1: words going down)
-    for (int j = 0; j < 2; j++)
-    {
-        Array<LetterCube*> cubes;
-        cubes.Add(letter);
-
-        for (int i = 1; i < GRID_HEIGHT; i++)
+        // If the current word doesn't start with this letter, return early
+        if (letter->kana != wordList[wordIndex][0])
         {
-            LetterCube* nextLetter;
-
-            if (j == 0)
-            {
-                nextLetter = GetLetter(letter->pos.x + (i * CUBE_HEIGHT), letter->pos.y);
-            }
-            else
-            {
-                nextLetter = GetLetter(letter->pos.x, letter->pos.y - (i * CUBE_HEIGHT));
-            }
-
-            if (nextLetter == nullptr)
-            {
-                break;
-            }
-
-            if (nextLetter->kana == wordList[currentWordIndex][i])
-            {
-                cubes.Add(nextLetter);
-            }
-            else
-            {
-                break;
-            }
+            continue;
         }
 
-        if (cubes.Size() == wordList[currentWordIndex].Length())
+        // Check east (j == 0: words going left to right) and south (j == 1: words going down)
+        for (int j = 0; j < 2; j++)
         {
-            for (unsigned int i = 0; i < cubes.Size(); i++)
+            Array<LetterCube*> cubes;
+            cubes.Add(letter);
+
+            for (int i = 1; i < GRID_HEIGHT; i++)
             {
-                LetterCube* cube;
+                LetterCube* nextLetter;
 
-                cube = GetLetter(cubes[i]->pos.x - CUBE_HEIGHT, cubes[i]->pos.y, false);
-
-                if (cube != nullptr)
+                if (j == 0)
                 {
-                    cube->Remove();
+                    nextLetter = GetLetter(letter->pos.x + (i * CUBE_HEIGHT), letter->pos.y);
+                }
+                else
+                {
+                    nextLetter = GetLetter(letter->pos.x, letter->pos.y - (i * CUBE_HEIGHT));
                 }
 
-                cube = GetLetter(cubes[i]->pos.x + CUBE_HEIGHT, cubes[i]->pos.y, false);
-
-                if (cube != nullptr)
+                if (nextLetter == nullptr)
                 {
-                    cube->Remove();
+                    break;
                 }
 
-                cube = GetLetter(cubes[i]->pos.x, cubes[i]->pos.y + CUBE_HEIGHT, false);
-
-                if (cube != nullptr)
+                if (nextLetter->kana == wordList[wordIndex][i])
                 {
-                    cube->Remove();
+                    cubes.Add(nextLetter);
                 }
-
-                cube = GetLetter(cubes[i]->pos.x, cubes[i]->pos.y - (CUBE_HEIGHT), false);
-
-                if (cube != nullptr)
+                else
                 {
-                    cube->Remove();
+                    break;
                 }
-
-                cubes[i]->Remove();
-
-                // Add all over these blocks to a list and move them down
             }
 
-            RemoveLine();
-            *words[currentWordIndex]->matrix.x = renderer->windowWidth - 200;
-            currentWordIndex++;
+            if (cubes.Size() == wordList[wordIndex].Length())
+            {
+                for (unsigned int i = 0; i < cubes.Size(); i++)
+                {
+                    LetterCube* cube;
+
+                    cube = GetLetter(cubes[i]->pos.x - CUBE_HEIGHT, cubes[i]->pos.y, false);
+
+                    if (cube != nullptr)
+                    {
+                        cube->Remove();
+                    }
+
+                    cube = GetLetter(cubes[i]->pos.x + CUBE_HEIGHT, cubes[i]->pos.y, false);
+
+                    if (cube != nullptr)
+                    {
+                        cube->Remove();
+                    }
+
+                    cube = GetLetter(cubes[i]->pos.x, cubes[i]->pos.y + CUBE_HEIGHT, false);
+
+                    if (cube != nullptr)
+                    {
+                        cube->Remove();
+                    }
+
+                    cube = GetLetter(cubes[i]->pos.x, cubes[i]->pos.y - (CUBE_HEIGHT), false);
+
+                    if (cube != nullptr)
+                    {
+                        cube->Remove();
+                    }
+
+                    cubes[i]->Remove();
+
+                    // Add all over these blocks to a list and move them down
+                }
+
+                RemoveLine();
+                *words[wordIndex]->matrix.x = renderer->windowWidth - 200;
+            }
         }
     }
 }

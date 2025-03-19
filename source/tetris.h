@@ -58,7 +58,6 @@ private:
     Block *activePiece;
     float gameTickTime;
     PauseMenu* Pause;
-    int currentWordIndex = 0;
 
     std::vector<String> wordList;
     Array<Text*> words;
