@@ -17,7 +17,7 @@ void Intro::Init()
     croco = new Sprite("data/art/croco.png", 10000, 250);
     Camera* cam = new Camera();
     components.Add(cam);
-    components.Add(new Text("Welcome to the lab!", 100, 150, 1, 1));
+    components.Add(new Text("Welcome to LexiBlocks!", 100, 150, 1, 1));
     components.Add(new Text("I am Professor Croco.", 100, 200, 1, 1));
     //components.Add(new Background(glm::vec3(0.972549019607843f, 0.929411764705882f, 0.92156862745098f), cam));
     components.Add(croco);

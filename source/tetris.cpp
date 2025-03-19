@@ -2,6 +2,7 @@
 #include <core/application.h>
 #include <core/components/cube.h>
 #include <core/components/camera.h>
+#include <core/components/background.h>
 #include "main.h"
 
 extern int highscore;
@@ -36,7 +37,7 @@ LetterCube::LetterCube(float x, float y, float z, Actor* parent)
     }
     if (kana == Kana::sa || kana == Kana::shi || kana == Kana::su || kana == Kana::se || kana == Kana::so)
     {
-        background->Uniform("colour", static_cast<glm::vec4>(glm::vec4(0.0f, 0.0f, 1.0f, 1.0f)));
+        background->Uniform("colour", static_cast<glm::vec4>(glm::vec4(0.0f, 1.0f, 1.0f, 1.0f)));
     }
     if (kana == Kana::ta || kana == Kana::chi || kana == Kana::tsu || kana == Kana::te || kana == Kana::to)
     {
@@ -213,12 +214,10 @@ void Tetris::Init()
 
     Pause = new PauseMenu();
 
-    components.Add(new Camera());
+    Camera* cam = new Camera();
+
+    components.Add(cam);
     components.Add(activePiece);
-
-
-
-
 
     // Grid around board code follows
 
@@ -245,6 +244,8 @@ void Tetris::Init()
         cube->tag = "wall";
         components.Add(cube);
     }
+
+    //components.Add(new Background(glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
 }
 
 void Tetris::Update()

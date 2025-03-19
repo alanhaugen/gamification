@@ -2,7 +2,6 @@
 #include <SDL_ttf.h>
 #include <stdio.h>
 #include <string>
-#include "main.h"
 
 int main(int numberOfArguments, char* argumentArray[])
 {
@@ -24,7 +23,7 @@ int main(int numberOfArguments, char* argumentArray[])
 	SDL_Color color = { 0, 0, 0, 0 };
 
 	//std::wstring text = L"あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだづでどばびぶべぼぱぴぷぺぽ 。";
-	std::wstring text = L" !\"#$\%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvxyz{|}~ ";
+	std::wstring text = L" !\"#$\%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ";
 
 	for (int i = 0; i < text.length(); i++)
 	{
