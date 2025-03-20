@@ -2,7 +2,6 @@
 #include <SDL_ttf.h>
 #include <stdio.h>
 #include <string>
-#include "main.h"
 
 int main(int numberOfArguments, char* argumentArray[])
 {
@@ -12,7 +11,7 @@ int main(int numberOfArguments, char* argumentArray[])
 		return -1;
 	}
 
-	TTF_Font* font = TTF_OpenFont("fonts/NotoSansJP-Regular.ttf", 36);
+	TTF_Font* font = TTF_OpenFont("fonts/NotoSansJP-Regular.ttf", 52);
 
 	if (font == nullptr)
 	{
@@ -20,12 +19,13 @@ int main(int numberOfArguments, char* argumentArray[])
 		return -1;
 	}
 
-	SDL_Color bg = { 255, 255, 255, 255 };
+	SDL_Color bg = { 255, 0, 255, 255 }; // magenta
 	SDL_Color color = { 0, 0, 0, 0 };
 
-	std::wstring text = L"あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん 。";
+	//std::wstring text = L"あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだづでどばびぶべぼぱぴぷぺぽ 。";
+	std::wstring text = L" !\"#$\%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ";
 
-	for (int i = 0; i < 48; i++)
+	for (int i = 0; i < text.length(); i++)
 	{
 		std::wstring letter = text.substr(i, i+1);
 		//SDL_Surface* surf = TTF_RenderUNICODE(font, (const Uint16*) letter.c_str(), color, bg);

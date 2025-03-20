@@ -8,20 +8,18 @@
 class Level : public Component
 {
 private:
-    std::vector<String> wordList;
-
-    String lvlHiragana;
-
-    Sprite* lvlCompleteImg;
-    Sprite* lvlLockedImg;
-    Sprite* lvlIncompleteImg;
+    Sprite* lvlImg;
 
     int lvlSeed;
     int lvlStatus;
+    char findKana(std::string token);
 public:
+    std::vector<String> lvlKana;
+    std::vector<String> wordList;
+
     void Update();
     void UpdateAfterPhysics();
-    Level(int lvlNumber);
+    Level(int lvlNumber, float posX, float posY);
 };
 
 #endif // LEVEL_H

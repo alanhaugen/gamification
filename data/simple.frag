@@ -27,6 +27,10 @@ void main()
         final = vSmoothColor;
     }
     vFragColor = final;
-    vFragColor.rgb -= vSmoothColor.rgb;
+
+    if (uEnableTexture)
+    {
+        vFragColor.rgb -= vSmoothColor.rgb;
+    }
 }
 

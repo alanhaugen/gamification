@@ -10,8 +10,10 @@
 class LetterCube : public Cube
 {
 public:
-    LetterCube(float x, float y, float z);
+    LetterCube(float x, float y, float z, Actor *parent);
     char kana;
+    Cube* background;
+    void Remove();
 };
 
 class Block : public Actor
@@ -42,6 +44,12 @@ public:
 class Tetris : public IScene
 {
 private:
+    const int GRID_LENGTH = 10;
+    const int GRID_HEIGHT = 22;
+    const float START_Y = -23.0f;
+    const float CUBE_HEIGHT = 2.0f;
+    const float EPSILON = 0.00001f;
+
     int score;
     int speed;
     bool paused;
@@ -51,7 +59,16 @@ private:
     float gameTickTime;
     PauseMenu* Pause;
 
-    void CheckScore();
+    std::vector<String> wordList;
+    Array<Text*> words;
+
+    bool Approx(float a, float b);
+
+    void CheckForWords();
+    void MoveAllCubesDown();
+    void ProcessLetter(LetterCube* letter);
+    void RemoveLine(int numberOfLines = 1);
+    LetterCube* GetLetter(float x, float y, bool onlyReturnVisible = true);
 
 public:
     Tetris();
