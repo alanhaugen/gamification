@@ -12,7 +12,7 @@ void StartMenu::Init()
 
     background = new Sprite("data/art/new/bg.png", -100, -100, 0.7, 0.7);
 
-    playTetrisButton = new Sprite("data/art/playTetrisButton.png", 350, 380);
+    playTetrisButton = new Sprite("data/art/playTetrisButton.png", 350-25, 360, 0.5, 0.5);
     dictionaryButton = new Sprite("data/art/dictionaryButton.png", 350-15, 500, 0.5, 0.5);
     settingsButton = new Sprite("data/art/settingsButton.png",     350+15, 640, 0.5, 0.5);
 
