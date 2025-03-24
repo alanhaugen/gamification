@@ -3,7 +3,6 @@
 #include <core/components/camera.h>
 #include <core/components/background.h>
 #include <core/components/cube.h>
-#include <core/components/text.h>
 
 Intro::Intro()
 {
@@ -17,8 +16,23 @@ void Intro::Init()
     croco = new Sprite("data/art/new/chib.png", 1000, 50);
     Camera* cam = new Camera();
     components.Add(cam);
-    components.Add(new Text("Welcome to LexiBlocks!", 100, 150, 1, 1));
-    components.Add(new Text("I am Professor Croco.", 100, 200, 1, 1));
+
+    speech.Enqueue(new Text("Welcome to LexiBlocks!", 100, 150, 1, 1));
+    speech.Enqueue(new Text("I am Professor Croco.", 100, 200, 1, 1));
+    speech.Enqueue(new Text("In my lab I have designed blocks", 100, 200, 1, 1));
+    speech.Enqueue(new Text("that teach languages!", 100, 200, 1, 1));
+    speech.Enqueue(new Text("Line them up, and make a word.", 100, 200, 1, 1));
+    speech.Enqueue(new Text("The bricks can be moved left", 100, 200, 1, 1));
+    speech.Enqueue(new Text("and right, and rotate.", 100, 200, 1, 1));
+    speech.Enqueue(new Text("In this game you will learn", 100, 200, 1, 1));
+    speech.Enqueue(new Text("150 japanese words and the", 100, 200, 1, 1));
+    speech.Enqueue(new Text("Japanese alphabets Hirigana", 100, 200, 1, 1));
+    speech.Enqueue(new Text("and Katakana.", 100, 200, 1, 1));
+    speech.Enqueue(new Text("Before we begin, may I ask,", 100, 200, 1, 1));
+    speech.Enqueue(new Text("Do you know any Japanese already?", 100, 200, 1, 1));
+
+    //components.Add(new Text("Welcome to LexiBlocks!", 100, 150, 1, 1));
+    //components.Add(new Text("I am Professor Croco.", 100, 200, 1, 1));
     //components.Add(new Background(glm::vec3(0.972549019607843f, 0.929411764705882f, 0.92156862745098f), cam));
     components.Add(croco);
     //components.Add(bubble);
@@ -35,6 +49,15 @@ void Intro::Init()
 
 void Intro::Update()
 {
+    if (speech.Empty())
+    {
+        Application::NextScene();
+    }
+    else
+    {
+        speech.Front()->Update();
+    }
+
     if (bubbleScaled->scaleY < 1.0f)
     {
         bubbleScaled->scaleY += 0.05;
@@ -61,9 +84,10 @@ void Intro::Update()
         t = 0.0f;
     }
 
-    if (input.Released(input.Key.SPACE))
+    if (input.Pressed(input.Key.SPACE))
     {
-        Application::NextScene();
+        //Application::NextScene();
+        speech.Dequeue();
     }
 
     i += 0.1;

@@ -4,6 +4,8 @@
 #include <core/x-platform/scene.h>
 #include <core/components/sprite.h>
 #include <core/components/cube.h>
+#include <core/components/text.h>
+#include <core/containers/queue.h>
 
 class Intro : public IScene
 {
@@ -21,6 +23,8 @@ public:
     Cube* cube;
     float t;
     float i;
+
+    Queue<Text*> speech;
 };
 
 #endif

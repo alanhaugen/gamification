@@ -206,7 +206,7 @@ void Tetris::Init()
 
     for (unsigned int i = 0; i < wordList.size(); i++)
     {
-        Text* text = new Text(wordList[i], 50, 50 + 50 * i, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+        Text* text = new Text(wordList[i], 50, 50 + 50 * i, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
         components.Add(text);
         words.Add(text);
     }
