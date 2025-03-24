@@ -246,6 +246,7 @@ void Tetris::Init()
     }
 
     components.Add(new Background(glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
+    //components.Add(new Sprite("data/art/new/bg.png", -100, -100, 0.7, 0.7));
 }
 
 void Tetris::Update()

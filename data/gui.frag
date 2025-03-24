@@ -60,10 +60,12 @@ void main ()
 
     final = texture(textureSampler, coords);
 
+    if (final.a < 0.9f)
+        discard;
     if (final.r == 1.0f && final.g == 0.0f && final.b == 1.0f)
         discard;
 
-    final += o_colourTint;
+    //final += o_colourTint;
 
     vFragColor = final;
 }

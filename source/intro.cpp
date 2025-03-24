@@ -14,7 +14,7 @@ void Intro::Init()
     bubble = new Sprite("data/art/speechbubble.png", 0, 0, 0.75);
     bubbleScaled = new Sprite("data/art/speechbubblescaling.png", 0, 0, 0.75f, 0.0f);
     bubble->FlipHorizontal();
-    croco = new Sprite("data/art/croco.png", 10000, 250);
+    croco = new Sprite("data/art/new/chib.png", 1000, 50);
     Camera* cam = new Camera();
     components.Add(cam);
     components.Add(new Text("Welcome to LexiBlocks!", 100, 150, 1, 1));
@@ -44,14 +44,14 @@ void Intro::Update()
         bubbleScaled->Hide();
         bubble->Show();
     }
-    if (*croco->matrix.x > 700)
+    if (*croco->matrix.x > 70)
     {
-        *croco->matrix.x = 1000 - (700 * t);
+        *croco->matrix.x = 100 - (70 * t);
         t += startTime->TimeSinceStarted() / 200000;
     }
     else
     {
-        *croco->matrix.x = 700;
+        *croco->matrix.x = 70;
     }
 
     if (input.Released(input.Key.R))
