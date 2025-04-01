@@ -185,6 +185,7 @@ Tetris::Tetris()
 
 void Tetris::Init()
 {
+    random.SetRandomSeed(currentLevel->lvlSeed);
     score = 0;
     speed = 1;
     paused = false;
