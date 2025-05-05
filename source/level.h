@@ -10,13 +10,13 @@ class Level : public Component
 private:
     Sprite* lvlImg;
 
-    int lvlSeed;
     int lvlStatus;
     char findKana(std::string token);
 public:
     std::vector<String> lvlKana;
     std::vector<String> wordList;
 
+    int lvlSeed;
     void Update();
     void UpdateAfterPhysics();
     Level(int lvlNumber, float posX, float posY);

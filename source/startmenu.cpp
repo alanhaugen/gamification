@@ -10,15 +10,15 @@ void StartMenu::Init()
 {
     cam = new Camera();
 
-    background = new Sprite("data/art/bg.png", 0, 0, 0.39, 0.39);
+    background = new Sprite("data/art/new/bg.png", -100, -100, 0.7, 0.7);
 
-    logo = new Sprite("data/art/logo.png", 20, 120);
+    playTetrisButton = new Sprite("data/art/playTetrisButton.png", 350-25, 360, 0.5, 0.5);
+    dictionaryButton = new Sprite("data/art/dictionaryButton.png", 350-15, 500, 0.5, 0.5);
+    settingsButton = new Sprite("data/art/settingsButton.png",     350+15, 640, 0.5, 0.5);
 
-    playTetrisButton = new Sprite("data/art/playTetrisButton.png", 20, 280);
-    dictionaryButton = new Sprite("data/art/dictionaryButton.png", 20, 380);
-    settingsButton = new Sprite("data/art/settingsButton.png", 20, 480);
+    //iphone = new Sprite("data/iphone.png", 0, 0, 0.75, 0.75);
 
-    iphone = new Sprite("data/iphone.png", 0, 0, 0.75, 0.75);
+    logo = new Sprite("data/art/new/logo.png", 200, 20, 0.2, 0.2);
 
     cursor = new MouseCursor();
 
@@ -27,7 +27,7 @@ void StartMenu::Init()
     components.Add(settingsButton);
     components.Add(background);
     components.Add(logo);
-    components.Add(iphone);
+    //components.Add(iphone);
     components.Add(cursor);
 }
 

@@ -10,21 +10,19 @@ void PlayTetrisMenu::Init()
 {
     cam = new Camera();
 
-    background = new Sprite("data/art/bg.png", 0, 0, 0.39, 0.39);
+    background = new Sprite("data/art/new/bg.png", -100, -100, 0.7, 0.7);
 
     backButton = new Sprite("data/art/backArrow.png", 40, 120, 0.5, 0.5);
 
-    levelSelectButton = new Sprite("data/art/levelSelectButton.png", 20, 220);
-    endlessModeButton = new Sprite("data/art/endlessModeButton.png", 20, 320);
+    levelSelectButton = new Sprite("data/art/levelSelectButton.png", 320, 200, 0.5, 0.5);
+    endlessModeButton = new Sprite("data/art/endlessModeButton.png", 320, 400, 0.5, 0.5);
 
-    iphone = new Sprite("data/iphone.png", 0, 0, 0.75, 0.75);
     cursor = new Sprite("data/art/BlackCursor.png", 0, 0);
 
     components.Add(levelSelectButton);
     components.Add(endlessModeButton);
     components.Add(backButton);
     components.Add(background);
-    components.Add(iphone);
     components.Add(cursor);
 }
 

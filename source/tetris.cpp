@@ -185,6 +185,7 @@ Tetris::Tetris()
 
 void Tetris::Init()
 {
+    random.SetRandomSeed(currentLevel->lvlSeed);
     score = 0;
     speed = 1;
     paused = false;
@@ -206,7 +207,7 @@ void Tetris::Init()
 
     for (unsigned int i = 0; i < wordList.size(); i++)
     {
-        Text* text = new Text(wordList[i], 50, 50 + 50 * i, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+        Text* text = new Text(wordList[i], 50, 50 + 50 * i, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
         components.Add(text);
         words.Add(text);
     }
@@ -246,6 +247,7 @@ void Tetris::Init()
     }
 
     components.Add(new Background(glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
+    //components.Add(new Sprite("data/art/new/bg.png", -100, -100, 0.7, 0.7));
 }
 
 void Tetris::Update()

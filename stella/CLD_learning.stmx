@@ -21,12 +21,12 @@
 	<model_units/>
 	<model>
 		<variables>
-			<aux name="Learn the meaning of words">
+			<aux name="Learn the language">
 				<eqn>NAN(Combine_letters_to_make_words,Play_word_reinforcement_quiz,Look_at_dictionary)</eqn>
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Combine letters to make words">
-				<eqn>NAN(Play_word_reinforcement_quiz,Play_tetris)</eqn>
+				<eqn>NAN(Play_word_reinforcement_quiz,Play_Tetris_at_a_challanging_level)</eqn>
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Words are added to a personal dictionary">
@@ -37,7 +37,7 @@
 				<eqn>NAN(Words_are_added_to_a_personal_dictionary,Look_at_dictionary)</eqn>
 				<isee:delay_aux/>
 			</aux>
-			<aux name="Play tetris">
+			<aux name="Play Tetris at a challanging level">
 				<eqn>NAN(Combine_letters_to_make_words)</eqn>
 				<isee:delay_aux/>
 			</aux>
@@ -137,12 +137,12 @@
 					</graph>
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
-				<text_box uid="1" x="26" y="43" width="284" height="30">Learning by doing, by applying experience</text_box>
-				<aux x="523.25" y="409" width="231.5" height="24" name="Learn the meaning of words"/>
+				<text_box uid="1" x="-29" y="74" width="284" height="30">Learning by doing, by applying experience</text_box>
+				<aux x="557.25" y="409" width="163.5" height="24" name="Learn the language"/>
 				<aux x="407.75" y="567" width="256.5" height="24" name="Combine letters to make words"/>
 				<connector uid="13" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="56.8997">
 					<from>Combine_letters_to_make_words</from>
-					<to>Learn_the_meaning_of_words</to>
+					<to>Learn_the_language</to>
 				</connector>
 				<aux x="778.25" y="416" width="181.5" height="46" name="Words are added to a personal dictionary"/>
 				<connector uid="14" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="0">
@@ -152,20 +152,20 @@
 				<aux x="623.75" y="265" width="240.5" height="24" name="Play word reinforcement quiz"/>
 				<connector uid="16" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="233.902">
 					<from>Play_word_reinforcement_quiz</from>
-					<to>Learn_the_meaning_of_words</to>
+					<to>Learn_the_language</to>
 				</connector>
 				<connector uid="17" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="175.533">
 					<from>Play_word_reinforcement_quiz</from>
 					<to>Combine_letters_to_make_words</to>
 				</connector>
-				<aux x="471.25" y="675" width="87.5" height="24" name="Play tetris"/>
+				<aux x="444.25" y="664" width="141.5" height="46" name="Play Tetris at a challanging level"/>
 				<connector uid="18" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="38.6598">
-					<from>Play_tetris</from>
+					<from>Play_Tetris_at_a_challanging_level</from>
 					<to>Combine_letters_to_make_words</to>
 				</connector>
 				<connector uid="19" font_size="30pt" polarity="+" isee:polarity_placement="inside" angle="193.736">
 					<from>Combine_letters_to_make_words</from>
-					<to>Play_tetris</to>
+					<to>Play_Tetris_at_a_challanging_level</to>
 				</connector>
 				<isee:loop_indicator text="R" orientation="clockwise" uid="25" x="699" y="371" width="30" height="30">
 					<isee:entities>
@@ -176,7 +176,7 @@
 				</isee:loop_indicator>
 				<isee:loop_indicator text="R" orientation="clockwise" uid="26" x="493.25" y="615" width="30" height="30">
 					<isee:entities>
-						<entity name="Play_tetris"/>
+						<entity name="Play_Tetris_at_a_challanging_level"/>
 						<entity name="Combine_letters_to_make_words"/>
 					</isee:entities>
 				</isee:loop_indicator>
@@ -209,7 +209,7 @@
 				</connector>
 				<connector uid="31" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="184.214">
 					<from>Look_at_dictionary</from>
-					<to>Learn_the_meaning_of_words</to>
+					<to>Learn_the_language</to>
 				</connector>
 				<connector uid="32" font_size="30pt" polarity="+" isee:polarity_placement="outside" angle="168.69">
 					<from>Look_at_dictionary</from>

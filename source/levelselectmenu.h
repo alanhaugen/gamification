@@ -9,7 +9,7 @@
 class LevelSelectMenu : public IScene
 {
 private:
-    Sprite* overview;
+    Sprite* background;
     MouseCursor* cursor;
     Sprite* backButton;
     Sprite* iphone;

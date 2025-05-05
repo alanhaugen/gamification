@@ -1,5 +1,5 @@
-#ifndef StartMenu_H
-#define StartMenu_H
+#ifndef STARTMENU_H
+#define STARTMENU_H
 
 #include <core/x-platform/scene.h>
 #include <core/components/text.h>
