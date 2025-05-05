@@ -19,7 +19,6 @@ private:
     Sprite* settingsButton;
 
     Sprite* background;
-    Sprite* iphone;
 
     Tetris* tetris;
 

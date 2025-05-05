@@ -30,7 +30,8 @@ void Intro::Init()
     speech.Enqueue(new Text("and Katakana.", 100, 200, 0.5, 0.5));
     speech.Enqueue(new Text("Before we begin, may I ask,", 100, 200, 0.5, 0.5));
     speech.Enqueue(new Text("Do you know any Japanese already?", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("Since you are already knowledgable about the japanese kana", 100, 200, 0.5, 0.5));
+    speech.Enqueue(new Text("Since you are already knowledgable", 100, 200, 0.5, 0.5));
+    speech.Enqueue(new Text("about the japanese kana", 100, 200, 0.5, 0.5));
     speech.Enqueue(new Text("Feel free to jump into a game through level select", 100, 200, 0.5, 0.5));
     //components.Add(new Text("Welcome to LexiBlocks!", 100, 150, 0.5, 0.5));
     //components.Add(new Text("I am Professor Croco.", 100, 200, 0.5, 0.5));

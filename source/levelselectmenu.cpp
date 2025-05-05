@@ -11,7 +11,7 @@ LevelSelectMenu::LevelSelectMenu()
 
 void LevelSelectMenu::Init()
 {
-    background = new Sprite("data/art/new/bg.png", -100, -100, 0.7, 0.7);
+    background = new Sprite("data/art/new/bg.png", 0, 0, 1.0, 1.0);
     backButton = new Sprite("data/art/backArrow.png", 40, 120, 0.5, 0.5);
     level1 = new Level(1, renderer->windowWidth/2 - 150, renderer->windowHeight/2 - 64);
     level2 = new Level(99, renderer->windowWidth/2, renderer->windowHeight/2 - 64);

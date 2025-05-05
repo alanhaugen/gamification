@@ -10,7 +10,7 @@ void PlayTetrisMenu::Init()
 {
     cam = new Camera();
 
-    background = new Sprite("data/art/new/bg.png", -100, -100, 0.7, 0.7);
+    background = new Sprite("data/art/new/bg.png", 0, 0, 1.0, 1.0);
 
     backButton = new Sprite("data/art/backArrow.png", 40, 120, 0.5, 0.5);
 
