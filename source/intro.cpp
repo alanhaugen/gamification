@@ -85,9 +85,8 @@ void Intro::Update()
         t = 0.0f;
     }
 
-    if (input.Pressed(input.Key.SPACE))
+    if (input.Pressed(input.Key.SPACE) || input.Mouse.Pressed)
     {
-        //Application::NextScene();
         speech.Dequeue();
     }
 
