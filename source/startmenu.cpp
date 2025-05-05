@@ -22,7 +22,7 @@ void StartMenu::Init()
 
     components.Add(playTetrisButton);
     components.Add(dictionaryButton);
-    components.Add(settingsButton);
+    //components.Add(settingsButton);
     components.Add(background);
     components.Add(logo);
     components.Add(cursor);
@@ -31,6 +31,7 @@ void StartMenu::Init()
 void StartMenu::Update()
 {
     cursor->Update();
+
     if (playTetrisButton->IsPressed())
     {
         Application::LoadScene(Scenes::PlayTetrisMenu);
@@ -41,10 +42,10 @@ void StartMenu::Update()
         Application::LoadScene(Scenes::DictionaryMenu);
     }
 
-    if (settingsButton->IsPressed())
+    /*if (settingsButton->IsPressed())
     {
         Application::LoadScene(Scenes::SettingsMenu);
-    }
+    }*/
 }
 
 void StartMenu::UpdateAfterPhysics()

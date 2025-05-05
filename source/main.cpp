@@ -13,9 +13,11 @@
 #include "tetris.h"
 #include "gameover.h"
 #include "intro.h"
+#include "dictionary.h"
 
 int highscore = 0;
 Level* currentLevel = nullptr;
+Dictionary dictionary;
 
 int main(int argc, char **argv)
 {

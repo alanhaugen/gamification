@@ -32,7 +32,7 @@ void Intro::Init()
     speech.Enqueue(new Text("Do you know any Japanese already?", 100, 200, 0.5, 0.5));
     speech.Enqueue(new Text("Since you are already knowledgable about", 100, 200, 0.5, 0.5));
     speech.Enqueue(new Text("the japanese kana, feel free", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("to jump into a game through level select", 100, 200, 0.5, 0.5));
+    speech.Enqueue(new Text("to jump into a game through level select.", 100, 200, 0.5, 0.5));
 
     components.Add(croco);
     components.Add(bubble);

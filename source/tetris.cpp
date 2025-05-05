@@ -4,9 +4,11 @@
 #include <core/components/camera.h>
 #include <core/components/background.h>
 #include "main.h"
+#include "dictionary.h"
 
 extern int highscore;
 extern Level* currentLevel;
+extern Dictionary dictionary;
 
 LetterCube::LetterCube(float x, float y, float z, Actor* parent)
     : Cube(x, y, z, 1, 0, 1, "data/hiragana.png", true, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), "data/block.vert", "data/block.frag")
@@ -226,7 +228,7 @@ void Tetris::Init()
     // bottom (10 block)
     for (int i = 0; i < GRID_LENGTH; i++)
     {
-        Cube* cube = new Cube(i*2  - 10,-35 + 10,-45);
+        Cube* cube = new Cube(i*2  - 10,-35 + 10,-45, 1, 0, 1);
         cube->tag = "wall";
         components.Add(cube);
     }
@@ -234,7 +236,7 @@ void Tetris::Init()
     // side left (22 blocks)
     for (int i = 0; i < GRID_HEIGHT; i++)
     {
-        Cube* cube = new Cube( -12,-35 + 10 + i*2,-45);
+        Cube* cube = new Cube( -12,-35 + 10 + i*2,-45, 1, 0, 1);
         cube->tag = "wall";
         components.Add(cube);
     }
@@ -242,7 +244,7 @@ void Tetris::Init()
     // side right (22 blocks)
     for (int i = 0; i < GRID_HEIGHT; i++)
     {
-        Cube* cube = new Cube(10,-35 + 10 + i*2,-45);
+        Cube* cube = new Cube(10,-35 + 10 + i*2,-45, 1, 0, 1);
         cube->tag = "wall";
         components.Add(cube);
     }
@@ -510,7 +512,11 @@ void Tetris::ProcessLetter(LetterCube *letter)
                 }
 
                 RemoveLine();
-                *words[wordIndex]->matrix.x = renderer->windowWidth - 200;
+                if (*words[wordIndex]->matrix.x < 100)
+                {
+                    dictionary.words.Add(wordList[wordIndex]);
+                    *words[wordIndex]->matrix.x = renderer->windowWidth - 200;
+                }
             }
         }
     }

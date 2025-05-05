@@ -8,6 +8,8 @@ class DictionaryMenu : public IScene
 {
 private:
     MouseCursor* cursor = nullptr;
+    Sprite* backButton;
+
 public:
     DictionaryMenu();
 
