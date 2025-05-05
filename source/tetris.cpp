@@ -185,6 +185,8 @@ Tetris::Tetris()
 
 void Tetris::Init()
 {
+    components.Clear();
+
     random.SetRandomSeed(currentLevel->lvlSeed);
     score = 0;
     speed = 1;
@@ -196,8 +198,8 @@ void Tetris::Init()
 
     if(currentLevel != nullptr)
     {
-        Sprite* wordListBox = new Sprite("data/art/wordListBox.png", 40, 40, 1, 1, glm::vec2(0,0));
-        components.Add(wordListBox);
+        //Sprite* wordListBox = new Sprite("data/art/wordListBox.png", 40, 40, 1, 1, glm::vec2(0,0));
+        //components.Add(wordListBox);
     }
 
     if (currentLevel != nullptr)
@@ -211,7 +213,6 @@ void Tetris::Init()
         components.Add(text);
         words.Add(text);
     }
-
 
     Pause = new PauseMenu();
 
@@ -247,7 +248,7 @@ void Tetris::Init()
     }
 
     components.Add(new Background(glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
-    //components.Add(new Sprite("data/art/new/bg.png", -100, -100, 0.7, 0.7));
+    //components.Add(new Background("data/art/new/background.png", cam));//glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
 }
 
 void Tetris::Update()
@@ -310,6 +311,7 @@ void Tetris::Update()
 
     if (input.Released(input.Key.ESCAPE))
     {
+        physics->Reset();
         Application::LoadScene(Scenes::StartMenu);
     }
 }
@@ -321,6 +323,7 @@ void Tetris::UpdateAfterPhysics()
         // GameOver
         if (activePiece->matrix.position.y - activePiece->direction.y == 15.0f)
         {
+            physics->Reset();
             Application::NextScene();
             return;
         }
