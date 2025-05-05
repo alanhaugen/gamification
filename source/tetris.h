@@ -70,6 +70,8 @@ private:
     void RemoveLine(int numberOfLines = 1);
     LetterCube* GetLetter(float x, float y, bool onlyReturnVisible = true);
 
+    bool IsNoWordsLeft();
+
 public:
     Tetris();
 

@@ -26,6 +26,8 @@ solid {
             "data/solid.ico",
             "data/vertexanimation.frag",
             "data/vertexanimation.vert",
+            "source/dictionary.cpp",
+            "source/dictionary.h",
             "source/dictionarymenu.cpp",
             "source/dictionarymenu.h",
             "source/gamemenu.cpp",

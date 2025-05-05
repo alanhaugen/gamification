@@ -312,7 +312,15 @@ void Tetris::Update()
     if (input.Released(input.Key.ESCAPE))
     {
         physics->Reset();
+        currentLevel = nullptr;
         Application::LoadScene(Scenes::StartMenu);
+    }
+
+    if (IsNoWordsLeft())
+    {
+        physics->Reset();
+        currentLevel = nullptr;
+        Application::NextScene();
     }
 }
 
@@ -324,6 +332,7 @@ void Tetris::UpdateAfterPhysics()
         if (activePiece->matrix.position.y - activePiece->direction.y == 15.0f)
         {
             physics->Reset();
+            currentLevel = nullptr;
             Application::NextScene();
             return;
         }
@@ -587,4 +596,23 @@ LetterCube *Tetris::GetLetter(float x, float y, bool onlyReturnVisible)
     }
 
     return nullptr;
+}
+
+bool Tetris::IsNoWordsLeft()
+{
+    int wordsDone = 0;
+    for (int i = 0; i < words.Size(); i++)
+    {
+        if (*words[i]->matrix.x > 100)
+        {
+            wordsDone++;
+        }
+    }
+
+    if (wordsDone == words.Size())
+    {
+        return true;
+    }
+
+    return false;
 }
