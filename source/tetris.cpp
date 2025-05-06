@@ -322,7 +322,7 @@ void Tetris::Update()
     {
         physics->Reset();
         currentLevel = nullptr;
-        Application::NextScene();
+        Application::LoadScene(Scenes::Quiz);
     }
 }
 
