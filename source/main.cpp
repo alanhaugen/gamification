@@ -14,6 +14,7 @@
 #include "gameover.h"
 #include "intro.h"
 #include "dictionary.h"
+#include "quiz.h"
 
 int highscore = 0;
 Level* currentLevel = nullptr;
@@ -31,6 +32,7 @@ int main(int argc, char **argv)
     application.AddScene(new SettingsMenu());
     application.AddScene(new Tetris());
     application.AddScene(new GameOver());
+    application.AddScene(new Quiz());
 
     return application.Exec();
 }

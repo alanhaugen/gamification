@@ -13,7 +13,8 @@ enum Scenes
     GameMenu,
     SettingsMenu,
     Tetris,
-    GameOver
+    GameOver,
+    Quiz
 };
 
 #endif

@@ -49,6 +49,8 @@ solid {
             "source/pausemenu.h",
             "source/playtetrismenu.cpp",
             "source/playtetrismenu.h",
+            "source/quiz.cpp",
+            "source/quiz.h",
             "source/settingsmenu.cpp",
             "source/settingsmenu.h",
             "source/speechbubble.cpp",
