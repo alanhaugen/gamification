@@ -2,6 +2,9 @@
 #define QUIZ_H
 
 #include <core/x-platform/scene.h>
+#include <core/containers/stack.h>
+#include <core/components/text.h>
+#include "dictionary.h"
 
 class Quiz : public IScene
 {
@@ -11,6 +14,10 @@ public:
     void Init();
     void Update();
     void UpdateAfterPhysics();
+
+    Stack<Lexeme> questions;
+    Text* question;
+    Text* answer;
 };
 
 #endif // QUIZ_H
