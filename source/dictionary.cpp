@@ -23,7 +23,7 @@ Dictionary::Dictionary()
 {
     lexemes.Add(Lexeme(Kana::mo+Kana::no, "'mono': a thing"));
     lexemes.Add(Lexeme(Kana::ko+Kana::ko, "'koko': a person"));
-    lexemes.Add(Lexeme(Kana::ka+Kana::ko, "'koko': the past"));
+    //lexemes.Add(Lexeme(Kana::ka+Kana::ko, "'koko': the past"));
     lexemes.Add(Lexeme(Kana::ka+Kana::sa, "'kako': an umbrella"));
     lexemes.Add(Lexeme(Kana::mo+Kana::mo, "'momo': a peach"));
 }

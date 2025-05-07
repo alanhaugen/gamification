@@ -18,6 +18,16 @@ public:
     Stack<Lexeme> questions;
     Text* question;
     Text* answer;
+
+    Sprite* button1;
+    Sprite* button2;
+    Sprite* button3;
+    Sprite* button4;
+
+    Text* buttonText1;
+    Text* buttonText2;
+    Text* buttonText3;
+    Text* buttonText4;
 };
 
 #endif // QUIZ_H
