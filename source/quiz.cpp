@@ -32,8 +32,6 @@ void Quiz::Init()
 
     question = new Text(questions[arrayIndex].translation, 100, 270);
 
-    components.Add(question);
-
     button1 = new Sprite("data/art/button.png", 110, 400, 0.5, 0.5);
     button2 = new Sprite("data/art/button.png", 510, 400, 0.5, 0.5);
     button3 = new Sprite("data/art/button.png", 110, 550, 0.5, 0.5);
@@ -110,6 +108,7 @@ void Quiz::Update()
                 buttonText2 = new Text(RandomWord(), *button2->matrix.x + 20, *button2->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
                 buttonText3 = new Text(RandomWord(), *button3->matrix.x + 20, *button3->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
                 buttonText4 = new Text(RandomWord(), *button4->matrix.x + 20, *button4->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+                question = new Text(questions[arrayIndex].translation, 100, 270);
             }
         }
     }
@@ -118,6 +117,7 @@ void Quiz::Update()
     buttonText2->Update();
     buttonText3->Update();
     buttonText4->Update();
+    question->Update();
 }
 
 void Quiz::UpdateAfterPhysics()
