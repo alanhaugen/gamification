@@ -34,7 +34,7 @@ void StartMenu::Update()
 
     if (playTetrisButton->IsPressed())
     {
-        Application::LoadScene(Scenes::PlayTetrisMenu);
+        Application::LoadScene(Scenes::LevelSelectMenu);
     }
 
     if (dictionaryButton->IsPressed())

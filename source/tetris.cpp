@@ -188,6 +188,7 @@ Tetris::Tetris()
 void Tetris::Init()
 {
     components.Clear();
+    words.Clear();
 
     random.SetRandomSeed(currentLevel->lvlSeed);
     score = 0;
