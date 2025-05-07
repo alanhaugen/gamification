@@ -30,7 +30,7 @@ void LevelSelectMenu::Update()
 
     if (backButton->IsPressed())
     {
-        Application::LoadScene(Scenes::PlayTetrisMenu);
+        Application::LoadScene(Scenes::StartMenu);
     }
 }
 
