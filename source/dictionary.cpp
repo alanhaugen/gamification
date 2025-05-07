@@ -28,20 +28,6 @@ Dictionary::Dictionary()
     lexemes.Add(Lexeme((std::string(1, Kana::mo)+std::string(1, Kana::mo)).c_str(), "'momo': a peach"));
 }
 
-Stack<Lexeme> Dictionary::GetLexemeStack()
-{
-    Stack<Lexeme> stack;
-
-    SortLexemes();
-
-    for (int i = 0; i < 4; i++)
-    {
-        stack.Push(lexemes[i]);
-    }
-
-    return stack;
-}
-
 Lexeme::Lexeme()
 {
     timesAnsweredCorrectly = 0;

@@ -22,13 +22,11 @@ public:
 class Dictionary
 {
 private:
-    void SortLexemes();
-
 public:
     Dictionary();
     Array<String> words;
     Array<Lexeme> lexemes;
-    Stack<Lexeme> GetLexemeStack();
+    void SortLexemes();
 };
 
 #endif // DICTIONARY_H

@@ -23,9 +23,14 @@ void Quiz::Init()
     components.Add(new Text("QUIZ", (renderer->windowWidth / 2) - 75, 150));
     components.Add(new Text("Translate:", (renderer->windowWidth / 2) - 175, 200));
 
-    questions = dictionary.GetLexemeStack();
+    dictionary.SortLexemes();
 
-    question = new Text(questions.Top().translation, 100, 270);
+    for (int i = 0; i < 4; i++)
+    {
+        questions.Add(dictionary.lexemes[i]);
+    }
+
+    question = new Text(questions[arrayIndex].translation, 100, 270);
 
     components.Add(question);
 
@@ -39,26 +44,80 @@ void Quiz::Init()
     components.Add(button3);
     components.Add(button4);
 
-    buttonText1 = new Text(questions.Top().word, *button1->matrix.x + 20, *button1->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+    buttonText1 = new Text(questions[arrayIndex].word, *button1->matrix.x + 20, *button1->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
     buttonText2 = new Text(RandomWord(), *button2->matrix.x + 20, *button2->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
     buttonText3 = new Text(RandomWord(), *button3->matrix.x + 20, *button3->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
     buttonText4 = new Text(RandomWord(), *button4->matrix.x + 20, *button4->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
 
-    components.Add(buttonText1);
-    components.Add(buttonText2);
-    components.Add(buttonText3);
-    components.Add(buttonText4);
+    wrongSprite = new Sprite("data/art/lvlLock.png",420,420);
+    correctSprite = new Sprite("data/art/lvlComplete.png",420,420);
 
     components.Add(new MouseCursor());
 }
 
 void Quiz::Update()
 {
-    if (button1->IsPressed())
+    if (playing)
     {
-        questions.Top().IncreaseCompetence();
-        Application::LoadScene(Scenes::LevelSelectMenu);
+        if (button1->IsPressed())
+        {
+            questions[arrayIndex].IncreaseCompetence();
+            arrayIndex++;
+            correct = true;
+            playing = false;
+        }
+        if (button2->IsPressed())
+        {
+            arrayIndex++;
+            correct = false;
+            playing = false;
+        }
+        if (button3->IsPressed())
+        {
+            arrayIndex++;
+            correct = false;
+            playing = false;
+        }
+        if (button4->IsPressed())
+        {
+            arrayIndex++;
+            correct = false;
+            playing = false;
+        }
     }
+    else
+    {
+        if (correct)
+        {
+            correctSprite->Update();
+        }
+        else
+        {
+            wrongSprite->Update();
+        }
+
+        if (input.Mouse.Pressed)
+        {
+            playing = true;
+
+            if (arrayIndex == questions.Size())
+            {
+                Application::LoadScene(Scenes::LevelSelectMenu);
+            }
+            else
+            {
+                buttonText1 = new Text(questions[arrayIndex].word, *button1->matrix.x + 20, *button1->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+                buttonText2 = new Text(RandomWord(), *button2->matrix.x + 20, *button2->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+                buttonText3 = new Text(RandomWord(), *button3->matrix.x + 20, *button3->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+                buttonText4 = new Text(RandomWord(), *button4->matrix.x + 20, *button4->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+            }
+        }
+    }
+
+    buttonText1->Update();
+    buttonText2->Update();
+    buttonText3->Update();
+    buttonText4->Update();
 }
 
 void Quiz::UpdateAfterPhysics()
@@ -68,9 +127,9 @@ void Quiz::UpdateAfterPhysics()
 
 String Quiz::RandomWord()
 {
-    String word = questions.Top().word;
+    String word = questions[arrayIndex].word;
 
-    while(word == questions.Top().word)
+    while(word == questions[arrayIndex].word)
     {
         word = dictionary.words[random.RandomRange(0, dictionary.words.Size())];
     }

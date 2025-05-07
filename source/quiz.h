@@ -15,9 +15,13 @@ public:
     void Update();
     void UpdateAfterPhysics();
 
-    Stack<Lexeme> questions;
+    Array<Lexeme> questions;
+    int arrayIndex = 0;
     Text* question;
     Text* answer;
+
+    Sprite* correctSprite;
+    Sprite* wrongSprite;
 
     Sprite* button1;
     Sprite* button2;
@@ -30,6 +34,9 @@ public:
     Text* buttonText4;
 
     String RandomWord();
+
+    bool playing = true;
+    bool correct;
 };
 
 #endif // QUIZ_H
