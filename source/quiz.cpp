@@ -40,9 +40,9 @@ void Quiz::Init()
     components.Add(button4);
 
     buttonText1 = new Text(questions.Top().word, *button1->matrix.x + 20, *button1->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
-    buttonText2 = new Text(dictionary.words[random.RandomRange(0, dictionary.words.Size())], *button2->matrix.x + 20, *button2->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
-    buttonText3 = new Text(dictionary.words[random.RandomRange(0, dictionary.words.Size())], *button3->matrix.x + 20, *button3->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
-    buttonText4 = new Text(dictionary.words[random.RandomRange(0, dictionary.words.Size())], *button4->matrix.x + 20, *button4->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+    buttonText2 = new Text(RandomWord(), *button2->matrix.x + 20, *button2->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+    buttonText3 = new Text(RandomWord(), *button3->matrix.x + 20, *button3->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+    buttonText4 = new Text(RandomWord(), *button4->matrix.x + 20, *button4->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
 
     components.Add(buttonText1);
     components.Add(buttonText2);
@@ -56,6 +56,7 @@ void Quiz::Update()
 {
     if (button1->IsPressed())
     {
+        questions.Top().IncreaseCompetence();
         Application::LoadScene(Scenes::LevelSelectMenu);
     }
 }
@@ -63,4 +64,16 @@ void Quiz::Update()
 void Quiz::UpdateAfterPhysics()
 {
 
+}
+
+String Quiz::RandomWord()
+{
+    String word = questions.Top().word;
+
+    while(word == questions.Top().word)
+    {
+        word = dictionary.words[random.RandomRange(0, dictionary.words.Size())];
+    }
+
+    return word;
 }

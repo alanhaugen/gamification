@@ -14,6 +14,8 @@ public:
     String word;
     String translation;
     int timesAnsweredCorrectly;
+
+    void IncreaseCompetence();
     //Audio sayIt;
 };
 

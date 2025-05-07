@@ -28,6 +28,8 @@ public:
     Text* buttonText2;
     Text* buttonText3;
     Text* buttonText4;
+
+    String RandomWord();
 };
 
 #endif // QUIZ_H

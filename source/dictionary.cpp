@@ -1,4 +1,5 @@
 #include "dictionary.h"
+#include <string>
 #include "japanesekana.h"
 
 void Dictionary::SortLexemes()
@@ -21,11 +22,10 @@ void Dictionary::SortLexemes()
 
 Dictionary::Dictionary()
 {
-    lexemes.Add(Lexeme(Kana::mo+Kana::no, "'mono': a thing"));
-    lexemes.Add(Lexeme(Kana::ko+Kana::ko, "'koko': a person"));
-    //lexemes.Add(Lexeme(Kana::ka+Kana::ko, "'koko': the past"));
-    lexemes.Add(Lexeme(Kana::ka+Kana::sa, "'kako': an umbrella"));
-    lexemes.Add(Lexeme(Kana::mo+Kana::mo, "'momo': a peach"));
+    lexemes.Add(Lexeme((std::string(1, Kana::mo)+std::string(1, Kana::no)).c_str(), "'mono': a thing"));
+    lexemes.Add(Lexeme((std::string(1, Kana::ko)+std::string(1, Kana::ko)).c_str(), "'koko': a person"));
+    lexemes.Add(Lexeme((std::string(1, Kana::ka)+std::string(1, Kana::ko)).c_str(), "'kako': an umbrella"));
+    lexemes.Add(Lexeme((std::string(1, Kana::mo)+std::string(1, Kana::mo)).c_str(), "'momo': a peach"));
 }
 
 Stack<Lexeme> Dictionary::GetLexemeStack()
@@ -52,4 +52,9 @@ Lexeme::Lexeme(String word_, String translation_)
     word = word_;
     translation = translation_;
     timesAnsweredCorrectly = 0;
+}
+
+void Lexeme::IncreaseCompetence()
+{
+    timesAnsweredCorrectly++;
 }

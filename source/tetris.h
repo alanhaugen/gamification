@@ -1,5 +1,5 @@
-#ifndef Tetris_H
-#define Tetris_H
+#ifndef TETRIS_H
+#define TETRIS_H
 
 #include <core/x-platform/scene.h>
 #include <core/components/actor.h>
