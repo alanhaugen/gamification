@@ -12,8 +12,8 @@ class TextBlock : public Component
 public:
     TextBlock(String top, String bottom = "")
     {
-        topText    = new Text(top, 100, 150, 0.5, 0.5);
-        bottomText = new Text(bottom, 100, 200, 0.5, 0.5);
+        topText    = new Text(top, 450, 150, 0.5, 0.5, glm::vec2(0.5,0));
+        bottomText = new Text(bottom, 450, 200, 0.5, 0.5, glm::vec2(0.5,0));
     }
 
     void Update()
