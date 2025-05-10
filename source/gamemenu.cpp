@@ -8,7 +8,7 @@ void GameMenu::Init()
 {
 }
 
-void GameMenu::Update()
+void GameMenu::Update(float dt)
 {
 }
 

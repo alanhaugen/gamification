@@ -21,7 +21,7 @@ void PauseMenu::Pause()
 }
 
 
-void PauseMenu::Update()
+void PauseMenu::Update(float dt)
 {
     cursor->Update();
     backGround->Update();

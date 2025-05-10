@@ -47,7 +47,7 @@ void Intro::Init()
     i = 0;
 }
 
-void Intro::Update()
+void Intro::Update(float dt)
 {
     if (speech.Empty())
     {

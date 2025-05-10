@@ -14,7 +14,7 @@ public:
     DictionaryMenu();
 
     void Init();
-    void Update();
+    void Update(float dt);
     void UpdateAfterPhysics();
 };
 

@@ -22,7 +22,7 @@ void LevelSelectMenu::Init()
     components.Add(background);
 }
 
-void LevelSelectMenu::Update()
+void LevelSelectMenu::Update(float dt)
 {
     cursor->Update();
     level1->Update();

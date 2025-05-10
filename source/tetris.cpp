@@ -254,7 +254,7 @@ void Tetris::Init()
     //components.Add(new Background("data/art/new/background.png", cam));//glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
 }
 
-void Tetris::Update()
+void Tetris::Update(float dt)
 {
     if(input.Pressed(input.Key.P))
     {
@@ -264,7 +264,7 @@ void Tetris::Update()
 
     if(Pause->isPaused)
     {
-        Pause->Update();
+        Pause->Update(dt);
         return;
     }
 

@@ -19,7 +19,7 @@ void GameOver::Init()
     components.Add(new Text("Level Select", 200, 550));
 }
 
-void GameOver::Update()
+void GameOver::Update(float dt)
 {
     if (input.Pressed(input.Key.SPACE))
     {

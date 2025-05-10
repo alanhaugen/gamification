@@ -53,33 +53,23 @@ void Quiz::Init()
     components.Add(new MouseCursor());
 }
 
-void Quiz::Update()
+void Quiz::Update(float dt)
 {
     if (playing)
     {
-        if (button1->IsPressed())
+        if (button1->IsPressed() || button2->IsPressed() || button3->IsPressed() || button4->IsPressed())
         {
-            questions[arrayIndex].IncreaseCompetence();
+            if (button1->IsPressed())
+            {
+                questions[arrayIndex].IncreaseCompetence();
+                correct = true;
+            }
+            else
+            {
+                correct = false;
+            }
+
             arrayIndex++;
-            correct = true;
-            playing = false;
-        }
-        if (button2->IsPressed())
-        {
-            arrayIndex++;
-            correct = false;
-            playing = false;
-        }
-        if (button3->IsPressed())
-        {
-            arrayIndex++;
-            correct = false;
-            playing = false;
-        }
-        if (button4->IsPressed())
-        {
-            arrayIndex++;
-            correct = false;
             playing = false;
         }
     }

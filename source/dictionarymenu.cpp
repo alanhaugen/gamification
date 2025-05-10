@@ -25,7 +25,7 @@ void DictionaryMenu::Init()
     components.Add(backButton);
 }
 
-void DictionaryMenu::Update()
+void DictionaryMenu::Update(float dt)
 {
     cursor->Update();
 

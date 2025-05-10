@@ -11,7 +11,7 @@ private:
     Sprite* buttonDictionary = nullptr;
     MouseCursor* cursor = nullptr;
 public:
-    void Update();
+    void Update(float dt);
     void UpdateAfterPhysics();
     void Init();
     void Pause();

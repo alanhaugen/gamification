@@ -26,7 +26,7 @@ void PlayTetrisMenu::Init()
     components.Add(cursor);
 }
 
-void PlayTetrisMenu::Update()
+void PlayTetrisMenu::Update(float dt)
 {
     *cursor->matrix.x = input.Mouse.x;
     *cursor->matrix.y = input.Mouse.y;

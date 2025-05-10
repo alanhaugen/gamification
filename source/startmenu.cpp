@@ -28,7 +28,7 @@ void StartMenu::Init()
     components.Add(cursor);
 }
 
-void StartMenu::Update()
+void StartMenu::Update(float dt)
 {
     cursor->Update();
 

@@ -10,7 +10,7 @@ void SettingsMenu::Init()
 {
 }
 
-void SettingsMenu::Update()
+void SettingsMenu::Update(float dt)
 {
     if (input.Released(input.Key.ESCAPE))
     {
