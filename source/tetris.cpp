@@ -100,6 +100,15 @@ void Block::RotateBack()
     }
 }
 
+void Block::Remove()
+{
+    for (unsigned int i = 0; i < components.Size(); i++)
+    {
+        LetterCube* cube = dynamic_cast<LetterCube*>(*components[i]);
+        cube->Remove();
+    }
+}
+
 Block::Block(int type)
 {
     const int NUMBER_OF_TETROMINOS = 7;
@@ -112,70 +121,52 @@ Block::Block(int type)
     canRotate = true;
     tag = "block";
 
-    if (type == I)
+    if (type == I) // +
     {
-        colour = glm::vec4(1.0f, 0.0f, 1.0f, 1.0f);
-
-        Add(new LetterCube(0,-1*2,0, this));
-        Add(new LetterCube(0,0*2,0, this));
-        Add(new LetterCube(0,1*2,0, this));
-        Add(new LetterCube(0,2*2,0, this));
-    }
-    else if (type == O)
-    {
-        colour = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
-
         Add(new LetterCube(0,0,0, this));
-        Add(new LetterCube(0,1*2,0, this));
-        Add(new LetterCube(1*2,1*2,0, this));
         Add(new LetterCube(1*2,0,0, this));
+        Add(new LetterCube(-1*2,0,0, this));
+        Add(new LetterCube(0,1*2,0, this));
+        Add(new LetterCube(0,-1*2,0, this));
+    }
+    else if (type == O) // x
+    {
+        Add(new LetterCube(0,0,0, this));
+        Add(new LetterCube(1*2,1*2,0, this));
+        Add(new LetterCube(-1*2,1*2,0, this));
+        Add(new LetterCube(1*2,-1*2,0, this));
+        Add(new LetterCube(-1*2,-1*2,0, this));
 
         //canRotate = false;
     }
-    else if (type == T)
+    else if (type == T) // l
     {
-        colour = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
-
-        Add(new LetterCube(0,0,0, this));
-        Add(new LetterCube(1*2,0,0, this));
-        Add(new LetterCube(-1*2,0,0, this));
-        Add(new LetterCube(0,1*2,0, this));
-    }
-    else if (type == S)
-    {
-        colour = glm::vec4(1.0f, 0.5f, 0.5f, 1.0f);
-
-        Add(new LetterCube(0,0,0, this));
-        Add(new LetterCube(1*2,0,0, this));
-        Add(new LetterCube(0,1*2,0, this));
-        Add(new LetterCube(-1*2,1*2,0, this));
-    }
-    else if (type == Z)
-    {
-        colour = glm::vec4(0.8f, 0.2f, 0.1f, 1.0f);
-
-        Add(new LetterCube(0,0,0, this));
-        Add(new LetterCube(-1*2,0,0, this));
+        Add(new LetterCube(0,0*2,0, this));
         Add(new LetterCube(0,1*2,0, this));
         Add(new LetterCube(1*2,1*2,0, this));
     }
-    else if (type == J)
+    else if (type == S) // .
     {
-        colour = glm::vec4(0.0f, 1.0f, 1.0f, 1.0f);
-
+        Add(new LetterCube(0,0,0, this));
+    }
+    else if (type == Z) // ..
+    {
+        Add(new LetterCube(0,0,0, this));
+        Add(new LetterCube(-1*2,0,0, this));
+    }
+    else if (type == J) // clump
+    {
         Add(new LetterCube(0,-1*2,0, this));
         Add(new LetterCube(0,0*2,0, this));
         Add(new LetterCube(0,1*2,0, this));
-        Add(new LetterCube(-1*2,1*2,0, this));
+        Add(new LetterCube(1*2,1*2,0, this));
+        Add(new LetterCube(1*2,0*2,0, this));
     }
     else if (type == L)
     {
-        colour = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
-
-        Add(new LetterCube(0,-1*2,0, this));
         Add(new LetterCube(0,0*2,0, this));
         Add(new LetterCube(0,1*2,0, this));
-        Add(new LetterCube(1*2,1*2,0, this));
+        Add(new LetterCube(-1*2,1*2,0, this));
     }
 
     matrix.Translate(glm::vec3(0, 15, -45));
@@ -355,6 +346,13 @@ void Tetris::UpdateAfterPhysics()
             CheckForWords();
 
             activePiece = new Block();
+
+            while(CheckForWords() == true)
+            {
+                activePiece->Remove();
+                activePiece = new Block();
+            }
+
             components.Add(activePiece);
         }
         // Move back out of collision
@@ -376,7 +374,7 @@ bool Tetris::Approx(float a, float b)
     return false;
 }
 
-void Tetris::CheckForWords()
+bool Tetris::CheckForWords()
 {
     //int multiplier = 1;
 
@@ -404,11 +402,13 @@ void Tetris::CheckForWords()
             ProcessLetter(letter);
         }
     }
+
+    return false;
 }
 
 void Tetris::MoveAllCubesDown()
 {
-    // The Scene has Blocks in components. The blocks components also, with the actual cubes
+    // The Scene has Blocks in components. The blocks have components also, with the actual cubes
     for (unsigned int i = 0; i < components.Size(); i++)
     {
         // We will move the blocks, the cubes will follow
@@ -512,12 +512,15 @@ void Tetris::ProcessLetter(LetterCube *letter)
                     // Add all over these blocks to a list and move them down
                 }
 
-                RemoveLine();
-                if (*words[wordIndex]->matrix.x < 100)
-                {
-                    dictionary.words.Add(wordList[wordIndex]);
-                    *words[wordIndex]->matrix.x = renderer->windowWidth - 200;
-                }
+                //RemoveLine();
+                //if (reward)
+                //{
+                    if (*words[wordIndex]->matrix.x < 100)
+                    {
+                        dictionary.words.Add(wordList[wordIndex]);
+                        *words[wordIndex]->matrix.x = renderer->windowWidth - 200;
+                    }
+                //}
             }
         }
     }

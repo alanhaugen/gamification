@@ -39,6 +39,7 @@ public:
 
     void Rotate();
     void RotateBack();
+    void Remove();
 };
 
 class Tetris : public IScene
@@ -64,7 +65,7 @@ private:
 
     bool Approx(float a, float b);
 
-    void CheckForWords();
+    bool CheckForWords();
     void MoveAllCubesDown();
     void ProcessLetter(LetterCube* letter);
     void RemoveLine(int numberOfLines = 1);
