@@ -17,22 +17,15 @@ void Intro::Init()
     Camera* cam = new Camera();
     components.Add(cam);
 
-    speech.Enqueue(new Text("Welcome to LexiBlocks!", 100, 150, 0.5, 0.5));
-    speech.Enqueue(new Text("I am Professor Croco.", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("In my lab I have designed blocks", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("that teach languages!", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("Line them up, and make a word.", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("The bricks can be moved left", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("and right, and rotate.", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("In this game you will learn", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("150 japanese words and the", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("Japanese alphabets Hirigana", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("and Katakana.", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("Before we begin, may I ask,", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("Do you know any Japanese already?", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("Since you are already knowledgable about", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("the japanese kana, feel free", 100, 200, 0.5, 0.5));
-    speech.Enqueue(new Text("to jump into a game through level select.", 100, 200, 0.5, 0.5));
+    speech.Enqueue(new TextBlock("Welcome to LexiBlocks!", "I am Professor Croco."));
+    speech.Enqueue(new TextBlock("In my lab I have designed blocks", "that teach languages!"));
+    speech.Enqueue(new TextBlock("Line them up, and make a word.", "The bricks can be moved left"));
+    speech.Enqueue(new TextBlock("and right, and rotate.", "In this game you will learn"));
+    speech.Enqueue(new TextBlock("150 japanese words and the", "Japanese alphabets Hirigana"));
+    speech.Enqueue(new TextBlock("and Katakana."));
+    speech.Enqueue(new TextBlock("Before we begin, may I ask,", "Do you know any Japanese already?"));
+    speech.Enqueue(new TextBlock("Since you are already knowledgable about", "the japanese kana, feel free"));
+    speech.Enqueue(new TextBlock("to jump into a game through level select."));
 
     components.Add(croco);
     components.Add(bubble);
