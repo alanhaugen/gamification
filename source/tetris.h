@@ -65,9 +65,9 @@ private:
 
     bool Approx(float a, float b);
 
-    bool CheckForWords();
+    bool CheckForWords(bool reward = true);
     void MoveAllCubesDown();
-    void ProcessLetter(LetterCube* letter);
+    bool ProcessLetter(LetterCube* letter, bool reward);
     void RemoveLine(int numberOfLines = 1);
     LetterCube* GetLetter(float x, float y, bool onlyReturnVisible = true);
 

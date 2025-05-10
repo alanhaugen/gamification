@@ -73,6 +73,7 @@ LetterCube::LetterCube(float x, float y, float z, Actor* parent)
 
 void LetterCube::Remove()
 {
+    matrix.Translate(glm::vec3(1000.0f));
     background->Hide();
     Hide();
     collisionBox->active = false;
@@ -105,7 +106,11 @@ void Block::Remove()
     for (unsigned int i = 0; i < components.Size(); i++)
     {
         LetterCube* cube = dynamic_cast<LetterCube*>(*components[i]);
-        cube->Remove();
+
+        if (cube)
+        {
+            cube->Remove();
+        }
     }
 }
 
@@ -346,14 +351,17 @@ void Tetris::UpdateAfterPhysics()
             CheckForWords();
 
             activePiece = new Block();
+            activePiece->Update();
+            components.Add(activePiece);
 
-            while(CheckForWords() == true)
+            while(CheckForWords(false))
             {
                 activePiece->Remove();
-                activePiece = new Block();
-            }
 
-            components.Add(activePiece);
+                activePiece = new Block();
+                activePiece->Update();
+                components.Add(activePiece);
+            }
         }
         // Move back out of collision
         else
@@ -374,9 +382,10 @@ bool Tetris::Approx(float a, float b)
     return false;
 }
 
-bool Tetris::CheckForWords()
+bool Tetris::CheckForWords(bool reward)
 {
     //int multiplier = 1;
+    bool isWord = false;
 
     // In the scene we have the blocks, the blocks has have our letter cubes
     for (unsigned int i = 0; i < components.Size(); i++)
@@ -399,11 +408,18 @@ bool Tetris::CheckForWords()
                 continue;
             }
 
-            ProcessLetter(letter);
+            if (isWord == false)
+            {
+                isWord = ProcessLetter(letter, reward);
+            }
+            else
+            {
+                ProcessLetter(letter, reward);
+            }
         }
     }
 
-    return false;
+    return isWord;
 }
 
 void Tetris::MoveAllCubesDown()
@@ -423,12 +439,14 @@ void Tetris::MoveAllCubesDown()
     }
 }
 
-void Tetris::ProcessLetter(LetterCube *letter)
+bool Tetris::ProcessLetter(LetterCube *letter, bool reward)
 {
+    bool isWord = false;
+
     // No words list in endless mode
     if (currentLevel == nullptr)
     {
-        return;
+        return false;
     }
 
     for (int wordIndex = 0; wordIndex < wordList.size(); wordIndex++)
@@ -513,17 +531,20 @@ void Tetris::ProcessLetter(LetterCube *letter)
                 }
 
                 //RemoveLine();
-                //if (reward)
-                //{
+                isWord = true;
+                if (reward)
+                {
                     if (*words[wordIndex]->matrix.x < 100)
                     {
                         dictionary.words.Add(wordList[wordIndex]);
                         *words[wordIndex]->matrix.x = renderer->windowWidth - 200;
                     }
-                //}
+                }
             }
         }
     }
+
+    return isWord;
 }
 
 void Tetris::RemoveLine(int numberOfLines)
