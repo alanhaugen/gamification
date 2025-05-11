@@ -40,13 +40,17 @@ public:
     void Update(float dt);
     void UpdateAfterPhysics();
 
+    int count = 0;
+
     Sprite* croco;
+    Sprite* crocoTalk;
     Sprite* bubble;
     Sprite* bubbleScaled;
     ITime* startTime;
     Cube* cube;
     float t;
     float i;
+    float j;
 
     Queue<TextBlock*> speech;
 };

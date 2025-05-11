@@ -13,7 +13,8 @@ void Intro::Init()
     bubble = new Sprite("data/art/new/speech_bubble.png", 0, 0, 0.45, 0.45);
     bubbleScaled = new Sprite("data/art/new/speech_bubble.png", 0, 0, 0.75f, 0.0f);
     bubble->FlipHorizontal();
-    croco = new Sprite("data/art/new/chib.png", 1000, 50);
+    croco = new Sprite("data/art/new/DrCroco_Chibi_Idle.png", 1000, 50);
+    crocoTalk = new Sprite("data/art/new/DrCroco_Chibi_talking.png", 1000, 50);
     Camera* cam = new Camera();
     components.Add(cam);
 
@@ -27,7 +28,6 @@ void Intro::Init()
     speech.Enqueue(new TextBlock("Since you are already knowledgable about", "the japanese kana, feel free"));
     speech.Enqueue(new TextBlock("to jump into a game through level select."));
 
-    components.Add(croco);
     components.Add(bubble);
     //components.Add(bubbleScaled);
     components.Add(new Background(glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
@@ -51,6 +51,9 @@ void Intro::Update(float dt)
     {
         bubbleScaled->Hide();
         bubble->Show();
+
+        i += 0.1;
+        j += 0.1;
 
         if (speech.Empty() == false)
         {
@@ -77,9 +80,39 @@ void Intro::Update(float dt)
     if (input.Pressed(input.Key.SPACE) || input.Mouse.Pressed)
     {
         speech.Dequeue();
+        count++;
+        j = 0.0f;
+        i = 0.0f;
     }
 
-    i += 0.1;
+    if (count >= 5)
+    {
+        *croco->matrix.x = 100;
+    }
+
+    if (j < 10)
+    {
+        if (i < 1.0f)
+        {
+            croco->Update();
+        }
+        else
+        {
+            crocoTalk->Update();
+
+            if (i > 2)
+            {
+                i = 0.0f;
+            }
+        }
+    }
+    else
+    {
+        croco->Update();
+    }
+
+    *crocoTalk->matrix.x = *croco->matrix.x;
+    *crocoTalk->matrix.y = *croco->matrix.y;
 }
 
 void Intro::UpdateAfterPhysics()
