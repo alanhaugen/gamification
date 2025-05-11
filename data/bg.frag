@@ -17,71 +17,51 @@ in float vTime;
 
 in vec4 gl_FragCoord;
 
+vec2 rotate2D(vec2 _st, float _angle){
+    _st -= 0.5;
+    _st =  mat2(cos(_angle),-sin(_angle),
+                sin(_angle),cos(_angle)) * _st;
+    _st += 0.5;
+    return _st;
+}
+
+vec2 tile(vec2 _st, float _zoom){
+    _st *= _zoom;
+    return fract(_st);
+}
+
+#define PI 3.14159265358979323846
+
+
+float box(vec2 _st, vec2 _size, float _smoothEdges){
+    _size = vec2(0.5)-_size*0.5;
+    vec2 aa = vec2(_smoothEdges*0.5);
+    vec2 uv = smoothstep(_size,_size+aa,_st);
+    uv *= smoothstep(_size,_size+aa,vec2(1.0)-_st);
+    return uv.x*uv.y;
+}
+
 void main()
 {
-    vec2 fragCoord = gl_FragCoord.xy;
-    vec2 iResolution = vec2(1024, 1024);
-    vec2 uv = gl_FragCoord.xy/iResolution.xy;
+    vec2 st = gl_FragCoord.xy/vec2(1024,1024).xy;
+    vec3 color = vSmoothColor.xyz;
 
-    vec3 col = vec3(uv + vTime, 0); // This is the same as vec3(uv.x, uv.y, 0)
+    // Divide the space in 4
+    st = tile(st,10.);
 
-    // Output to screen
-    vFragColor = vec4(col,1.0);
+    // Use a matrix to rotate the space 45 degrees
+    st = rotate2D(st,PI*0.25);
 
-    vec2 r = 2.0*vec2(fragCoord.xy - 0.5*iResolution.xy)/iResolution.y;
+    // Draw a square
+    vec3 newColor = vec3(box(st,vec2(sin(vTime / 4) + 0.75),0.01));
 
-    vec3 bgCol = vec3(0.3);
-    vec3 colBlue = vec3(0.216, 0.471, 0.698);
-    vec3 colRed = vec3(1.00, 0.329, 0.298);
-    vec3 colYellow = vec3(0.867, 0.910, 0.247);
-
-    vec3 pixel = bgCol;
-
-    // To draw a shape we should know the analytic geometrical
-    // expression of that shape.
-    // A circle is the set of points that has the same distance from
-    // it its center. The distance is called radius.
-    // The distance from the coordinate center is sqrt(x*x + y*y)
-    // Fix the distance as the radius will give the formula for
-    // a circle at the coordinate center
-    // sqrt(x*x + y*y) = radius
-    // The points inside the circle, the disk, is given as
-    // sqrt(x*x + y*y) < radius
-    // Squaring both sides will give
-    // x*x + y*y < radius*radius
-
-    float radius = 0.8 * cos(vTime / 4);
-    if( r.x*r.x + r.y*r.y < radius*radius ) {
-            pixel = colBlue;
+    if (newColor != vec3(0.0))
+    {
+        color = vec3(255/255f, 199/255f, 143/255f);
     }
 
-    // There is a shorthand expression for sqrt(v.x*v.x + v.y*v.y)
-    // of a given vector "v", which is "length(v)"
-    if( length(r) < 0.3 -cos(vTime / 5)) {
-            pixel = colYellow;
-    }
+    // color = vec3(st,0.0);
 
-    // draw a disk of which center is not at (0,0).
-    // Say the center is at c: (c.x, c.y).
-    // The distance of any point r: (r.x, r.y) to c is
-    // sqrt((r.x-c.x)^2+(r.y-c.y)^2)
-    // define a distance vector d: (r.x - c.x, r.y - c.y)
-    // in GLSL d can be calculated "d = r - c".
-    // Just as in division, substraction of two vectors is done
-    // component by component.
-    // Then, length(d) means sqrt(d.x^2+d.y^2)
-    // which is the distance formula we are looking for.
-    vec2 center = vec2(0.9, -0.4);
-    vec2 d = r - center;
-    if( length(d) < (0.6-cos(vTime / 5))) {
-            pixel = colRed;
-    }
-    // This shifting of the center of the shape works for any
-    // kind of shape. If you have a formula in terms of r
-    // f(r) = 0, then f(r-c)=0 expresses the same geometric shape
-    // but its coordinate is shifted by c.
-
-    vFragColor = vec4(pixel, 1.0);
-
+    gl_FragColor = vec4(color,1.0);
 }
 
