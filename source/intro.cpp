@@ -20,12 +20,12 @@ void Intro::Init()
 
     speech.Enqueue(new TextBlock("Welcome to LexiBlocks!", "I am Professor Croco."));
     speech.Enqueue(new TextBlock("In my lab I have designed blocks", "that teach languages!"));
-    speech.Enqueue(new TextBlock("Line them up, and make a word.", "The bricks can be moved left"));
-    speech.Enqueue(new TextBlock("and right, and rotate.", "In this game you will learn"));
-    speech.Enqueue(new TextBlock("150 japanese words and the", "Japanese alphabets Hirigana"));
+    speech.Enqueue(new TextBlock("Line them up, and make a word.", "The bricks can be moved left ..."));
+    speech.Enqueue(new TextBlock("and right, and rotate.", "In this game you will learn ..."));
+    speech.Enqueue(new TextBlock("150 japanese words and the", "Japanese alphabets Hirigana ..."));
     speech.Enqueue(new TextBlock("and Katakana."));
     speech.Enqueue(new TextBlock("Before we begin, may I ask,", "Do you know any Japanese already?"));
-    speech.Enqueue(new TextBlock("Since you are already knowledgable about", "the japanese kana, feel free"));
+    speech.Enqueue(new TextBlock("Since you are already knowledgable about", "the japanese kana, feel free ..."));
     speech.Enqueue(new TextBlock("to jump into a game through level select."));
 
     components.Add(bubble);
