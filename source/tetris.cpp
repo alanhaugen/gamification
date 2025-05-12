@@ -251,6 +251,7 @@ void Tetris::Init()
     //components.Add(new Background("data/art/new/background.png", cam));//glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
 
     croco = new Sprite("data/art/new/DrCroco_Chibi_Idle.png",renderer->windowWidth - 300,200,0.2,0.2);
+    //croco = new Sprite("data/art/new/DrCroco_Chibi_Jump_Throw.png",renderer->windowWidth - 300,200,0.2,0.2);
 }
 
 void Tetris::Update(float dt)

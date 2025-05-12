@@ -57,7 +57,7 @@ void main()
 
     if (newColor != vec3(0.0))
     {
-        color = vec3(255/255f, 199/255f, 143/255f);
+        color = vec3(255/255.f, 199/255.f, 143/255.f);
     }
 
     // color = vec3(st,0.0);

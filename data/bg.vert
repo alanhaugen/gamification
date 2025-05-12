@@ -15,7 +15,7 @@ smooth out vec4 vSmoothColor;		//smooth colour to fragment shader
 smooth out vec2 vSmoothTexcoord;
 
 //uniform
-uniform mat4 MVP;	//combined modelview projection matrix
+uniform mat4 MVP;	// combined modelview projection matrix
 uniform vec4 colour;
 
 uniform float time;
