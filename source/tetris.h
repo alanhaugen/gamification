@@ -60,6 +60,8 @@ private:
     float gameTickTime;
     PauseMenu* Pause;
 
+    Sprite* croco;
+
     std::vector<String> wordList;
     Array<Text*> words;
 
