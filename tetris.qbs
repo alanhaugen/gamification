@@ -84,7 +84,7 @@ solid {
                            "GameController",
                            "QuartzCore",
                            "IOSurface")
-                return macorFrameworks
+                return macosFrameworks
             }
 
             cpp.dynamicLibraries: macosSharedLibs
