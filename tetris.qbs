@@ -3,7 +3,7 @@ import "../solid/solid.qbs" as solid
 solid {
     Application {
 //        cpp.cxxLanguageVersion: "c++23"
-        name: "LexiBlocks.exe"
+        name: "App"
 
         files: [
             "data/bg.frag",
@@ -76,12 +76,22 @@ solid {
         Properties {
             condition: qbs.targetOS.contains("macos")
 
-            cpp.frameworks: macosFrameworks
+            cpp.frameworks: {
+                if (qbs.architecture.includes("arm64"))
+                    return macosFrameworks.concat(
+                           "CoreHaptics",
+                           "MediaPlayer",
+                           "GameController",
+                           "QuartzCore",
+                           "IOSurface")
+                return macorFrameworks
+            }
 
             cpp.dynamicLibraries: macosSharedLibs
+
             cpp.staticLibraries: staticLibs.concat("SDL2", "MoltenVK")
 
-            cpp.libraryPaths: [project.buildDirectory, "../solid/lib/debug/darwin/x86_64"]
+            cpp.libraryPaths: [project.buildDirectory, "../solid/lib/debug/darwin/"+qbs.architecture]
             cpp.includePaths: includePaths.concat("../solid/include/darwin")
             cpp.defines: project.defines.concat(project.sdlDefines)
         }
