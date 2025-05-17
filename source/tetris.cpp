@@ -251,6 +251,10 @@ void Tetris::Init()
     //components.Add(new Background("data/art/new/background.png", cam));//glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
 
     croco = new Sprite("data/art/new/DrCroco_Chibi_Idle.png",renderer->windowWidth - 300,200,0.2,0.2);
+    components.Add(new Sprite("data/art/new/dictionary.png",50,500,0.2,0.2));
+    dicBg = new Sprite("data/art/new/quizbg.png",-150,200,1.0,0.09);
+    dicTitle = new Text("New word added to dictionary!", 300,220, 0.5, 0.5);
+    dicInstruction = new Text("Press ENTER to continue.", 300, 440, 0.5, 0.5);
     //croco = new Sprite("data/art/new/DrCroco_Chibi_Jump_Throw.png",renderer->windowWidth - 300,200,0.2,0.2);
 }
 
@@ -260,6 +264,21 @@ void Tetris::Update(float dt)
     {
         Pause->Pause();
         timer->Pause();
+    }
+
+    if(input.Pressed(input.Key.ENTER) || input.Mouse.Released)
+    {
+        newWord = false;
+    }
+
+    if (newWord)
+    {
+        dicBg->Update();
+        dicTitle->Update();
+        dicWord->Update();
+        dicTrans->Update();
+        dicInstruction->Update();
+        return;
     }
 
     if(Pause->isPaused)
@@ -501,7 +520,7 @@ bool Tetris::ProcessLetter(LetterCube *letter, bool reward)
             {
                 for (unsigned int i = 0; i < cubes.Size(); i++)
                 {
-                    LetterCube* cube;
+                    /*LetterCube* cube;
 
                     cube = GetLetter(cubes[i]->pos.x - CUBE_HEIGHT, cubes[i]->pos.y, false);
 
@@ -529,9 +548,18 @@ bool Tetris::ProcessLetter(LetterCube *letter, bool reward)
                     if (cube != nullptr)
                     {
                         cube->Remove();
-                    }
+                    }*/
 
-                    cubes[i]->Remove();
+                    //cubes[i]->Remove();
+                    cubes[i]->active = false;
+                    cubes[i]->background->Uniform("colour", static_cast<glm::vec4>(glm::vec4(200 / 255.f, 200/255.f, 250/255.f, 1.0f)));
+
+                    if (dictionary.HasWord(wordList[wordIndex]) && reward)
+                    {
+                        newWord = true;
+                        dicWord = new Text(wordList[wordIndex], 200, 250, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+                        dicTrans = new Text(dictionary.Translate(wordList[wordIndex]), 200, 300);
+                    }
 
                     // Add all over these blocks to a list and move them down
                 }
@@ -619,7 +647,7 @@ LetterCube *Tetris::GetLetter(float x, float y, bool onlyReturnVisible)
             {
                 if (Approx(letter->pos.x, x) && Approx(letter->pos.y, y))
                 {
-                    if (onlyReturnVisible == true && letter->isVisible())
+                    if (onlyReturnVisible == true && letter->isVisible() && letter->active)
                     {
                         return letter;
                     }

@@ -87,7 +87,7 @@ void Intro::Update(float dt)
 
     if (count >= 5)
     {
-        *croco->matrix.x = 100;
+        //*croco->matrix.x = 100;
     }
 
     if (j < 10)

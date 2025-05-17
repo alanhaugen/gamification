@@ -15,8 +15,6 @@ uniform bool uEnableTexture;
 
 in float vTime;
 
-in vec4 gl_FragCoord;
-
 vec2 rotate2D(vec2 _st, float _angle){
     _st -= 0.5;
     _st =  mat2(cos(_angle),-sin(_angle),
@@ -62,6 +60,6 @@ void main()
 
     // color = vec3(st,0.0);
 
-    gl_FragColor = vec4(color,1.0);
+    vFragColor = vec4(color,1.0);
 }
 

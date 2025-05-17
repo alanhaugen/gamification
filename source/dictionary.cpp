@@ -20,6 +20,22 @@ void Dictionary::SortLexemes()
     }
 }
 
+bool Dictionary::HasWord(String word)
+{
+    return true;
+}
+
+String Dictionary::Translate(String word)
+{
+    for (unsigned int i = 0; i < lexemes.Size(); i++)
+    {
+        if (lexemes[i].word == word)
+        {
+            return lexemes[i].translation;
+        }
+    }
+}
+
 Dictionary::Dictionary()
 {
     lexemes.Add(Lexeme((std::string(1, Kana::mo)+std::string(1, Kana::no)).c_str(), "'mono': a thing"));

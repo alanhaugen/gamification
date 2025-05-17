@@ -59,6 +59,8 @@ solid {
             "source/startmenu.h",
             "source/tetris.cpp",
             "source/tetris.h",
+            "source/wordpopup.cpp",
+            "source/wordpopup.h",
         ]
 
         Depends { name: "core"  }

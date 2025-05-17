@@ -27,6 +27,8 @@ public:
     Array<String> words;
     Array<Lexeme> lexemes;
     void SortLexemes();
+    bool HasWord(String word);
+    String Translate(String word);
 };
 
 #endif // DICTIONARY_H

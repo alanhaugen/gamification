@@ -14,6 +14,7 @@ public:
     char kana;
     Cube* background;
     void Remove();
+    bool active = true;
 };
 
 class Block : public Actor
@@ -61,6 +62,13 @@ private:
     PauseMenu* Pause;
 
     Sprite* croco;
+    Sprite* dicBg;
+    Text* dicTitle;
+    Text* dicWord;
+    Text* dicTrans;
+    Text* dicInstruction;
+
+    bool newWord = false;
 
     std::vector<String> wordList;
     Array<Text*> words;
