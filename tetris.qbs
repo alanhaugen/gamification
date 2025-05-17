@@ -3,7 +3,7 @@ import "../solid/solid.qbs" as solid
 solid {
     Application {
 //        cpp.cxxLanguageVersion: "c++23"
-        name: "LexiBlocks.exe"
+        name: "App"
 
         files: [
             "data/bg.frag",
@@ -69,7 +69,7 @@ solid {
         Depends { name: "nullaudio"  }
         Depends { name: "nullphysics"  }
         Depends { name: "nullfilesystem"  }
-        Depends { name: "gles2renderer"  }
+        Depends { name: "gles3renderer"  }
         Depends { name: "stdfilesystem"  }
         Depends { name: "portaudioaudio"  }
 
@@ -78,12 +78,22 @@ solid {
         Properties {
             condition: qbs.targetOS.contains("macos")
 
-            cpp.frameworks: macosFrameworks
+            cpp.frameworks: {
+                if (qbs.architecture.includes("arm64"))
+                    return macosFrameworks.concat(
+                           "CoreHaptics",
+                           "MediaPlayer",
+                           "GameController",
+                           "QuartzCore",
+                           "IOSurface")
+                return macosFrameworks
+            }
 
             cpp.dynamicLibraries: macosSharedLibs
+
             cpp.staticLibraries: staticLibs.concat("SDL2", "MoltenVK")
 
-            cpp.libraryPaths: [project.buildDirectory, "../solid/lib/debug/darwin/x86_64"]
+            cpp.libraryPaths: [project.buildDirectory, "../solid/lib/debug/darwin/" + qbs.architecture]
             cpp.includePaths: includePaths.concat("../solid/include/darwin")
             cpp.defines: project.defines.concat(project.sdlDefines)
         }
@@ -94,7 +104,7 @@ solid {
             //cpp.dynamicLibraries: linuxSharedLibs
             cpp.staticLibraries: staticLibs.concat("SDL2")
 
-            cpp.libraryPaths: [project.buildDirectory, "../solid/lib/debug/linux/x86_64"]
+            cpp.libraryPaths: [project.buildDirectory, "../solid/lib/debug/linux/" + qbs.architecture]
             cpp.includePaths: includePaths.concat("../solid/include/linux")
             cpp.defines: project.defines.concat(project.sdlDefines)
         }
