@@ -79,13 +79,13 @@ solid {
             condition: qbs.targetOS.contains("macos")
 
             cpp.frameworks: {
-                if (qbs.architecture.includes("arm64"))
+                /*if (qbs.architecture.includes("arm64"))
                     return macosFrameworks.concat(
                            "CoreHaptics",
                            "MediaPlayer",
                            "GameController",
                            "QuartzCore",
-                           "IOSurface")
+                           "IOSurface")*/
                 return macosFrameworks
             }
 
