@@ -32,6 +32,11 @@ void LevelSelectMenu::Update(float dt)
     {
         Application::LoadScene(Scenes::StartMenu);
     }
+
+    if (input.Held(input.Key.R))
+    {
+        Application::LoadScene(Scenes::Intro);
+    }
 }
 
 void LevelSelectMenu::UpdateAfterPhysics()

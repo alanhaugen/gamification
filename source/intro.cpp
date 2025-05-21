@@ -38,6 +38,7 @@ void Intro::Init()
 
     t = 0.0;
     i = 0;
+    j = 0;
 }
 
 void Intro::Update(float dt)

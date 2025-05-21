@@ -42,6 +42,11 @@ void StartMenu::Update(float dt)
         Application::LoadScene(Scenes::DictionaryMenu);
     }
 
+    if (input.Held(input.Key.R))
+    {
+        Application::LoadScene(Scenes::Intro);
+    }
+
     /*if (settingsButton->IsPressed())
     {
         Application::LoadScene(Scenes::SettingsMenu);
