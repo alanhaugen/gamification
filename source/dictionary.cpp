@@ -39,7 +39,7 @@ String Dictionary::Translate(String word)
 Dictionary::Dictionary()
 {
     lexemes.Add(Lexeme((std::string(1, Kana::mo)+std::string(1, Kana::no)).c_str(), "'mono': a thing"));
-    lexemes.Add(Lexeme((std::string(1, Kana::ko)+std::string(1, Kana::ko)).c_str(), "'koko': a person"));
+    lexemes.Add(Lexeme((std::string(1, Kana::ko)+std::string(1, Kana::ko)).c_str(), "'koko': an individual"));
     lexemes.Add(Lexeme((std::string(1, Kana::ka)+std::string(1, Kana::sa)).c_str(), "'kasa': an umbrella"));
     lexemes.Add(Lexeme((std::string(1, Kana::mo)+std::string(1, Kana::mo)).c_str(), "'momo': a peach"));
 }
