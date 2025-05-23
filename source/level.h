@@ -2,6 +2,7 @@
 #define LEVEL_H
 
 #include <vector>
+#include <string>
 #include <core/x-platform/string.h>
 #include <core/components/sprite.h>
 

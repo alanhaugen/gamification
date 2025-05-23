@@ -46,11 +46,11 @@ void main ()
         sum--;
     }
 
-    if (o_flip == 1)
+    if (o_flip > 0.5)
     {
         x = -x;
     }
-    if (o_flipVertical == 1)
+    if (o_flipVertical > 0.5)
     {
         y = -y;
     }

@@ -48,14 +48,14 @@ void main()
     st = tile(st,10.);
 
     // Use a matrix to rotate the space 45 degrees
-    st = rotate2D(st,PI*0.25);
+    st = rotate2D(st,PI*0.25f);
 
     // Draw a square
-    vec3 newColor = vec3(box(st,vec2(sin(vTime / 4) + 0.75),0.01));
+    vec3 newColor = vec3(box(st,vec2(sin(vTime / 4.0f) + 0.75),0.01));
 
     if (newColor != vec3(0.0))
     {
-        color = vec3(255/255.f, 199/255.f, 143/255.f);
+        color = vec3(255.0f/255.f, 199.0f/255.f, 143.0f/255.f);
     }
 
     // color = vec3(st,0.0);
