@@ -16,7 +16,11 @@ void DictionaryMenu::Init()
 
     for (int i = 0; i < dictionary.words.Size(); i++)
     {
-        components.Add(new Text(dictionary.words[i], 100, 100 + 50 * i, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png"));
+        Text* item = new Text(dictionary.words[i], 100, 100 + 50 * i, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
+        Text* trans = new Text(dictionary.Translate(dictionary.words[i]), 200, 100 + 50, 1.0f, 1.0f);
+        components.Add(item);
+        dicItems.Add(item);
+        lexemes.Add(trans);
     }
 
     backButton = new Sprite("data/art/backArrow.png", 40, 120, 0.5, 0.5);
@@ -32,6 +36,19 @@ void DictionaryMenu::Update(float dt)
     if (input.Released(input.Key.ESCAPE) || backButton->IsPressed())
     {
         Application::LoadScene(Scenes::StartMenu);
+    }
+
+    for (unsigned int i = 0; i < dicItems.Size(); i++)
+    {
+        if (dicItems[i]->IsPressed())
+        {
+            activeLexeme = lexemes[i];
+        }
+    }
+
+    if (activeLexeme != nullptr)
+    {
+        activeLexeme->Update();
     }
 }
 

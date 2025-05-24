@@ -17,17 +17,17 @@ uniform bool uEnableTexture;
 
 void main()
 {
-    vec4 final = vec4(1.0, 0.0, 0.0, 1.0);
+    vec4 final = vec4(1.0f, 0.0f, 0.0f, 1.0f);
     if (uEnableTexture)
     {
         vec2 coords = vSmoothTexcoord;
 
         float x, y;
 
-        float o_totalwidth = 64;
-        float o_totalheight = 4608;
-        float o_width = 64;
-        float o_height = 64;
+        float o_totalwidth = 64.0f;
+        float o_totalheight = 4608.0f;
+        float o_width = 64.0f;
+        float o_height = 64.0f;
 
         //float o_index = 0;
 
@@ -51,11 +51,11 @@ void main()
 
 
 
-    if (vFragColor.rgb == vec3(0,0,0))
+    if (vFragColor.rgb == vec3(0.0f,0.0f,0.0f))
     {
-        vFragColor.rgb = vec3(1,1,1);
+        vFragColor.rgb = vec3(1.0f,1.0f,1.0f);
     }
 
-    vFragColor.rgb = vec3(1,1,1);
+    vFragColor.rgb = vec3(1.0f,1.0f,1.0f);
 }
 

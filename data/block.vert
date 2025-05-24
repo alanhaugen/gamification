@@ -18,7 +18,7 @@ out float o_index;
 //uniform
 uniform mat4 MVP;	//combined modelview projection matrix
 uniform vec4 colour;
-uniform int index;
+uniform float index;
 
 void main()
 {

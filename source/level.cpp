@@ -168,7 +168,7 @@ char Level::findKana(std::string token)
 
 Level::Level(int lvlNumber, float posX, float posY)
 {
-    std::ifstream lvlFile("data/levels/" + std::to_string(lvlNumber) + ".txt");
+    /*std::ifstream lvlFile("data/levels/" + std::to_string(lvlNumber) + ".txt");
     std::string line;
 
     if(lvlFile.is_open())
@@ -216,7 +216,20 @@ Level::Level(int lvlNumber, float posX, float posY)
     std::getline(lvlFile, line);
     lvlSeed = stoi(line);
 
-    lvlFile.close();
+    lvlFile.close();*/
+
+    lvlSeed = 89;
+    lvlKana.push_back(std::string(1, Kana::mo).c_str());
+    lvlKana.push_back(std::string(1, Kana::no).c_str());
+    lvlKana.push_back(std::string(1, Kana::ko).c_str());
+    lvlKana.push_back(std::string(1, Kana::ka).c_str());
+    lvlKana.push_back(std::string(1, Kana::sa).c_str());
+    lvlStatus = 1;
+
+    wordList.push_back((std::string(1, Kana::mo)+std::string(1, Kana::no)).c_str());
+    wordList.push_back((std::string(1, Kana::ko)+std::string(1, Kana::ko)).c_str());
+    wordList.push_back((std::string(1, Kana::ka)+std::string(1, Kana::sa)).c_str());
+    wordList.push_back((std::string(1, Kana::mo)+std::string(1, Kana::mo)).c_str());
 
     if(lvlStatus == 0)
     {

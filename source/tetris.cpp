@@ -5,6 +5,7 @@
 #include <core/components/background.h>
 #include "main.h"
 #include "dictionary.h"
+#include "mousecursor.h"
 
 extern int highscore;
 extern Level* currentLevel;
@@ -27,7 +28,7 @@ LetterCube::LetterCube(float x, float y, float z, Actor* parent)
         kana = random.RandomRange(0, Kana::NumberOfKana);
     }
 
-    Uniform("index", static_cast<int>(kana) - 32);
+    Uniform("index", static_cast<float>(kana) - 32.0f);
 
     if (kana == Kana::a || kana == Kana::i || kana == Kana::u || kana == Kana::e || kana == Kana::o)
     {
@@ -186,7 +187,11 @@ void Tetris::Init()
     components.Clear();
     words.Clear();
 
-    random.SetRandomSeed(currentLevel->lvlSeed);
+    if (currentLevel != NULL)
+    {
+        random.SetRandomSeed(currentLevel->lvlSeed);
+    }
+
     score = 0;
     speed = 1;
     paused = false;
@@ -255,6 +260,7 @@ void Tetris::Init()
     dicBg = new Sprite("data/art/new/quizbg.png",-150,200,1.0,0.09);
     dicTitle = new Text("New word added to dictionary!", 300,220, 0.5, 0.5);
     dicInstruction = new Text("Press ENTER to continue.", 300, 440, 0.5, 0.5);
+    components.Add(new MouseCursor());
     //croco = new Sprite("data/art/new/DrCroco_Chibi_Jump_Throw.png",renderer->windowWidth - 300,200,0.2,0.2);
 }
 

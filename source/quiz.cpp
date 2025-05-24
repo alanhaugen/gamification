@@ -42,10 +42,10 @@ void Quiz::Init()
     components.Add(button3);
     components.Add(button4);
 
-    buttonText1 = new Text(questions[arrayIndex].word, *button1->matrix.x + 20, *button1->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
-    buttonText2 = new Text(RandomWord(), *button2->matrix.x + 20, *button2->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
-    buttonText3 = new Text(RandomWord(), *button3->matrix.x + 20, *button3->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
-    buttonText4 = new Text(RandomWord(), *button4->matrix.x + 20, *button4->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+    buttonText1 = new Text(questions[arrayIndex].word, *button1->matrix.x + 20, *button1->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
+    buttonText2 = new Text(RandomWord(), *button2->matrix.x + 20, *button2->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
+    buttonText3 = new Text(RandomWord(), *button3->matrix.x + 20, *button3->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
+    buttonText4 = new Text(RandomWord(), *button4->matrix.x + 20, *button4->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
 
     wrongSprite = new Sprite("data/art/lvlLock.png",420,420);
     correctSprite = new Sprite("data/art/lvlComplete.png",420,420);
@@ -94,10 +94,10 @@ void Quiz::Update(float dt)
             }
             else
             {
-                buttonText1 = new Text(questions[arrayIndex].word, *button1->matrix.x + 20, *button1->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
-                buttonText2 = new Text(RandomWord(), *button2->matrix.x + 20, *button2->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
-                buttonText3 = new Text(RandomWord(), *button3->matrix.x + 20, *button3->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
-                buttonText4 = new Text(RandomWord(), *button4->matrix.x + 20, *button4->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png");
+                buttonText1 = new Text(questions[arrayIndex].word, *button1->matrix.x + 20, *button1->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
+                buttonText2 = new Text(RandomWord(), *button2->matrix.x + 20, *button2->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
+                buttonText3 = new Text(RandomWord(), *button3->matrix.x + 20, *button3->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
+                buttonText4 = new Text(RandomWord(), *button4->matrix.x + 20, *button4->matrix.y + 20, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
                 question = new Text(questions[arrayIndex].translation, 100, 270);
             }
         }

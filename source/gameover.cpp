@@ -21,7 +21,7 @@ void GameOver::Init()
 
 void GameOver::Update(float dt)
 {
-    if (input.Pressed(input.Key.SPACE))
+    if (input.Pressed(input.Key.SPACE) || input.Mouse.Released)
     {
         Application::LoadScene(Scenes::StartMenu);
     }

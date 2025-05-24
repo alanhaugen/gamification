@@ -4,7 +4,9 @@ void MouseCursor::Update()
 {
     *cursor->matrix.x = input.Mouse.x;
     *cursor->matrix.y = input.Mouse.y;
+#ifndef NDK
     cursor->Update();
+#endif
 }
 
 void MouseCursor::UpdateAfterPhysics()
