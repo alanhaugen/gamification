@@ -20,7 +20,7 @@ LetterCube::LetterCube(float x, float y, float z, Actor* parent)
     {
         int rnd;
         rnd = random.RandomRange(0, currentLevel->lvlKana.size());
-        kana = currentLevel->lvlKana[rnd][0];
+        kana = currentLevel->lvlKana[rnd].At(0);
     }
     else
     {
@@ -477,7 +477,7 @@ bool Tetris::ProcessLetter(LetterCube *letter, bool reward)
     for (int wordIndex = 0; wordIndex < wordList.size(); wordIndex++)
     {
         // If the current word doesn't start with this letter, go to the next word
-        if (letter->kana != wordList[wordIndex][0])
+        if (letter->kana != wordList[wordIndex].At(0))
         {
             continue;
         }
@@ -506,7 +506,7 @@ bool Tetris::ProcessLetter(LetterCube *letter, bool reward)
                     break;
                 }
 
-                if (nextLetter->kana == wordList[wordIndex][i])
+                if (nextLetter->kana == wordList[wordIndex].At(i))
                 {
                     cubes.Add(nextLetter);
                 }
