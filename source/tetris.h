@@ -74,6 +74,12 @@ private:
     Array<Text*> words;
 
     Sprite* dictionaryButton;
+    bool left;
+    bool right;
+    bool down;
+    bool tap;
+    bool justTapped = false;
+    ITime* tapTimer;
 
     bool Approx(float a, float b);
 

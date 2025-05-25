@@ -264,6 +264,8 @@ void Tetris::Init()
     dicInstruction = new Text("Press ENTER to continue.", 300, 440, 0.5, 0.5);
     components.Add(new MouseCursor());
     //croco = new Sprite("data/art/new/DrCroco_Chibi_Jump_Throw.png",renderer->windowWidth - 300,200,0.2,0.2);
+
+    tapTimer = Application::GetTime("Taptimer");
 }
 
 void Tetris::Update(float dt)
@@ -274,7 +276,7 @@ void Tetris::Update(float dt)
         timer->Pause();
     }
 
-    if(input.Pressed(input.Key.ENTER) || input.Mouse.Released)
+    if(input.Pressed(input.Key.ENTER) || (input.Mouse.Released && tapTimer->TimeSinceStarted() > 500.0f))
     {
         newWord = false;
     }
@@ -300,18 +302,45 @@ void Tetris::Update(float dt)
         //Application::LoadScene(Scenes::DictionaryMenu);
     }
 
+    left = false;
+    right = false;
+    tap = false;
+    if (input.Mouse.Down)
+    {
+        if (tapTimer->TimeSinceStarted() < 100.0f && justTapped == false)
+        {
+            tap = true;
+        }
+
+        justTapped = true;
+        tapTimer->Reset();
+
+        if (input.Mouse.dx < -5.0f)
+        {
+            left = true;
+        }
+        else if (input.Mouse.dx > 5.0f)
+        {
+            right = true;
+        }
+    }
+    else
+    {
+        justTapped = false;
+    }
+
     activePiece->direction = glm::vec3();
     isRotated = false;
 
-    if (input.Pressed(input.Key.LEFT))
+    if (input.Pressed(input.Key.LEFT) || left)
     {
         activePiece->direction.x = -2.0f;
     }
-    else if (input.Pressed(input.Key.RIGHT))
+    else if (input.Pressed(input.Key.RIGHT) || right)
     {
         activePiece->direction.x = 2.0f;
     }
-    else if (input.Pressed(input.Key.UP) && activePiece->canRotate)
+    else if ((input.Pressed(input.Key.UP) || tap) && activePiece->canRotate)
     {
         activePiece->Rotate();
         isRotated = true;
