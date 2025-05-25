@@ -22,7 +22,7 @@ Dictionary dictionary;
 
 int main(int argc, char **argv)
 {
-    Application application(argc, argv);
+    Application application(argc, argv, "Lexi Blocks");
     application.AddScene(new Intro());
     application.AddScene(new StartMenu());
     application.AddScene(new PlayTetrisMenu());
