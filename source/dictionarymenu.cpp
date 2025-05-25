@@ -12,7 +12,7 @@ DictionaryMenu::DictionaryMenu()
 
 void DictionaryMenu::Init()
 {
-    components.Add(new Sprite("data/art/new/quizbg.png", 0.0f, 0.0f, 0.58f, 0.5f));
+    components.Add(new Sprite("data/art/new/quizbg.png", 0.0f, 0.0f, 1.0f, 1.0f));
 
     for (int i = 0; i < dictionary.words.Size(); i++)
     {
