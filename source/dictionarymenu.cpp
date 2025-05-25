@@ -23,7 +23,7 @@ void DictionaryMenu::Init()
         lexemes.Add(trans);
     }
 
-    backButton = new Sprite("data/art/backArrow.png", 40, 120, 0.5, 0.5);
+    backButton = new Sprite("data/art/backArrow.png", 40, 120, 0.2, 0.2);
     cursor = new MouseCursor();
 
     components.Add(backButton);

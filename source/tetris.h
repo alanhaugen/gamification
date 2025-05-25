@@ -73,6 +73,8 @@ private:
     std::vector<String> wordList;
     Array<Text*> words;
 
+    Sprite* dictionaryButton;
+
     bool Approx(float a, float b);
 
     bool CheckForWords(bool reward = true);

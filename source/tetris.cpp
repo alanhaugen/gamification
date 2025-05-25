@@ -255,8 +255,10 @@ void Tetris::Init()
     components.Add(new Background(glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
     //components.Add(new Background("data/art/new/background.png", cam));//glm::vec3(0.776470588235294, 0.870588235294118, 0.945098039215686), cam));
 
+    dictionaryButton = new Sprite("data/art/new/dictionary.png",50,500,0.2,0.2);
+
     croco = new Sprite("data/art/new/DrCroco_Chibi_Idle.png",renderer->windowWidth - 300,200,0.2,0.2);
-    components.Add(new Sprite("data/art/new/dictionary.png",50,500,0.2,0.2));
+    components.Add(dictionaryButton);
     dicBg = new Sprite("data/art/new/quizbg.png",-150,200,1.0,0.09);
     dicTitle = new Text("New word added to dictionary!", 300,220, 0.5, 0.5);
     dicInstruction = new Text("Press ENTER to continue.", 300, 440, 0.5, 0.5);
@@ -291,6 +293,11 @@ void Tetris::Update(float dt)
     {
         Pause->Update(dt);
         return;
+    }
+
+    if (dictionaryButton->IsPressed())
+    {
+        //Application::LoadScene(Scenes::DictionaryMenu);
     }
 
     activePiece->direction = glm::vec3();
