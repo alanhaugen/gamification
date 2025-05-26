@@ -2,7 +2,7 @@ import "../solid/solid.qbs" as solid
 
 solid {
     Application {
-//        cpp.cxxLanguageVersion: "c++23"
+        cpp.cxxLanguageVersion: "c++23"
         name: "App"
 
         files: [
@@ -17,7 +17,6 @@ solid {
             "data/gui.frag",
             "data/gui.vert",
             "data/icon.png",
-            "data/phong.frag",
             "data/phong.vert",
             "data/project.json",
             "data/sheet.png",
@@ -79,13 +78,13 @@ solid {
             condition: qbs.targetOS.contains("macos")
 
             cpp.frameworks: {
-                /*if (qbs.architecture.includes("arm64"))
+                if (qbs.architecture.includes("arm64"))
                     return macosFrameworks.concat(
                            "CoreHaptics",
                            "MediaPlayer",
                            "GameController",
                            "QuartzCore",
-                           "IOSurface")*/
+                           "IOSurface")
                 return macosFrameworks
             }
 

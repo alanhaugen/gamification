@@ -17,8 +17,8 @@ void Intro::Init()
     crocoTalk = new Sprite("data/art/new/DrCroco_Chibi_talking.png", 1000, 50);
     Camera* cam = new Camera();
     components.Add(cam);
-
     speech.Enqueue(new TextBlock("Welcome to LexiBlocks!", "I am Professor Croco."));
+
     speech.Enqueue(new TextBlock("In my lab I have designed blocks", "that teach languages!"));
     speech.Enqueue(new TextBlock("Line them up, and make a word.", "The bricks can be moved left ..."));
     speech.Enqueue(new TextBlock("and right, and rotate.", "In this game you will learn ..."));

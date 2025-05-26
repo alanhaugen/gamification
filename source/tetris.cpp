@@ -12,7 +12,9 @@ extern Level* currentLevel;
 extern Dictionary dictionary;
 
 LetterCube::LetterCube(float x, float y, float z, Actor* parent)
-    : Cube(x, y, z, 1, 0, 1, "data/hiragana.png", true, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), "data/block.vert", "data/block.frag")
+    : Cube(x, y, z, 1, 0, 1, "data/hiragana.png", true, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
+           "data/block.vert",
+           "data/block.frag")
 {
     background = new Cube(x,y,-0.01, 1, 0, 1, "data/block.png", false);
     parent->Add(background);

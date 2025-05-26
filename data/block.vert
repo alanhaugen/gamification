@@ -10,18 +10,39 @@ layout(location = 1) in vec4 vColor;	//per-vertex colour
 layout(location = 2) in vec4 vNormal;	//per-vertex normals
 layout(location = 3) in vec2 vTexcoord;	//per-vertex texcoord
 
+#ifdef VULKAN
+layout(set = 0, binding = 0) uniform UniformBlock
+{
+  mat4 MVP;	// combined modelview projection matrix
+  vec4 colour;
+  float time;
+  float index;
+} uniformBuffer;
+
+layout(location = 0) out vec4 vSmoothColor;		//smooth colour to fragment shader
+layout(location = 1) out vec2 vSmoothTexcoord;
+layout(location = 2) out float vTime;
+layout(location = 3) out float vIndex;
+#else
 //output from the vertex shader
 smooth out vec4 vSmoothColor;		//smooth colour to fragment shader
 smooth out vec2 vSmoothTexcoord;
-out float o_index;
+out float vIndex;
 
 //uniform
 uniform mat4 MVP;	//combined modelview projection matrix
 uniform vec4 colour;
 uniform float index;
+#endif
 
 void main()
 {
+#ifdef VULKAN
+    vec4 colour = uniformBuffer.colour;
+    mat4 MVP = uniformBuffer.MVP;
+    float time = uniformBuffer.time;
+    float index = uniformBuffer.index;
+#endif
     // assign the per-vertex colour to vSmoothColor varying
     //vSmoothColor = vec4(vColor) * colour;
     vSmoothColor = colour;
@@ -30,5 +51,5 @@ void main()
     //get the clip space position by multiplying the combined MVP matrix with the object space
     //vertex position
     gl_Position = MVP * vec4(vVertex, 1.0);
-    o_index = float(index);
+    vIndex = float(index);
 }

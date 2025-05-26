@@ -14,6 +14,43 @@ layout(location = 2) in vec4 vNormal;	//per-vertex normals
 layout(location = 3) in vec2 vTexcoord;	//per-vertex texcoord
 layout(location = 6) in int  vGlyph;	//glyph per vertex
 
+#ifdef VULKAN
+layout(set = 0, binding = 0) uniform UniformBlock
+{
+  mat4 MVP;	// combined modelview projection matrix
+  vec4 colour;
+  vec4 time;
+  vec4 index;
+  vec4 pos;
+  vec4 scaleX;
+  vec4 scaleY;
+  vec4 width;
+  vec4 height;
+  vec4 totalWidth;
+  vec4 totalHeight;
+  vec4 screenWidth;
+  vec4 screenHeight;
+  vec4 flip;
+  vec4 flipVertical;
+  vec4 colourTint;
+  mat4 modelMat;
+  mat4 normalMat;
+  vec4 lightPosition;
+  vec4 cameraPosition;
+} uniformBuffer;
+
+layout(location = 0) out vec4 vSmoothColor;		//smooth colour to fragment shader
+layout(location = 1) out vec2 vSmoothTexcoord;
+layout(location = 2) out float vTime;
+layout(location = 3) out float vIndex;
+layout(location = 4) out float vWidth;
+layout(location = 5) out float vHeight;
+layout(location = 6) out float vTotalwidth;
+layout(location = 7) out float vTotalheight;
+layout(location = 8) out float vFlip;
+layout(location = 9) out float vFlipVertical;
+layout(location = 10) out vec4 vColourTint;
+#else
 smooth out vec2 vSmoothTexcoord;
 
 uniform vec2 pos;
@@ -32,19 +69,38 @@ uniform float time;
 uniform vec4 colourTint;
 //uniform vec2 rotation;
 
-out float o_index;
-out float o_width;
-out float o_height;
-out float o_totalwidth;
-out float o_totalheight;
-out float o_flip;
-out float o_flipVertical;
-out float o_time;
-out vec4 o_colourTint;
+out float vIndex;
+out float vWidth;
+out float vHeight;
+out float vTotalwidth;
+out float vTotalheight;
+out float vFlip;
+out float vFlipVertical;
+out float vTime;
+out vec4 vColourTint;
 //out vec2 o_rotation;
+#endif
 
 void main()
 {
+#ifdef VULKAN
+    vec4 colour = uniformBuffer.colour;
+    mat4 MVP = uniformBuffer.MVP;
+    float time = uniformBuffer.time.x;
+    float index = uniformBuffer.index.x;
+    vec2 pos = uniformBuffer.pos.xy;
+    float scaleX = uniformBuffer.scaleX.x;
+    float scaleY = uniformBuffer.scaleY.x;
+    float width = uniformBuffer.width.x;
+    float height = uniformBuffer.height.x;
+    float totalWidth = uniformBuffer.totalWidth.x;
+    float totalHeight = uniformBuffer.totalHeight.x;
+    float screenWidth = uniformBuffer.screenWidth.x;
+    float screenHeight = uniformBuffer.screenHeight.x;
+    float flip = uniformBuffer.flip.x;
+    float flipVertical = uniformBuffer.flipVertical.x;
+    vec4 colourTint = uniformBuffer.colourTint;
+#endif
     float aspectRatio = float(screenWidth) / float(screenHeight);
 
     float w = float(width)  * float(scaleX);
@@ -66,20 +122,20 @@ void main()
 
     if (vGlyph == -1)
     {
-        o_index = float(index);
+        vIndex = float(index);
     }
     else
     {
-        o_index = float(vGlyph);
+        vIndex = float(vGlyph);
     }
 
-    o_width = float(width);
-    o_height = float(height);
-    o_totalwidth = float(totalWidth);
-    o_totalheight = float(totalHeight);
-    o_flip = float(flip);
-    o_flipVertical = float(flipVertical);
-    o_time = float(time);
-    o_colourTint = colourTint;
+    vWidth = float(width);
+    vHeight = float(height);
+    vTotalwidth = float(totalWidth);
+    vTotalheight = float(totalHeight);
+    vFlip = float(flip);
+    vFlipVertical = float(flipVertical);
+    vTime = float(time);
+    vColourTint = colourTint;
     //o_rotation = rotation;
 }

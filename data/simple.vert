@@ -1,5 +1,4 @@
 #version 330 core
-//es
 
 // ES requires setting precision qualifier
 // Can be mediump or highp
@@ -10,6 +9,34 @@ layout(location = 1) in vec4 vColor;	//per-vertex colour
 layout(location = 2) in vec4 vNormal;	//per-vertex normals
 layout(location = 3) in vec2 vTexcoord;	//per-vertex texcoord
 
+#ifdef VULKAN
+layout(set = 0, binding = 0) uniform UniformBlock
+{
+  mat4 MVP;	// combined modelview projection matrix
+  vec4 colour;
+  float time;
+  float index;
+  vec2 pos;
+  float scaleX;
+  float scaleY;
+  float width;
+  float height;
+  float totalWidth;
+  float totalHeight;
+  float screenWidth;
+  float screenHeight;
+  float flip;
+  float flipVertical;
+  vec4 colourTint;
+  mat4 modelMat;
+  mat3 normalMat;
+  vec3 lightPosition;
+  vec3 cameraPosition;
+} uniformBuffer;
+
+layout(location = 0) out vec4 vSmoothColor;		//smooth colour to fragment shader
+layout(location = 1) out vec2 vSmoothTexcoord;
+#else
 //output from the vertex shader
 smooth out vec4 vSmoothColor;		//smooth colour to fragment shader
 smooth out vec2 vSmoothTexcoord;
@@ -17,12 +44,32 @@ smooth out vec2 vSmoothTexcoord;
 //uniform
 uniform mat4 MVP;	//combined modelview projection matrix
 uniform vec4 colour;
+#endif
 
 void main()
 {
+#ifdef VULKAN
+    vec4 colour = uniformBuffer.colour;
+    mat4 MVP = uniformBuffer.MVP;
+    float time = uniformBuffer.time;
+    float index = uniformBuffer.index;
+    vec2 pos = uniformBuffer.pos;
+    float scaleX = uniformBuffer.scaleX;
+    float scaleY = uniformBuffer.scaleY;
+    float width = uniformBuffer.width;
+    float height = uniformBuffer.height;
+    float totalWidth = uniformBuffer.totalWidth;
+    float totalHeight = uniformBuffer.totalHeight;
+    float screenWidth = uniformBuffer.screenWidth;
+    float screenHeight = uniformBuffer.screenHeight;
+    float flip = uniformBuffer.flip;
+    float flipVertical = uniformBuffer.flipVertical;
+    vec4 colourTint = uniformBuffer.colourTint;
+#endif
     // assign the per-vertex colour to vSmoothColor varying
     //vSmoothColor = vec4(vColor) * colour;
-    vSmoothColor = colour;
+    vSmoothColor = vec4(vColor);
+    //vSmoothColor = colour;
     vSmoothTexcoord = vTexcoord;
 
     //get the clip space position by multiplying the combined MVP matrix with the object space

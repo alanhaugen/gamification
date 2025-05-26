@@ -5,6 +5,16 @@
 // Can be mediump or highp
 precision highp float; // affects all floats (vec3, vec4 etc)
 
+#ifdef VULKAN
+//input form the vertex shader
+layout(location = 0) out vec4 vFragColor;	//fragment shader output
+layout(binding=0) uniform sampler2D textureSampler;
+
+layout(location = 0) in vec4 vSmoothColor;
+layout(location = 1) in vec2 vSmoothTexcoord;
+layout(location = 2) in float vTime;
+#else
+
 layout(location=0) out vec4 vFragColor;	//fragment shader output
 
 //input form the vertex shader
@@ -14,6 +24,7 @@ uniform sampler2D textureSampler;
 uniform bool uEnableTexture;
 
 in float vTime;
+#endif
 
 vec2 rotate2D(vec2 _st, float _angle){
     _st -= 0.5;
