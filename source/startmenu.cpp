@@ -12,11 +12,11 @@ void StartMenu::Init()
 
     background = new Sprite("data/art/new/bg.png", 0, 0, 1.3, 1.3);
 
-    playTetrisButton = new Sprite("data/art/playTetrisButton.png", (renderer->windowWidth / 2) - 200, 360, 0.5, 0.5);
-    dictionaryButton = new Sprite("data/art/dictionaryButton.png", (renderer->windowWidth / 2) - 200, 500, 0.5, 0.5);
-    settingsButton = new Sprite("data/art/settingsButton.png",     (renderer->windowWidth / 2) - 200, 640, 0.5, 0.5);
+    playTetrisButton = new Sprite("data/art/playTetrisButton.png", (renderer->windowWidth / 2) - 200, 380, 0.5, 0.5);
+    dictionaryButton = new Sprite("data/art/dictionaryButton.png", (renderer->windowWidth / 2) - 200, 520, 0.5, 0.5);
+    settingsButton = new Sprite("data/art/settingsButton.png",     (renderer->windowWidth / 2) - 200, 660, 0.5, 0.5);
 
-    logo = new Sprite("data/art/new/LB_Logo_outline.png", (renderer->windowWidth / 2) - 300, 40, 0.2, 0.2);
+    logo = new Sprite("data/art/new/LB_Logo_outline.png", (renderer->windowWidth / 2) - 300, 80, 0.2, 0.2);
 
     cursor = new MouseCursor();
 

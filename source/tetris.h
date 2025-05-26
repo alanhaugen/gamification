@@ -6,42 +6,7 @@
 #include "core/components/cube.h"
 #include "japanesekana.h"
 #include "pausemenu.h"
-
-class LetterCube : public Cube
-{
-public:
-    LetterCube(float x, float y, float z, Actor *parent);
-    char kana;
-    Cube* background;
-    void Remove();
-    bool active = true;
-};
-
-class Block : public Actor
-{
-private:
-    // In tetris the shapes (tetrominos) consist of four cubes
-    enum TETROMINOS
-    {
-        I,
-        O,
-        T,
-        S,
-        Z,
-        J,
-        L,
-        RANDOM
-    };
-
-public:
-    Block(int type = RANDOM);
-    bool canRotate;
-    glm::vec3 direction;
-
-    void Rotate();
-    void RotateBack();
-    void Remove();
-};
+#include "block.h"
 
 class Tetris : public IScene
 {
@@ -79,6 +44,7 @@ private:
     bool down;
     bool tap;
     bool justTapped = false;
+    bool justMoved = false;
     ITime* tapTimer;
 
     bool Approx(float a, float b);

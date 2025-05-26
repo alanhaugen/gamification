@@ -10,7 +10,19 @@ extern Level* currentLevel;
 
 void Level::Update()
 {
-    lvlImg->Update();
+    if (lvlStatus == DONE)
+    {
+        lvlImgDone->Update();
+    }
+    else if (lvlStatus == INCOMPLETE)
+    {
+        lvlImg->Update();
+    }
+    else
+    {
+        lvlImg->Update();
+    }
+
     if(lvlImg->IsPressed() && lvlStatus != 0)
     {
         currentLevel = this;
@@ -218,32 +230,11 @@ Level::Level(int lvlNumber, float posX, float posY)
 
     lvlFile.close();*/
 
-    lvlSeed = 89;
-    lvlKana.push_back(std::string(1, Kana::mo).c_str());
-    lvlKana.push_back(std::string(1, Kana::no).c_str());
-    lvlKana.push_back(std::string(1, Kana::ko).c_str());
-    lvlKana.push_back(std::string(1, Kana::ka).c_str());
-    lvlKana.push_back(std::string(1, Kana::sa).c_str());
     lvlStatus = 1;
 
-    wordList.push_back((std::string(1, Kana::mo)+std::string(1, Kana::no)).c_str());
-    wordList.push_back((std::string(1, Kana::ko)+std::string(1, Kana::ko)).c_str());
-    wordList.push_back((std::string(1, Kana::ka)+std::string(1, Kana::sa)).c_str());
-    wordList.push_back((std::string(1, Kana::mo)+std::string(1, Kana::mo)).c_str());
-
-    if(lvlStatus == 0)
-    {
-        lvlImg = new Sprite("data/art/lvlLock.png", posX, posY);
-    }
-    else if(lvlStatus == 1)
-    {
-        lvlImg = new Sprite("data/art/lvlIncomplete.png", posX, posY);
-    }
-    else
-    {
-        lvlImg = new Sprite("data/art/lvlComplete.png", posX, posY);
-    }
-
+    lvlImg = new Sprite("data/art/lvlIncomplete.png", posX, posY);
+    lvlImgLocked = new Sprite("data/art/lvlLock.png", posX, posY);
+    lvlImgDone = new Sprite("data/art/lvlComplete.png", posX, posY);
 }
 
 void Level::UpdateAfterPhysics()

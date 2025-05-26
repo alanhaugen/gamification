@@ -25,6 +25,8 @@ solid {
             "data/solid.ico",
             "data/vertexanimation.frag",
             "data/vertexanimation.vert",
+            "source/block.cpp",
+            "source/block.h",
             "source/dictionary.cpp",
             "source/dictionary.h",
             "source/dictionarymenu.cpp",
@@ -62,7 +64,7 @@ solid {
             "source/wordpopup.h",
         ]
 
-        Depends { name: "core"  }
+        Depends { name: "core" }
         Depends { name: "nullrenderer"  }
         Depends { name: "nullphysics"  }
         Depends { name: "nullaudio"  }

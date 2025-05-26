@@ -6,6 +6,7 @@
 #include <core/components/cube.h>
 #include <core/components/text.h>
 #include <core/containers/queue.h>
+#include "block.h"
 
 class TextBlock : public Component
 {

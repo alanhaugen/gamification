@@ -24,15 +24,15 @@ int main(int argc, char **argv)
 {
     Application application(argc, argv, "Lexi Blocks");
     application.AddScene(new Intro());
-    //application.AddScene(new StartMenu());
-    //application.AddScene(new PlayTetrisMenu());
-    //application.AddScene(new DictionaryMenu());
-    //application.AddScene(new LevelSelectMenu());
-    //application.AddScene(new GameMenu());
-    //application.AddScene(new SettingsMenu());
-    //application.AddScene(new Tetris());
-    //application.AddScene(new GameOver());
-    //application.AddScene(new Quiz());
+    application.AddScene(new StartMenu());
+    application.AddScene(new PlayTetrisMenu());
+    application.AddScene(new DictionaryMenu());
+    application.AddScene(new LevelSelectMenu());
+    application.AddScene(new GameMenu());
+    application.AddScene(new SettingsMenu());
+    application.AddScene(new Tetris());
+    application.AddScene(new GameOver());
+    application.AddScene(new Quiz());
 
     return application.Exec();
 }

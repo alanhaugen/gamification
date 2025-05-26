@@ -16,8 +16,8 @@ void DictionaryMenu::Init()
 
     for (int i = 0; i < dictionary.words.Size(); i++)
     {
-        Text* item = new Text(dictionary.words[i], 100, 100 + 50 * i, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
-        Text* trans = new Text(dictionary.Translate(dictionary.words[i]), 200, 100 + 50, 1.0f, 1.0f);
+        Text* item = new Text(dictionary.words[i], 100, 200 + 50 * i, 1.0f, 1.0f, glm::vec2(0,0), "data/hiragana.png", 1.3f);
+        Text* trans = new Text(dictionary.Translate(dictionary.words[i]), 200, 200 + 50, 1.0f, 1.0f);
         components.Add(item);
         dicItems.Add(item);
         lexemes.Add(trans);

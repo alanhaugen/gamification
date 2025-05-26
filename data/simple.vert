@@ -68,7 +68,7 @@ void main()
 #endif
     // assign the per-vertex colour to vSmoothColor varying
     //vSmoothColor = vec4(vColor) * colour;
-    vSmoothColor = vec4(vColor);
+    vSmoothColor = vec4(colour);
     //vSmoothColor = colour;
     vSmoothTexcoord = vTexcoord;
 

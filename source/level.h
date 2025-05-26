@@ -10,10 +10,18 @@ class Level : public Component
 {
 private:
     Sprite* lvlImg;
-
-    int lvlStatus;
+    Sprite* lvlImgDone;
+    Sprite* lvlImgLocked;
     char findKana(std::string token);
 public:
+    enum
+    {
+        LOCKED = 0,
+        INCOMPLETE = 1,
+        DONE
+    };
+
+    int lvlStatus;
     std::vector<String> lvlKana;
     std::vector<String> wordList;
 
