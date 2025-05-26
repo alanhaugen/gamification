@@ -47,6 +47,11 @@ Dictionary::Dictionary()
     lexemes.Add(Lexeme((std::string(1, Kana::i)+std::string(1, Kana::e)).c_str(), "'ie': house"));
     lexemes.Add(Lexeme((std::string(1, Kana::u)+std::string(1, Kana::e)).c_str(), "'ue': up"));
     lexemes.Add(Lexeme((std::string(1, Kana::ka)+std::string(1, Kana::o)).c_str(), "'kao': face"));
+    lexemes.Add(Lexeme((std::string(1, Kana::a)+std::string(1, Kana::shi)+std::string(1, Kana::ta)).c_str(), "'ashita': tomorrow"));
+    lexemes.Add(Lexeme((std::string(1, Kana::su)+std::string(1, Kana::shi)).c_str(), "'sushi': sushi"));
+    lexemes.Add(Lexeme((std::string(1, Kana::ta)+std::string(1, Kana::ka)+std::string(1, Kana::i)).c_str(), "'takai': tall"));
+    lexemes.Add(Lexeme((std::string(1, Kana::chi)+std::string(1, Kana::ka)+std::string(1, Kana::te)+std::string(1, Kana::tsu)).c_str(), "'chikatetsu': subway"));
+    lexemes.Add(Lexeme((std::string(1, Kana::a)+std::string(1, Kana::sa)).c_str(), "'asa': morning"));
 }
 
 Lexeme::Lexeme()

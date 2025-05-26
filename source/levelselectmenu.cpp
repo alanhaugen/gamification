@@ -41,6 +41,27 @@ LevelSelectMenu::LevelSelectMenu()
     level2->wordList.push_back((std::string(1, Kana::i)+std::string(1, Kana::e)).c_str());
     level2->wordList.push_back((std::string(1, Kana::u)+std::string(1, Kana::e)).c_str());
     level2->wordList.push_back((std::string(1, Kana::ka)+std::string(1, Kana::o)).c_str());
+
+    level3 = new Level(99, renderer->windowWidth/2 - 150, renderer->windowHeight/2 - 64 -60);
+
+    level3->lvlSeed = 89;
+    level3->lvlKana.push_back(std::string(1, Kana::a).c_str());
+    level3->lvlKana.push_back(std::string(1, Kana::shi).c_str());
+    level3->lvlKana.push_back(std::string(1, Kana::su).c_str());
+    level3->lvlKana.push_back(std::string(1, Kana::ta).c_str());
+    level3->lvlKana.push_back(std::string(1, Kana::ka).c_str());
+    level3->lvlKana.push_back(std::string(1, Kana::i).c_str());
+    level3->lvlKana.push_back(std::string(1, Kana::chi).c_str());
+    level3->lvlKana.push_back(std::string(1, Kana::te).c_str());
+    level3->lvlKana.push_back(std::string(1, Kana::tsu).c_str());
+    level3->lvlKana.push_back(std::string(1, Kana::sa).c_str());
+    level3->lvlStatus = Level::INCOMPLETE;
+
+    level3->wordList.push_back((std::string(1, Kana::a)+std::string(1, Kana::shi)+std::string(1, Kana::ta)).c_str());
+    level3->wordList.push_back((std::string(1, Kana::su)+std::string(1, Kana::shi)).c_str());
+    level3->wordList.push_back((std::string(1, Kana::ta)+std::string(1, Kana::ka)+std::string(1, Kana::i)).c_str());
+    level3->wordList.push_back((std::string(1, Kana::chi)+std::string(1, Kana::ka)+std::string(1, Kana::te)+std::string(1, Kana::tsu)).c_str());
+    level3->wordList.push_back((std::string(1, Kana::a)+std::string(1, Kana::sa)).c_str());
 }
 
 void LevelSelectMenu::Init()

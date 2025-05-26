@@ -15,6 +15,7 @@ private:
     Sprite* iphone;
     Level* level1;
     Level* level2;
+    Level* level3;
 
 public:
     LevelSelectMenu();

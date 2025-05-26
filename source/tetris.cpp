@@ -146,12 +146,12 @@ void Tetris::Update(float dt)
         }
         else
         {
-            if (input.Mouse.dx < -5.0f && justMoved == false)
+            if (input.Mouse.dx < -25.0f && justMoved == false)
             {
                 left = true;
                 justMoved = true;
             }
-            else if (input.Mouse.dx > 5.0f && justMoved == false)
+            else if (input.Mouse.dx > 25.0f && justMoved == false)
             {
                 right = true;
                 justMoved = true;
@@ -433,7 +433,7 @@ bool Tetris::ProcessLetter(LetterCube *letter, bool reward)
 
                     //cubes[i]->Remove();
                     cubes[i]->active = false;
-                    cubes[i]->background->Uniform("colour", static_cast<glm::vec4>(glm::vec4(200 / 255.f, 200/255.f, 250/255.f, 1.0f)));
+                    cubes[i]->background->color = glm::vec4(200 / 255.f, 200/255.f, 250/255.f, 1.0f);
 
                     if (dictionary.HasWord(wordList[wordIndex]) && reward)
                     {

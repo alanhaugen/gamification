@@ -16,22 +16,5 @@ uniform bool uEnableTexture;
 void main()
 {
 
-    vec4 final = vec4(1.0, 0.0, 0.0, 1.0);
-    if (uEnableTexture)
-    {
-        final.x = vSmoothTexcoord.x;
-        final.y = vSmoothTexcoord.y;
-        final = texture(textureSampler, vSmoothTexcoord);
-    } else {
-        //set the interpolated colour as the shader output
-        final = vSmoothColor;
-    }
-
-    vFragColor = final;
-
-    if (uEnableTexture)
-    {
-        vFragColor.rgb -= vSmoothColor.rgb;
-        vFragColor.a = 1.0f;
-    }
+    vFragColor = vSmoothColor;
 }
