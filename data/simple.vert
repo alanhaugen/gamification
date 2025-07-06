@@ -51,24 +51,10 @@ void main()
 #ifdef VULKAN
     vec4 colour = uniformBuffer.colour;
     mat4 MVP = uniformBuffer.MVP;
-    float time = uniformBuffer.time;
-    float index = uniformBuffer.index;
-    vec2 pos = uniformBuffer.pos;
-    float scaleX = uniformBuffer.scaleX;
-    float scaleY = uniformBuffer.scaleY;
-    float width = uniformBuffer.width;
-    float height = uniformBuffer.height;
-    float totalWidth = uniformBuffer.totalWidth;
-    float totalHeight = uniformBuffer.totalHeight;
-    float screenWidth = uniformBuffer.screenWidth;
-    float screenHeight = uniformBuffer.screenHeight;
-    float flip = uniformBuffer.flip;
-    float flipVertical = uniformBuffer.flipVertical;
-    vec4 colourTint = uniformBuffer.colourTint;
 #endif
     // assign the per-vertex colour to vSmoothColor varying
     //vSmoothColor = vec4(vColor) * colour;
-    vSmoothColor = vec4(colour);
+    vSmoothColor = vec4(vColor);
     //vSmoothColor = colour;
     vSmoothTexcoord = vTexcoord;
 
