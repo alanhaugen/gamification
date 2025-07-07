@@ -1,5 +1,7 @@
 # Gamification
 
+## Professor Croco's Japanese Croco Blocks: Learn Japanese
+
 The following font was used:
 
 Noto Sans Japanese.
