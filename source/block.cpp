@@ -23,47 +23,47 @@ LetterCube::LetterCube(float x, float y, float z, Actor* parent)
         kana = random.RandomRange(0, Kana::NumberOfKana);
     }
 
-    Uniform("index", static_cast<float>(kana) - 32.0f);
+    background->drawable->uniforms.index[0] = (kana) - 32.0f;
 
     if (kana == Kana::a || kana == Kana::i || kana == Kana::u || kana == Kana::e || kana == Kana::o)
     {
-        background->color = glm::vec4(1.0f, 0.0f, 1.0f, 1.0f);
+        background->drawable->uniforms.colour = glm::vec4(1.0f, 0.0f, 1.0f, 1.0f);
     }
     if (kana == Kana::ka || kana == Kana::ki || kana == Kana::ku || kana == Kana::ke || kana == Kana::ko)
     {
-        background->color = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+        background->drawable->uniforms.colour = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
     }
     if (kana == Kana::sa || kana == Kana::shi || kana == Kana::su || kana == Kana::se || kana == Kana::so)
     {
-        background->color = glm::vec4(0.0f, 1.0f, 1.0f, 1.0f);
+        background->drawable->uniforms.colour = glm::vec4(0.0f, 1.0f, 1.0f, 1.0f);
     }
     if (kana == Kana::ta || kana == Kana::chi || kana == Kana::tsu || kana == Kana::te || kana == Kana::to)
     {
-        background->color = glm::vec4(0.8f, 0.2f, 0.1f, 1.0f);
+        background->drawable->uniforms.colour = glm::vec4(0.8f, 0.2f, 0.1f, 1.0f);
     }
     if (kana == Kana::na || kana == Kana::ni || kana == Kana::nu || kana == Kana::ne || kana == Kana::no)
     {
-        background->color = glm::vec4(0.8f, 0.2f, 0.1f, 1.0f);
+        background->drawable->uniforms.colour = glm::vec4(0.8f, 0.2f, 0.1f, 1.0f);
     }
     if (kana == Kana::ha || kana == Kana::hi || kana == Kana::fu || kana == Kana::he || kana == Kana::ho)
     {
-        background->color = glm::vec4(0.0f, 1.0f, 1.0f, 1.0f);
+        background->drawable->uniforms.colour = glm::vec4(0.0f, 1.0f, 1.0f, 1.0f);
     }
     if (kana == Kana::ma || kana == Kana::mi || kana == Kana::mu || kana == Kana::me || kana == Kana::mo)
     {
-        background->color = glm::vec4(1.0f, 0.2f, 0.1f, 1.0f);
+        background->drawable->uniforms.colour = glm::vec4(1.0f, 0.2f, 0.1f, 1.0f);
     }
     if (kana == Kana::ya || kana == Kana::yu || kana == Kana::yo)
     {
-        background->color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
+        background->drawable->uniforms.colour = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
     }
     if (kana == Kana::ra || kana == Kana::ri || kana == Kana::ru || kana == Kana::re || kana == Kana::ro)
     {
-        background->color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
+        background->drawable->uniforms.colour = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
     }
     if (kana == Kana::wa || kana == Kana::wo || kana == Kana::n)
     {
-        background->color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
+        background->drawable->uniforms.colour = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
     }
 }
 

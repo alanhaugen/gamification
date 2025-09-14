@@ -433,7 +433,7 @@ bool Tetris::ProcessLetter(LetterCube *letter, bool reward)
 
                     //cubes[i]->Remove();
                     cubes[i]->active = false;
-                    cubes[i]->background->color = glm::vec4(200 / 255.f, 200/255.f, 250/255.f, 1.0f);
+                    cubes[i]->background->drawable->uniforms.colour = glm::vec4(200 / 255.f, 200/255.f, 250/255.f, 1.0f);
 
                     if (dictionary.HasWord(wordList[wordIndex]) && reward)
                     {

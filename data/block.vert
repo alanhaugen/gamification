@@ -40,8 +40,8 @@ void main()
 #ifdef VULKAN
     vec4 colour = uniformBuffer.colour;
     mat4 MVP = uniformBuffer.MVP;
-    float time = uniformBuffer.time;
-    float index = uniformBuffer.index;
+    float time = uniformBuffer.time.x;
+    float index = uniformBuffer.index.x;
 #endif
     // assign the per-vertex colour to vSmoothColor varying
     //vSmoothColor = vec4(vColor) * colour;

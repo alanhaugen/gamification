@@ -17,17 +17,17 @@ void Intro::Init()
     crocoTalk = new Sprite("data/art/new/DrCroco_Chibi_talking.png", 1000, 50);
     Camera* cam = new Camera();
     components.Add(cam);
-    speech.Enqueue(new TextBlock("Welcome to LexiBlocks!", "I am Professor Croco."));
+    speech.Enqueue(new TextBlock("Welcome to CrocoBlocks!", "I am Professor Croco."));
 
     speech.Enqueue(new TextBlock("In my lab I have designed blocks", "that teach languages!"));
     speech.Enqueue(new TextBlock("Line them up, and make a word.", "The bricks can be moved left ..."));
     speech.Enqueue(new TextBlock("and right, and rotate.", "In this game you will learn ..."));
-    speech.Enqueue(new TextBlock("150 japanese words and the", "Japanese alphabets Hirigana ..."));
-    speech.Enqueue(new TextBlock("and Katakana."));
+    speech.Enqueue(new TextBlock("many japanese words and the", "Japanese alphabets Hirigana ..."));
+    speech.Enqueue(new TextBlock("and Katakana.", ""));
     speech.Enqueue(new TextBlock("To rotate a block, tap the screen.", "Swipe left and right to move blocks."));
     speech.Enqueue(new TextBlock("Before we begin, may I ask,", "Do you know any Japanese already?"));
     speech.Enqueue(new TextBlock("Since you are already knowledgable about", "the japanese kana, feel free ..."));
-    speech.Enqueue(new TextBlock("to jump into a game through level select."));
+    speech.Enqueue(new TextBlock("to jump into a game through level select.", ""));
 
     components.Add(bubble);
     //components.Add(bubbleScaled);
