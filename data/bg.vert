@@ -56,13 +56,14 @@ void main()
 #ifdef VULKAN
     vec4 colour = uniformBuffer.colour;
     mat4 MVP = uniformBuffer.MVP;
-    float time = uniformBuffer.time.x;
+    vTime = uniformBuffer.time.x;
+#else
+    vTime = i_time.x;
 #endif
     // assign the per-vertex colour to vSmoothColor varying
     //vSmoothColor = vec4(vColor) * colour;
     vSmoothColor = colour;
     vSmoothTexcoord = vTexcoord;
-    vTime = i_time.x;
 
     //get the clip space position by multiplying the combined MVP matrix with the object space
     //vertex position
