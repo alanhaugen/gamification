@@ -64,15 +64,8 @@ solid {
             "source/wordpopup.h",
         ]
 
+        Depends { name: "cpp" }
         Depends { name: "core" }
-        Depends { name: "nullrenderer"  }
-        Depends { name: "nullphysics"  }
-        Depends { name: "nullaudio"  }
-        Depends { name: "nullphysics"  }
-        Depends { name: "nullfilesystem"  }
-        Depends { name: "gles3renderer"  }
-        Depends { name: "stdfilesystem"  }
-        Depends { name: "portaudioaudio"  }
 
         property stringList includePaths: "../solid/source"
 
@@ -120,10 +113,5 @@ solid {
             cpp.includePaths: includePaths.concat("../solid/include/mingw32")
             cpp.defines: project.defines.concat(project.windowsDefines)
         }
-
-        Depends { name: "cpp" }
-        Depends { name: "core" }
-        Depends { name: "nullphysics" }
-        Depends { name: "bulletphysics" }
     }
 }
